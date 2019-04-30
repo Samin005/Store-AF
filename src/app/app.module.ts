@@ -4,18 +4,17 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ParticlesModule } from 'angular-particle';
-import { TypingAnimationDirective } from 'angular-typing-animation';
-import {Observable} from 'rxjs';
+import { TypingAnimationModule } from 'angular-typing-animation';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    TypingAnimationDirective
+    AppComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ParticlesModule
+    ParticlesModule,
+    TypingAnimationModule
   ],
   providers: [],
   bootstrap: [AppComponent]
