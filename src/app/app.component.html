@@ -1,38 +1,35 @@
-<!--The content below is only a placeholder and can be replaced.-->
 <particles [style]="myStyle" [width]="width" [height]="height" [params]="myParams"></particles>
 <div class="storeAFIconDiv">
-  <i class="fab fa-stripe-s card-header"
-   style="font-size:48px;
-   background: -webkit-linear-gradient(white, red);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  padding-right: 2px;"></i>
-  <span class="hoverText">tore-AF</span>
-  <p class="hoverText" style="font-size: 12px">Created by Samin Azhan</p>
+    <i class="fab fa-stripe-s card-header"
+       style="font-size:48px;
+       background: -webkit-linear-gradient(white, red);
+       -webkit-background-clip: text;
+       -webkit-text-fill-color: transparent;
+       padding-right: 2px;"></i>
+    <span class="hoverText">tore-AF</span>
+    <p class="hoverText" style="font-size: 12px">Created by Samin Azhan</p>
 </div>
 <div style="text-align:center;">
-  <p class="welcomeText">
-    Welcome to {{ title }}!
-  </p>
-  <div *ngIf="!eraseLine">
-    <span typingAnimation [typeSpeed]="30" [startDelay]="2000" (complete)="onComplete()">{{typewriterText}}</span>
-  </div>
-  <div *ngIf="eraseLine">
-    <span typingAnimation [typeSpeed]="30" [startDelay]="2000" (complete)="onComplete()">{{typewriterText}}</span>
-  </div>
-<!--  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">-->
+    <p class="welcomeText">
+        Welcome to {{ title }}!
+    </p>
+    <div *ngIf="!eraseLine">
+        <span typingAnimation [typeSpeed]="30" [startDelay]="2000" (complete)="onComplete()">{{typewriterText}}</span>
+    </div>
+    <div *ngIf="eraseLine">
+        <span typingAnimation [typeSpeed]="30" [startDelay]="2000" (complete)="onComplete()">{{typewriterText}}</span>
+    </div>
+    <!--  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">-->
+    <h4 style="margin-top: 15%;">Clients:</h4>
+    <div class="card-deck" style="margin: 5%;">
+        <div class="card" *ngFor="let company of companies | async">
+            <img src="{{ company.img_path }}" class="card-img-top" alt="{{company.name}} image">
+            <div class="card-body">
+                <h5 class="card-title">{{ company.name }}</h5>
+                <p class="card-text">{{ company.details }}</p>
+            </div>
+        </div>
+    </div>
 </div>
-<!--<h2>Here are some links to help you start: </h2>-->
-<!--<ul>-->
-<!--  <li>-->
-<!--    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>-->
-<!--  </li>-->
-<!--  <li>-->
-<!--    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>-->
-<!--  </li>-->
-<!--  <li>-->
-<!--    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>-->
-<!--  </li>-->
-<!--</ul>-->
 
 <router-outlet></router-outlet>

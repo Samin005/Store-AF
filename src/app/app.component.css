@@ -1,29 +1,45 @@
+@media (min-width:27em) {
+    .card-deck > .card
+    {
+        width: 29%;
+        flex-wrap: wrap;
+        flex: initial;
+        padding: 1%;
+        margin-left: 2%;
+        margin-top: 2%;
+    }
+}
+
 .welcomeText {
-  font-size: 2.0rem;
-  background: -webkit-linear-gradient(#eee, #333);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-top: 2%;
-  padding: 0.2%;
-  font-weight: 500;
+    font-size: 2.0rem;
+    background: -webkit-linear-gradient(#eee, #333);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-top: 2%;
+    padding: 0.2%;
+    font-weight: 500;
 }
+
 .storeAFIconDiv {
-  width: 120px;
-  height: 100px;
-  padding-left: 1%;
-  transition: 2s;
+    width: 120px;
+    height: 100px;
+    padding-left: 1%;
+    transition: 2s;
 }
+
 .storeAFIconDiv:hover {
-  border: 1px solid darkgray;
-  border-bottom-right-radius: 30%;
-  width: 200px;
-  background: #cd2e48;
+    border: 1px solid darkgray;
+    border-bottom-right-radius: 30%;
+    width: 200px;
+    background: #cd2e48;
 }
+
 .storeAFIconDiv .hoverText {
-  opacity: 0;
-  transition: 2s;
+    opacity: 0;
+    transition: 2s;
 }
+
 .storeAFIconDiv:hover .hoverText {
-  opacity: 1;
-  color: white;
+    opacity: 1;
+    color: white;
 }
