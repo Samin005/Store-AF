@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {AngularFirestore} from '@angular/fire/firestore';
+
 import {Observable} from 'rxjs';
+import {FirestoreService} from './firestore.service';
 
 @Component({
     selector: 'app-root',
@@ -20,11 +21,18 @@ export class AppComponent implements OnInit {
     typewriterText4 = 'You will get an online shop and a back office to keep track of your business';
     typewriterText = this.typewriterText1;
     eraseLine = false;
+    topClients;
+    sugarlockCompany: Observable<any>;
 
-    constructor(db: AngularFirestore) {
-        this.companies = db.collection('companies').valueChanges();
+    constructor(private firestoreService: FirestoreService) {
+        this.companies = firestoreService.companies;
+        // firestoreService.getCompany('Sugarlock');
     }
+
     ngOnInit(): void {
+        this.topClients = this.firestoreService.getCompany('Sugarlock');
+        this.sugarlockCompany = this.firestoreService.getSugarlock();
+        this.firestoreService.getSugarlockDetails();
         this.myStyle = {
             position: 'fixed',
             width: '100%',
