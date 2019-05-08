@@ -21,7 +21,14 @@ export class OnlineStoreComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.companiesService.setAllCompaniesList(this.db);
+        // this.companies = this.db.collection('companies').valueChanges();
+        // this.companies.subscribe(items => {
+        //     items.forEach(item => {
+        //         this.allCompanies.push(item.name);
+        //     });
+        // });
+        console.log('os');
+        console.log(this.db.collection('companies', ref => ref.where('name', '==', 'Sugarlock')).snapshotChanges());
         this.activatedRoute.params.subscribe((params: Params) => {
             this.companyName = params.companyName;
         });
