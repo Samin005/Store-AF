@@ -12,6 +12,7 @@ import { HomeComponent } from './home/home.component';
 import { OnlineStoreComponent } from './online-store/online-store.component';
 import { BackOfficeComponent } from './back-office/back-office.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import {CompaniesService} from './companies.service';
 
 @NgModule({
     declarations: [
@@ -29,7 +30,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
         AngularFirestoreModule,
         AngularFireModule.initializeApp(environment.firebaseConfig)
     ],
-    providers: [],
+    providers: [CompaniesService],
     bootstrap: [AppComponent]
 })
 export class AppModule {

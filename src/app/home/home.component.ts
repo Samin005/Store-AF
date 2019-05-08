@@ -30,10 +30,11 @@ export class HomeComponent implements OnInit {
     constructor(private db: AngularFirestore,
                 private router: Router,
                 private companiesService: CompaniesService) {
-        this.companies = this.db.collection('companies').valueChanges();
     }
 
     ngOnInit() {
+        this.companies = this.db.collection('companies').valueChanges();
+        this.companiesService.setAllCompaniesList(this.db);
         // this.topClients = this.firestoreService.getCompany('Sugarlock');
         // this.sugarlockCompany = this.firestoreService.getSugarlock();
         // this.firestoreService.getSugarlockDetails();
@@ -171,6 +172,8 @@ export class HomeComponent implements OnInit {
 
     loadOnlineStore(companyName: any) {
         this.companiesService.setCurrentCompany(companyName);
-        this.router.navigate(['/' + companyName]);
+        this.router.navigate(['/' + companyName])
+            .catch((error) => console.log(error))
+            .then((result) => console.log(result));
     }
 }
