@@ -34,8 +34,6 @@ export class HomeComponent implements OnInit {
 
     ngOnInit() {
         this.companies = this.db.collection('companies').valueChanges();
-        // console.log('home: ');
-        // console.log(this.companiesService.allCompaniesList);
         // this.companiesService.setAllCompaniesList(this.db);
         // this.topClients = this.firestoreService.getCompany('Sugarlock');
         // this.sugarlockCompany = this.firestoreService.getSugarlock();
@@ -175,7 +173,6 @@ export class HomeComponent implements OnInit {
     loadOnlineStore(companyName: any) {
         this.companiesService.setCurrentCompany(companyName);
         this.router.navigate(['/' + companyName])
-            .catch((error) => console.log(error))
-            .then((result) => console.log(result));
+            .catch((error) => console.log(error));
     }
 }

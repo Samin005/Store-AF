@@ -11,7 +11,6 @@ import {Observable} from 'rxjs';
 })
 export class OnlineStoreComponent implements OnInit {
     companyName: string;
-    allCompanies = [];
     companies: Observable<any[]>;
 
     constructor(private companiesService: CompaniesService,
@@ -21,25 +20,19 @@ export class OnlineStoreComponent implements OnInit {
     }
 
     ngOnInit() {
-        // this.companies = this.db.collection('companies').valueChanges();
-        // this.companies.subscribe(items => {
-        //     items.forEach(item => {
-        //         this.allCompanies.push(item.name);
-        //     });
-        // });
-        console.log('os');
-        console.log(this.companiesService.allCompaniesList);
-        this.activatedRoute.params.subscribe((params: Params) => {
-            this.companyName = params.companyName;
-        });
-        this.companiesService.setCurrentCompany(this.companyName);
-        this.companiesService.setAllCompaniesListAndContains(this.db, this.companyName);
-        // if (this.companiesService.allCompnaiesListContains(this.companyName)) {
-        //     this.router.navigate(['page-not-found'], {relativeTo: this.activatedRoute});
-        // }
+        this.companyName = this.companiesService.getCurrentCompany();
+        if (this.companyName === undefined) {
+            this.activatedRoute.params.subscribe((params: Params) => {
+                this.companyName = params.companyName;
+            });
+        } else {
+            this.companyName = this.companiesService.getCurrentCompany();
+        }
+        this.companiesService.listAndFind(this.db, this.companyName);
     }
 
-    loadBackoffice() {
-        this.router.navigate(['back-office'], {relativeTo: this.activatedRoute});
+    loadBackOffice() {
+        this.router.navigate(['back-office'], {relativeTo: this.activatedRoute})
+            .catch(error => console.log(error));
     }
 }
