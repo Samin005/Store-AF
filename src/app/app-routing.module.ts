@@ -7,9 +7,9 @@ import {BackOfficeComponent} from './back-office/back-office.component';
 
 const routes: Routes = [
     {path: '', component: HomeComponent},
+    {path: 'page-not-found', component: PageNotFoundComponent},
     {path: ':companyName', component: OnlineStoreComponent},
     {path: ':companyName/back-office', component: BackOfficeComponent},
-    {path: 'page-not-found', component: PageNotFoundComponent},
     {path: '**', redirectTo: 'page-not-found'}
     ];
 

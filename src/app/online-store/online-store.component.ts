@@ -28,14 +28,15 @@ export class OnlineStoreComponent implements OnInit {
         //     });
         // });
         console.log('os');
-        console.log(this.db.collection('companies', ref => ref.where('name', '==', 'Sugarlock')).snapshotChanges());
+        console.log(this.companiesService.allCompaniesList);
         this.activatedRoute.params.subscribe((params: Params) => {
             this.companyName = params.companyName;
         });
         this.companiesService.setCurrentCompany(this.companyName);
-        if (this.companiesService.allCompnaiesListContains(this.companyName)) {
-            this.router.navigate(['page-not-found'], {relativeTo: this.activatedRoute});
-        }
+        this.companiesService.setAllCompaniesListAndContains(this.db, this.companyName);
+        // if (this.companiesService.allCompnaiesListContains(this.companyName)) {
+        //     this.router.navigate(['page-not-found'], {relativeTo: this.activatedRoute});
+        // }
     }
 
     loadBackoffice() {

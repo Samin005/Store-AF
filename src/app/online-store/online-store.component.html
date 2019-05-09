@@ -1,4 +1,11 @@
-<p>
-  Welcome to {{companyName}}
-</p>
-<button (click)="loadBackoffice()">Back-office</button>
+<div>{{companiesService.allCompaniesList}}</div>
+<div *ngIf="companiesService.inCompanyList">
+    <p>
+        Welcome to {{companyName}}
+    </p>
+    <button (click)="loadBackoffice()">Back-office</button>
+</div>
+
+<div *ngIf="!companiesService.inCompanyList">
+    no company found
+</div>

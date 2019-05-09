@@ -36,7 +36,7 @@ export class HomeComponent implements OnInit {
         this.companies = this.db.collection('companies').valueChanges();
         // console.log('home: ');
         // console.log(this.companiesService.allCompaniesList);
-        this.companiesService.setAllCompaniesList(this.db);
+        // this.companiesService.setAllCompaniesList(this.db);
         // this.topClients = this.firestoreService.getCompany('Sugarlock');
         // this.sugarlockCompany = this.firestoreService.getSugarlock();
         // this.firestoreService.getSugarlockDetails();
