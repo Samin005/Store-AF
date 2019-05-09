@@ -12,7 +12,7 @@ export class BackOfficeComponent implements OnInit {
     companyName: string;
 
     constructor(private db: AngularFirestore,
-                private companiesService: CompaniesService,
+                public companiesService: CompaniesService,
                 private activatedRoute: ActivatedRoute) {
     }
 

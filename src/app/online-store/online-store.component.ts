@@ -13,7 +13,7 @@ export class OnlineStoreComponent implements OnInit {
     companyName: string;
     companies: Observable<any[]>;
 
-    constructor(private companiesService: CompaniesService,
+    constructor(public companiesService: CompaniesService,
                 private router: Router,
                 private activatedRoute: ActivatedRoute,
                 private db: AngularFirestore) {

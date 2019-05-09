@@ -1,10 +1,10 @@
-<div *ngIf="companiesService.inCompanyList">
+<div *ngIf="this.companiesService.inCompanyList">
     <button (click)="loadBackOffice()">Back-office</button>
     <h3 style="text-align: center;">
         Welcome to {{companyName}}
     </h3>
 </div>
 
-<div *ngIf="!companiesService.inCompanyList">
+<div *ngIf="!this.companiesService.inCompanyList">
     no company found
 </div>
