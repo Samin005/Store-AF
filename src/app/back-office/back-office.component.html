@@ -1,9 +1,9 @@
-<div *ngIf="this.companiesService.inCompanyList">
+<div *ngIf="inCompanyList">
     <h3 style="text-align: center;">
         {{companyName}}'s Back-office
     </h3>
 </div>
 
-<div *ngIf="!this.companiesService.inCompanyList">
+<div *ngIf="!inCompanyList">
     no company found
 </div>

@@ -12,8 +12,11 @@ import {Observable} from 'rxjs';
 export class OnlineStoreComponent implements OnInit {
     companyName: string;
     companies: Observable<any[]>;
+    allCompaniesList = [];
+    inCompanyList = true;
+    companiesObservable: Observable<any[]>;
 
-    constructor(public companiesService: CompaniesService,
+    constructor(private companiesService: CompaniesService,
                 private router: Router,
                 private activatedRoute: ActivatedRoute,
                 private db: AngularFirestore) {
@@ -28,7 +31,22 @@ export class OnlineStoreComponent implements OnInit {
         } else {
             this.companyName = this.companiesService.getCurrentCompany();
         }
-        this.companiesService.listAndFind(this.db, this.companyName);
+        this.listAndFind(this.companyName);
+    }
+
+    listAndFind(companyName) {
+        this.companiesObservable = this.db.collection('companies').valueChanges();
+        this.allCompaniesList = [];
+        this.companiesObservable.subscribe(items => {
+            items.forEach(item => {
+                this.allCompaniesList.push(item.name);
+            });
+            this.findInCompanyList(companyName);
+        });
+    }
+
+    findInCompanyList(companyName) {
+        this.inCompanyList = this.allCompaniesList.indexOf(companyName) > -1;
     }
 
     loadBackOffice() {

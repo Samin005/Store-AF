@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {CompaniesService} from '../companies.service';
 import {ActivatedRoute, Params} from '@angular/router';
 import {AngularFirestore} from '@angular/fire/firestore';
+import {Observable} from 'rxjs';
 
 @Component({
     selector: 'app-back-office',
@@ -10,9 +11,12 @@ import {AngularFirestore} from '@angular/fire/firestore';
 })
 export class BackOfficeComponent implements OnInit {
     companyName: string;
+    allCompaniesList = [];
+    inCompanyList = true;
+    companiesObservable: Observable<any[]>;
 
     constructor(private db: AngularFirestore,
-                public companiesService: CompaniesService,
+                private companiesService: CompaniesService,
                 private activatedRoute: ActivatedRoute) {
     }
 
@@ -25,7 +29,21 @@ export class BackOfficeComponent implements OnInit {
         } else {
             this.companyName = this.companiesService.getCurrentCompany();
         }
-        this.companiesService.listAndFind(this.db, this.companyName);
+        this.listAndFind(this.companyName);
     }
 
+    listAndFind(companyName) {
+        this.companiesObservable = this.db.collection('companies').valueChanges();
+        this.allCompaniesList = [];
+        this.companiesObservable.subscribe(items => {
+            items.forEach(item => {
+                this.allCompaniesList.push(item.name);
+            });
+            this.findInCompanyList(companyName);
+        });
+    }
+
+    findInCompanyList(companyName) {
+        this.inCompanyList = this.allCompaniesList.indexOf(companyName) > -1;
+    }
 }
