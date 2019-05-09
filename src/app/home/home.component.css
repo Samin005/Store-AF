@@ -48,6 +48,13 @@
     transition: 1s;
 }
 
+.client-cards:active {
+    background: #cd2e48;
+    color: white;
+    cursor: pointer;
+    transition: none;
+}
+
 .client-cards:hover {
     background: #cd2e48;
     color: white;

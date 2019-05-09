@@ -7,8 +7,8 @@ import {AngularFirestore} from '@angular/fire/firestore';
 })
 export class CompaniesService {
     currentCompanyName: string;
-    allCompaniesList = [];
-    inCompanyList = true;
+    // allCompaniesList = [];
+    // inCompanyList = true;
     companiesObservable: Observable<any[]>;
 
     constructor(private db: AngularFirestore) {
@@ -34,19 +34,19 @@ export class CompaniesService {
     // initializeAllCompaniesList() {
     //     this.allCompaniesList = [];
     // }
-
-    listAndFind(db: AngularFirestore, companyName) {
-        this.companiesObservable = db.collection('companies').valueChanges();
-        this.allCompaniesList = [];
-        this.companiesObservable.subscribe(items => {
-            items.forEach(item => {
-                this.allCompaniesList.push(item.name);
-            });
-            this.findInCompanyList(companyName);
-        });
-    }
-
-    findInCompanyList(companyName) {
-        this.inCompanyList = this.allCompaniesList.indexOf(companyName) > -1;
-    }
+    //
+    // listAndFind(db: AngularFirestore, companyName) {
+    //     this.companiesObservable = db.collection('companies').valueChanges();
+    //     this.allCompaniesList = [];
+    //     this.companiesObservable.subscribe(items => {
+    //         items.forEach(item => {
+    //             this.allCompaniesList.push(item.name);
+    //         });
+    //         this.findInCompanyList(companyName);
+    //     });
+    // }
+    //
+    // findInCompanyList(companyName) {
+    //     this.inCompanyList = this.allCompaniesList.indexOf(companyName) > -1;
+    // }
 }
