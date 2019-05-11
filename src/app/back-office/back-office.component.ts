@@ -14,6 +14,7 @@ export class BackOfficeComponent implements OnInit {
     allCompaniesList = [];
     inCompanyList = true;
     companiesObservable: Observable<any[]>;
+    // selectedFile: File = null;
 
     constructor(private db: AngularFirestore,
                 private companiesService: CompaniesService,
@@ -40,10 +41,24 @@ export class BackOfficeComponent implements OnInit {
                 this.allCompaniesList.push(item.name);
             });
             this.findInCompanyList(companyName);
-        });
+        }, error => console.log(error),
+            () => console.log('Complete!')
+        );
     }
 
     findInCompanyList(companyName) {
         this.inCompanyList = this.allCompaniesList.indexOf(companyName) > -1;
     }
+
+    // onFileSelected(event) {
+    //     this.selectedFile = event.target.files[0];
+    //     console.log(this.selectedFile);
+    //     const fd = new FormData();
+    //     fd.append('image', this.selectedFile, this.selectedFile.name);
+    //     this.http.post('https://github.com/Samin005/Store-AF/tree/master/src/assets/img', fd)
+    //         .subscribe(
+    //             response => console.log(response),
+    //             error => console.log(error)
+    //         );
+    // }
 }

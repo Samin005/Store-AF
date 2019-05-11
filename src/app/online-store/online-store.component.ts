@@ -42,7 +42,9 @@ export class OnlineStoreComponent implements OnInit {
                 this.allCompaniesList.push(item.name);
             });
             this.findInCompanyList(companyName);
-        });
+        }, error => console.log(error),
+            () => console.log('Complete!')
+        );
     }
 
     findInCompanyList(companyName) {
