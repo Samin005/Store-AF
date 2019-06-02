@@ -1,11 +1,12 @@
 <div *ngIf="inCompanyList">
+    <app-header-os></app-header-os>
     <button (click)="loadBackOffice()">Back-office</button>
     <h3 style="text-align: center;">
-        Welcome to {{companyName}}
+        Welcome to {{ (company$ | async)?.name }}
     </h3>
 </div>
 
 <div *ngIf="!inCompanyList">
     <app-page-not-found></app-page-not-found>
-    <div class="text-center">no company found</div>
+    <div class="text-center">No company found</div>
 </div>

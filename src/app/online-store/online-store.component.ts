@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {CompaniesService} from '../companies.service';
 import {ActivatedRoute, Params, Router} from '@angular/router';
-import {AngularFirestore} from '@angular/fire/firestore';
+
 import {Observable} from 'rxjs';
+import {FirestoreService} from '../firestore.service';
 
 @Component({
     selector: 'app-online-store',
@@ -10,45 +10,40 @@ import {Observable} from 'rxjs';
     styleUrls: ['./online-store.component.css']
 })
 export class OnlineStoreComponent implements OnInit {
-    companyName: string;
-    companies: Observable<any[]>;
+    companyID: string;
     allCompaniesList = [];
     inCompanyList = true;
-    companiesObservable: Observable<any[]>;
+    company$: Observable<any>;
+    companies$: Observable<any[]>;
 
-    constructor(private companiesService: CompaniesService,
-                private router: Router,
+    constructor(private router: Router,
                 private activatedRoute: ActivatedRoute,
-                private db: AngularFirestore) {
+                private firestoreService: FirestoreService) {
     }
 
     ngOnInit() {
-        this.companyName = this.companiesService.getCurrentCompany();
-        if (this.companyName === undefined) {
-            this.activatedRoute.params.subscribe((params: Params) => {
-                this.companyName = params.companyName;
-            });
-        } else {
-            this.companyName = this.companiesService.getCurrentCompany();
-        }
-        this.listAndFind(this.companyName);
+        this.activatedRoute.params.subscribe((params: Params) => {
+            this.companyID = params.companyID;
+        });
+        this.listAndFind(this.companyID);
+        this.company$ = this.firestoreService.getCompany(this.companyID);
     }
 
-    listAndFind(companyName) {
-        this.companiesObservable = this.db.collection('companies').valueChanges();
+    listAndFind(companyID) {
+        this.companies$ = this.firestoreService.getCompanies();
         this.allCompaniesList = [];
-        this.companiesObservable.subscribe(items => {
+        this.companies$.subscribe(items => {
             items.forEach(item => {
-                this.allCompaniesList.push(item.name);
+                this.allCompaniesList.push(item.id);
             });
-            this.findInCompanyList(companyName);
+            this.findInCompanyList(companyID);
         }, error => console.log(error),
             () => console.log('Complete!')
         );
     }
 
-    findInCompanyList(companyName) {
-        this.inCompanyList = this.allCompaniesList.indexOf(companyName) > -1;
+    findInCompanyList(companyID) {
+        this.inCompanyList = this.allCompaniesList.indexOf(companyID) > -1;
     }
 
     loadBackOffice() {

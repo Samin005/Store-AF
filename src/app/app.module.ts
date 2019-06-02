@@ -12,7 +12,7 @@ import { HomeComponent } from './home/home.component';
 import { OnlineStoreComponent } from './online-store/online-store.component';
 import { BackOfficeComponent } from './back-office/back-office.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import {CompaniesService} from './companies.service';
+import { HeaderOSComponent } from './online-store/header-os/header-os.component';
 
 @NgModule({
     declarations: [
@@ -20,7 +20,8 @@ import {CompaniesService} from './companies.service';
         HomeComponent,
         OnlineStoreComponent,
         BackOfficeComponent,
-        PageNotFoundComponent
+        PageNotFoundComponent,
+        HeaderOSComponent
     ],
     imports: [
         BrowserModule,
@@ -30,7 +31,7 @@ import {CompaniesService} from './companies.service';
         AngularFirestoreModule,
         AngularFireModule.initializeApp(environment.firebaseConfig)
     ],
-    providers: [CompaniesService],
+    providers: [],
     bootstrap: [AppComponent]
 })
 export class AppModule {

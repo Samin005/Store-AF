@@ -1,9 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 
 import {Observable} from 'rxjs';
-import {AngularFirestore} from '@angular/fire/firestore';
 import {Router} from '@angular/router';
-import {CompaniesService} from '../companies.service';
+import {FirestoreService} from '../firestore.service';
 
 @Component({
     selector: 'app-home',
@@ -12,7 +11,7 @@ import {CompaniesService} from '../companies.service';
 })
 export class HomeComponent implements OnInit {
     title = 'Store-AF';
-    companies: Observable<any[]>;
+    companies$: Observable<any[]>;
     myStyle: object = {};
     myParams: object = {};
     width = 100;
@@ -27,13 +26,12 @@ export class HomeComponent implements OnInit {
     // sugarlockCompany: Observable<any>;
 
 
-    constructor(private db: AngularFirestore,
-                private router: Router,
-                private companiesService: CompaniesService) {
+    constructor(private firestoreService: FirestoreService,
+                private router: Router) {
     }
 
     ngOnInit() {
-        this.companies = this.db.collection('companies').valueChanges();
+        this.companies$ = this.firestoreService.getCompanies();
         // this.companiesService.setAllCompaniesList(this.db);
         // this.topClients = this.firestoreService.getCompany('Sugarlock');
         // this.sugarlockCompany = this.firestoreService.getSugarlock();
@@ -170,9 +168,8 @@ export class HomeComponent implements OnInit {
         }, 2000);
     }
 
-    loadOnlineStore(companyName: any) {
-        this.companiesService.setCurrentCompany(companyName);
-        this.router.navigate(['/' + companyName])
+    loadOnlineStore(companyID: any) {
+        this.router.navigate(['/' + companyID])
             .catch((error) => console.log(error));
     }
 }

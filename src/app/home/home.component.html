@@ -29,8 +29,8 @@
     <!--    </h3>-->
     <h4 style="margin-top: 15%;">Clients:</h4>
     <div class="card-deck" style="margin: 5%;">
-        <div class="card client-cards" *ngFor="let company of companies | async"
-             (click)="loadOnlineStore(company.name)">
+        <div class="card client-cards" *ngFor="let company of companies$ | async"
+             (click)="loadOnlineStore(company.id)">
             <img src="{{ company.img_path }}" class="card-img-top" alt="{{company.name}} image">
             <div class="card-body">
                 <h5 class="card-title">{{ company.name }}</h5>

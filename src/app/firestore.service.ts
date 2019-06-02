@@ -7,13 +7,21 @@ import {Observable} from 'rxjs';
     providedIn: 'root'
 })
 export class FirestoreService {
-    companies: Observable<any[]>;
+    // companies$: Observable<any[]>;
     // sugarlockDetails: string;
 
     constructor(private db: AngularFirestore) {
-        this.companies = db.collection('companies').valueChanges();
     }
-    //
+
+    getCompanies() {
+        return this.db.collection('companies').valueChanges();
+    }
+
+    getCompany(companyID) {
+        // console.log('given comp name = ' + companyID);
+        return this.db.doc('companies/' + companyID).valueChanges();
+    }
+
     // getCompany(compName) {
     //     return this.db.collection('companies', ref => ref.where('name', '==', compName)).valueChanges();
     // }

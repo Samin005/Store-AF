@@ -1,6 +1,6 @@
 <div *ngIf="inCompanyList">
     <h3 style="text-align: center;">
-        {{companyName}}'s Back-office
+        {{ (company$ | async)?.name }}'s Back-office
     </h3>
 
 <!--    <input type="file" (change)="onFileSelected($event)">-->
