@@ -1,6 +1,6 @@
 <div *ngIf="inCompanyList">
     <app-header-os></app-header-os>
-    <button (click)="loadBackOffice()">Back-office</button>
+    <button (click)="loadBackOffice()" class="float-right">Back-office</button>
     <h3 style="text-align: center;">
         Welcome to {{ (company$ | async)?.name }}
     </h3>

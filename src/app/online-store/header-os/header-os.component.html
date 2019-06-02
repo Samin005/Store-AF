@@ -1,9 +1,12 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow-sm p-3 mb-5 bg-white rounded">
+    <img src="{{ (company$ | async)?.img_path }}" width="80" height="80"
+         class="d-inline-block align-top rounded-circle mr-1" alt="logo">
     <a class="navbar-brand" href="#">
-        <img src="{{ (company$ | async)?.img_path }}" width="30" height="30" class="d-inline-block align-top" alt="logo">
+
         {{ (company$ | async)?.name }}
     </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -16,7 +19,8 @@
                 <a class="nav-link" href="#">Link</a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
                     Dropdown
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -30,9 +34,19 @@
                 <a class="nav-link disabled" href="#">Disabled</a>
             </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        <form class="form-group my-2 my-lg-0">
+            <div class="input-group">
+                <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                <span class="input-group-text mr-2">
+                    <i class="fas fa-search"></i>
+                </span>
+            </div>
         </form>
+        <button class="btn btn-outline-info my-2 my-sm-0">
+            <i class="fas fa-user-circle"></i>&nbsp;Sign in
+        </button>
+        <button class="btn btn-outline-warning my-2 my-sm-0 mx-2">
+            <i class="fas fa-shopping-cart"></i>&nbsp;Cart
+        </button>
     </div>
 </nav>
