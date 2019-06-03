@@ -3,6 +3,7 @@ import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
 import {Router} from '@angular/router';
 import {FirestoreService} from '../firestore.service';
+import Swal from 'sweetalert2';
 
 @Component({
     selector: 'app-home',
@@ -31,7 +32,16 @@ export class HomeComponent implements OnInit {
     }
 
     ngOnInit() {
+        Swal.fire({
+            title: 'Loading...',
+            imageUrl: 'assets/img/loader.gif',
+            showConfirmButton: false,
+            customClass: {
+                image: 'my-0'
+            }
+        }).finally(() => {});
         this.companies$ = this.firestoreService.getCompanies();
+        this.companies$.subscribe(() => Swal.close());
         // this.companiesService.setAllCompaniesList(this.db);
         // this.topClients = this.firestoreService.getCompany('Sugarlock');
         // this.sugarlockCompany = this.firestoreService.getSugarlock();
