@@ -3,7 +3,6 @@ import {ActivatedRoute, Params} from '@angular/router';
 
 import {Observable} from 'rxjs';
 import {FirestoreService} from '../firestore.service';
-import Swal from 'sweetalert2';
 
 @Component({
     selector: 'app-back-office',
@@ -23,20 +22,12 @@ export class BackOfficeComponent implements OnInit {
     }
 
     ngOnInit() {
-        Swal.fire({
-            title: 'Loading...',
-            imageUrl: 'assets/img/loader.gif',
-            showConfirmButton: false,
-            customClass: {
-                image: 'my-0'
-            }
-        }).finally(() => {});
         this.activatedRoute.params.subscribe((params: Params) => {
             this.companyID = params.companyID;
+            this.firestoreService.setCompanyID(this.companyID);
         });
         this.listAndFind(this.companyID);
         this.company$ = this.firestoreService.getCompany(this.companyID);
-        this.company$.subscribe(() => Swal.close());
     }
 
     listAndFind(companyID) {

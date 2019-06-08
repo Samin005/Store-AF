@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 
-import {OnlineStoreComponent} from '../online-store.component';
 import {Observable} from 'rxjs';
+import {FirestoreService} from '../../firestore.service';
 
 @Component({
     selector: 'app-header-os',
@@ -13,12 +13,12 @@ export class HeaderOSComponent implements OnInit {
     companyID: string;
     company$: Observable<any>;
 
-    constructor(private onlineStoreComponent: OnlineStoreComponent) {
+    constructor(private firestoreService: FirestoreService) {
     }
 
     ngOnInit() {
-        this.companyID = this.onlineStoreComponent.companyID;
-        this.company$ = this.onlineStoreComponent.company$;
+        this.companyID = this.firestoreService.getCompanyID();
+        this.company$ = this.firestoreService.company$;
     }
 
 }
