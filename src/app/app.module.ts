@@ -13,6 +13,7 @@ import { OnlineStoreComponent } from './online-store/online-store.component';
 import { BackOfficeComponent } from './back-office/back-office.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { HeaderOSComponent } from './online-store/header-os/header-os.component';
+import { SlideshowComponent } from './online-store/slideshow/slideshow.component';
 
 @NgModule({
     declarations: [
@@ -21,7 +22,8 @@ import { HeaderOSComponent } from './online-store/header-os/header-os.component'
         OnlineStoreComponent,
         BackOfficeComponent,
         PageNotFoundComponent,
-        HeaderOSComponent
+        HeaderOSComponent,
+        SlideshowComponent
     ],
     imports: [
         BrowserModule,

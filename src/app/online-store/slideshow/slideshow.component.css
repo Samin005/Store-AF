@@ -1,0 +1,35 @@
+.carousel {
+    height: 380px;
+}
+
+.carousel-inner > .carousel-item > img {
+    height: 380px;
+    object-fit: contain;
+}
+
+.carousel-control-next, .carousel-control-prev, .carousel-indicators {
+    filter: invert(100%);
+}
+
+.carousel-indicators {
+    background: rgba(0, 0, 0, 0.5);
+}
+.carousel-indicators li {
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+}
+
+.arrow-container {
+    height: 40px;
+    width: 40px;
+    border: 1px solid white;
+    background-color: black;
+    border-radius: 50%;
+}
+
+.carousel-control-next:hover .arrow-container, .carousel-control-prev:hover .arrow-container{
+    height: 42px;
+    width: 42px;
+    box-shadow: 0.125rem .25rem rgba(255,255,255,.3)!important;
+}
