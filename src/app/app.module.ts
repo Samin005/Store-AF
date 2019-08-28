@@ -14,6 +14,7 @@ import { BackOfficeComponent } from './back-office/back-office.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { HeaderOSComponent } from './online-store/header-os/header-os.component';
 import { SlideshowComponent } from './online-store/slideshow/slideshow.component';
+import {AngularFireAuthModule} from '@angular/fire/auth';
 
 @NgModule({
     declarations: [
@@ -31,7 +32,8 @@ import { SlideshowComponent } from './online-store/slideshow/slideshow.component
         ParticlesModule,
         TypingAnimationModule,
         AngularFirestoreModule,
-        AngularFireModule.initializeApp(environment.firebaseConfig)
+        AngularFireModule.initializeApp(environment.firebaseConfig),
+        AngularFireAuthModule
     ],
     providers: [],
     bootstrap: [AppComponent]
