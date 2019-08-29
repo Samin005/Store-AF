@@ -17,7 +17,7 @@ export class HeaderOSComponent implements OnInit {
     company$: Observable<any>;
 
     constructor(private firestoreService: FirestoreService,
-                private afAuth: AngularFireAuth) {
+                public afAuth: AngularFireAuth) {
     }
 
     ngOnInit() {
