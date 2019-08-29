@@ -42,7 +42,7 @@
                 </button>
             </div>
         </form>
-        <div *ngIf="afAuth.user | async as user; else showLogin" class="nav-item dropdown">
+        <div *ngIf="afAuth.user | async as user; else showLogin" class="nav-item dropdown d-inline-block">
             <button class="dropdown-toggle btn btn-outline-info" data-toggle="dropdown"
                aria-haspopup="true" aria-expanded="false"><i class="fas fa-user-circle"></i>
                 {{ user.displayName }}

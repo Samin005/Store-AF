@@ -1,10 +1,10 @@
 <div *ngIf="inCompanyList">
     <app-header-os></app-header-os>
-    <button (click)="loadBackOffice()" class="float-right">Back-office</button>
     <h3 style="text-align: center;">
         Welcome to {{ (company$ | async)?.name }}
     </h3>
     <app-slideshow></app-slideshow>
+    <button (click)="loadBackOffice()" class="float-right">Back-office</button>
 </div>
 
 <div *ngIf="!inCompanyList">

@@ -3,8 +3,6 @@ import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
 import {Router} from '@angular/router';
 import {FirestoreService} from '../firestore.service';
-import {AngularFireAuth} from '@angular/fire/auth';
-import {auth} from 'firebase/app';
 
 @Component({
     selector: 'app-home',
@@ -29,8 +27,7 @@ export class HomeComponent implements OnInit {
 
 
     constructor(private firestoreService: FirestoreService,
-                private router: Router,
-                private afAuth: AngularFireAuth) {
+                private router: Router) {
     }
 
     ngOnInit() {
@@ -175,10 +172,5 @@ export class HomeComponent implements OnInit {
         this.router.navigate(['/' + companyID])
             .catch((error) => console.log(error));
     }
-    login() {
-        this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider());
-    }
-    logout() {
-        this.afAuth.auth.signOut();
-    }
+
 }
