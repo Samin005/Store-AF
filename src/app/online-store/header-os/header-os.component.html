@@ -42,9 +42,27 @@
                 </button>
             </div>
         </form>
-        <button class="btn btn-outline-info my-2 my-sm-0">
-            <i class="fas fa-user-circle"></i>&nbsp;Sign in
-        </button>
+        <div *ngIf="afAuth.user | async as user; else showLogin" class="nav-item dropdown">
+            <button class="dropdown-toggle btn btn-outline-info" data-toggle="dropdown"
+               aria-haspopup="true" aria-expanded="false"><i class="fas fa-user-circle"></i>
+                {{ user.displayName }}
+            </button>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <div class="dropdown-item">Action</div>
+                <a class="dropdown-item" href="#">Another action</a>
+                <div class="dropdown-divider"></div>
+                <div class="dropdown-item signoutDiv">
+                    <button class="btn btn-outline-danger my-2 my-sm-0" (click)="signOut()">
+                        <i class="fas fa-sign-out-alt"></i> Sign Out
+                    </button>
+                </div>
+            </div>
+        </div>
+        <ng-template #showLogin>
+            <button class="btn btn-outline-info my-2 my-sm-0" (click)="signIn()">
+                <i class="fas fa-user-circle"></i> Sign In
+            </button>
+        </ng-template>
         <button class="btn btn-outline-warning my-2 my-sm-0 mx-2">
             <i class="fas fa-shopping-cart"></i>&nbsp;Cart
         </button>

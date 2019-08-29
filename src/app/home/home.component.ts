@@ -29,7 +29,8 @@ export class HomeComponent implements OnInit {
 
 
     constructor(private firestoreService: FirestoreService,
-                private router: Router, private afAuth: AngularFireAuth) {
+                private router: Router,
+                private afAuth: AngularFireAuth) {
     }
 
     ngOnInit() {
