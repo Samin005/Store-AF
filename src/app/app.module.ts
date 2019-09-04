@@ -15,6 +15,11 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { HeaderOSComponent } from './online-store/header-os/header-os.component';
 import { SlideshowComponent } from './online-store/slideshow/slideshow.component';
 import {AngularFireAuthModule} from '@angular/fire/auth';
+import { AdminComponent } from './admin/admin.component';
+import { NewCompanyComponent } from './admin/new-company/new-company.component';
+import { EditCompanyComponent } from './admin/edit-company/edit-company.component';
+import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
     declarations: [
@@ -24,10 +29,15 @@ import {AngularFireAuthModule} from '@angular/fire/auth';
         BackOfficeComponent,
         PageNotFoundComponent,
         HeaderOSComponent,
-        SlideshowComponent
+        SlideshowComponent,
+        AdminComponent,
+        NewCompanyComponent,
+        EditCompanyComponent,
+        AdminHomeComponent
     ],
     imports: [
         BrowserModule,
+        FormsModule,
         AppRoutingModule,
         ParticlesModule,
         TypingAnimationModule,

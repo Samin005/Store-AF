@@ -1,0 +1,14 @@
+<div class="container mt-3">
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" routerLink="/admin">Home</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" routerLinkActive="active" routerLink="/admin/newCompany">New Company</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" routerLinkActive="active" routerLink="/admin/editCompany">Edit Company</a>
+        </li>
+    </ul>
+    <router-outlet></router-outlet>
+</div>
