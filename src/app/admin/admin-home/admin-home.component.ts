@@ -11,17 +11,30 @@ export class AdminHomeComponent implements OnInit {
     userName: string;
     password: string;
     showWelcomeDiv = false;
+    loginFailed = false;
 
     constructor(private adminService: AdminService) {
     }
 
     ngOnInit() {
+        this.showWelcomeDiv = this.adminService.loggedIn;
+        if (this.showWelcomeDiv) {
+            this.userName = this.adminService.userName;
+        }
     }
 
     onLogIn() {
-        this.adminService.onLogIn(this.userName, this.password);
+        this.loginFailed = this.adminService.onLogIn(this.userName, this.password);
         if (this.adminService.loggedIn) {
             this.showWelcomeDiv = true;
+        }
+    }
+
+    onLogOut() {
+        this.adminService.onLogOut();
+        console.log('Logged out');
+        if (!this.adminService.loggedIn) {
+            this.showWelcomeDiv = false;
         }
     }
 

@@ -1,15 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {AdminService} from '../admin.service';
 
 @Component({
-  selector: 'app-new-company',
-  templateUrl: './new-company.component.html',
-  styleUrls: ['./new-company.component.css']
+    selector: 'app-new-company',
+    templateUrl: './new-company.component.html',
+    styleUrls: ['./new-company.component.css']
 })
 export class NewCompanyComponent implements OnInit {
 
-  constructor() { }
+    isLoggedIn = false;
 
-  ngOnInit() {
-  }
+    constructor(private adminService: AdminService) {
+        this.isLoggedIn = adminService.loggedIn;
+    }
+
+    ngOnInit() {
+    }
 
 }

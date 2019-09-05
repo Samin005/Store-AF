@@ -1,15 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {AdminService} from '../admin.service';
 
 @Component({
-  selector: 'app-edit-company',
-  templateUrl: './edit-company.component.html',
-  styleUrls: ['./edit-company.component.css']
+    selector: 'app-edit-company',
+    templateUrl: './edit-company.component.html',
+    styleUrls: ['./edit-company.component.css']
 })
 export class EditCompanyComponent implements OnInit {
 
-  constructor() { }
+    isLoggedIn = false;
 
-  ngOnInit() {
-  }
+    constructor(private adminService: AdminService) {
+        this.isLoggedIn = adminService.loggedIn;
+    }
+
+    ngOnInit() {
+    }
 
 }

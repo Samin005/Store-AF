@@ -1,17 +1,21 @@
 <div class="col-md-4 mx-auto mt-5">
     <div *ngIf="!showWelcomeDiv" class="p-3 shadow" style="border-radius: 3%;">
         <h5 class="mb-3">Please Log In</h5>
-        <div class="form-group mt-3">
-            <input class="form-control" placeholder="User Name" [(ngModel)]="userName" required>
-        </div>
-        <div class="form-group">
-            <input class="form-control" placeholder="Password" [(ngModel)]="password" type="password" required>
-        </div>
-        <div class="form-group">
-            <button (click)="onLogIn()" class="btn btn-primary">Log In</button>
-        </div>
+        <form (submit)="onLogIn()">
+            <div class="form-group mt-3">
+                <input class="form-control" placeholder="User Name" [(ngModel)]="userName" name="userName" required>
+            </div>
+            <div class="form-group">
+                <input class="form-control" placeholder="Password" [(ngModel)]="password" name="password" type="password" required>
+            </div>
+            <div *ngIf="loginFailed" class="text-danger text-center mb-2">Login Failed. Incorrect Username/Password.</div>
+            <div class="form-group">
+                <button class="btn btn-primary" type="submit">Log In</button>
+            </div>
+        </form>
     </div>
     <div *ngIf="showWelcomeDiv">
         <h3>Welcome, {{userName}}</h3>
+        <button class="btn btn-danger float-right" (click)="onLogOut()">Log Out</button>
     </div>
 </div>

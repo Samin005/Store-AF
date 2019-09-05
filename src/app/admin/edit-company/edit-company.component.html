@@ -1,3 +1,8 @@
-<p>
+<div *ngIf="!isLoggedIn" class="text-center">
+    You have to log in to interact.
+</div>
+<div *ngIf="isLoggedIn">
+    <h1>
   edit-company works!
-</p>
+    </h1>
+</div>

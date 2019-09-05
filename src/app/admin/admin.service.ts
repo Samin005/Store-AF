@@ -12,12 +12,13 @@ export class AdminService {
     constructor() {
     }
 
+    // returns if login failed
     onLogIn(user: string, pass: string) {
         if (user === this.userName && pass === this.password) {
             this.loggedIn = true;
-            console.log('Login Successful');
+            return false;
         } else {
-            console.log('Login Failed');
+            return true;
         }
     }
 
