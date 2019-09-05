@@ -39,6 +39,8 @@ export class FirestoreService {
         FirestoreService.showLoader();
         this.company$ = this.db.doc('companies/' + companyID).valueChanges();
         this.company$.subscribe(() => Swal.close());
+        // finding company from db
+        // this.db.collection('companies/', ref => ref.where('id', '==', companyID)).valueChanges().subscribe(value => console.log(value));
         return this.company$;
     }
 
@@ -65,4 +67,7 @@ export class FirestoreService {
     //         });
     //     });
     // }
+    getAdminCredentials() {
+        return this.db.doc('admin/Store-AF').valueChanges();
+    }
 }

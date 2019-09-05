@@ -8,15 +8,19 @@ import {AdminService} from '../admin.service';
 })
 export class AdminHomeComponent implements OnInit {
 
+    // admin$: Observable<any>;
     userName: string;
     password: string;
     showWelcomeDiv = false;
     loginFailed = false;
 
     constructor(private adminService: AdminService) {
+        // if you want to get username in real-time
+        // this.admin$ = this.adminService.getAdminCredentials();
     }
 
     ngOnInit() {
+        // this.admin$.subscribe(admin => this.userName = admin.username);
         this.showWelcomeDiv = this.adminService.loggedIn;
         if (this.showWelcomeDiv) {
             this.userName = this.adminService.userName;
@@ -32,7 +36,6 @@ export class AdminHomeComponent implements OnInit {
 
     onLogOut() {
         this.adminService.onLogOut();
-        console.log('Logged out');
         if (!this.adminService.loggedIn) {
             this.showWelcomeDiv = false;
         }

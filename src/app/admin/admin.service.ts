@@ -1,15 +1,16 @@
 import {Injectable} from '@angular/core';
+import {FirestoreService} from '../firestore.service';
 
 @Injectable({
     providedIn: 'root'
 })
 export class AdminService {
 
-    userName = 'Samin';
-    password = 'samin005';
+    userName: string;
+    password: string;
     loggedIn = false;
 
-    constructor() {
+    constructor(private firestoreService: FirestoreService) {
     }
 
     // returns if login failed
@@ -24,5 +25,9 @@ export class AdminService {
 
     onLogOut() {
         this.loggedIn = false;
+    }
+
+    getAdminCredentials() {
+        return this.firestoreService.getAdminCredentials();
     }
 }
