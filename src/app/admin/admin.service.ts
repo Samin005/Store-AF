@@ -1,16 +1,19 @@
 import {Injectable} from '@angular/core';
 import {FirestoreService} from '../firestore.service';
+import {Observable} from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
 })
 export class AdminService {
 
+    admin$: Observable<any>;
     userName: string;
     password: string;
     loggedIn = false;
 
-    constructor(private firestoreService: FirestoreService) {
+    constructor(firestoreService: FirestoreService) {
+        this.admin$ = firestoreService.getAdminCredentials();
     }
 
     // returns if login failed
@@ -28,6 +31,6 @@ export class AdminService {
     }
 
     getAdminCredentials() {
-        return this.firestoreService.getAdminCredentials();
+        return this.admin$;
     }
 }

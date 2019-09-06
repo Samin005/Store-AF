@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AdminService} from '../admin.service';
+import {Observable} from 'rxjs';
 
 @Component({
     selector: 'app-admin-home',
@@ -8,20 +9,19 @@ import {AdminService} from '../admin.service';
 })
 export class AdminHomeComponent implements OnInit {
 
-    // admin$: Observable<any>;
+    admin$: Observable<any>;
     userName: string;
     password: string;
     showWelcomeDiv = false;
     loginFailed = false;
 
-    constructor(private adminService: AdminService) {
-        // if you want to get username in real-time
-        // this.admin$ = this.adminService.getAdminCredentials();
+    constructor(public adminService: AdminService) {
     }
 
     ngOnInit() {
-        // this.admin$.subscribe(admin => this.userName = admin.username);
+        this.admin$ = this.adminService.getAdminCredentials();
         this.showWelcomeDiv = this.adminService.loggedIn;
+        // to keep username on input after logout
         if (this.showWelcomeDiv) {
             this.userName = this.adminService.userName;
         }
