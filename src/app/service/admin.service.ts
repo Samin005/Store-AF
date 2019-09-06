@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {FirestoreService} from '../firestore.service';
+import {FirestoreService} from './firestore.service';
 import {Observable} from 'rxjs';
 
 @Injectable({

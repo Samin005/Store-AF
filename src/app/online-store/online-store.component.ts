@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 
 import {Observable} from 'rxjs';
-import {FirestoreService} from '../firestore.service';
+import {FirestoreService} from '../service/firestore.service';
 
 @Component({
     selector: 'app-online-store',

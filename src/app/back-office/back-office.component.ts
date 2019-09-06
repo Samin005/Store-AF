@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Params} from '@angular/router';
 
 import {Observable} from 'rxjs';
-import {FirestoreService} from '../firestore.service';
+import {FirestoreService} from '../service/firestore.service';
 
 @Component({
     selector: 'app-back-office',

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {AdminService} from '../admin.service';
+import {AdminService} from '../../service/admin.service';
 import {Observable} from 'rxjs';
 
 @Component({
@@ -39,6 +39,7 @@ export class AdminHomeComponent implements OnInit {
         if (!this.adminService.loggedIn) {
             this.showWelcomeDiv = false;
         }
+        this.password = '';
     }
 
 }

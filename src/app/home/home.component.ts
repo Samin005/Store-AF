@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 
 import {Observable} from 'rxjs';
 import {Router} from '@angular/router';
-import {FirestoreService} from '../firestore.service';
+import {FirestoreService} from '../service/firestore.service';
 
 @Component({
     selector: 'app-home',

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 
 import {Observable} from 'rxjs';
-import {FirestoreService} from '../../firestore.service';
+import {FirestoreService} from '../../service/firestore.service';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {auth} from 'firebase/app';
 import Swal from 'sweetalert2';
