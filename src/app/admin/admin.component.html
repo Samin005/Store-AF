@@ -2,6 +2,9 @@
     <div class="container p-2">
         <div class="float-right text-white">
             <h3 class="pr-1">Store-AF Admin</h3>
+            <div *ngIf="!isOnline">
+                <span class="badge badge-pill badge-danger">No Internet Connection</span>
+            </div>
         </div>
     </div>
 </div>

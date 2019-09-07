@@ -1,8 +1,65 @@
 <div *ngIf="!isLoggedIn" class="text-center">
     You have to log in to interact.
 </div>
-<div *ngIf="isLoggedIn">
-    <h1>
-        new-company works!
-    </h1>
+<div *ngIf="isLoggedIn" class="col-md-8 mx-auto my-5">
+    <h5 class="mb-3">Add New Company</h5>
+    <form (submit)="addCompany()" ngNativeValidate>
+        <div class="form-group row">
+            <label for="companyId" class="col-md-3 col-form-label">Company ID: </label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" id="companyId" name="companyId" [(ngModel)]="newCompany.id" (input)="setDefaultValues()" required>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="companyName" class="col-md-3 col-form-label">Company Name: </label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" id="companyName" name="companyName" [(ngModel)]="newCompany.name" required>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="companyDetails" class="col-md-3 col-form-label">Company Details: </label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" id="companyDetails" name="companyDetails" [(ngModel)]="newCompany.details" required>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="imgPath" class="col-md-3 col-form-label">Image Path: </label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" id="imgPath" name="imgPath" [(ngModel)]="newCompany.img_path" required>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="slideshow1" class="col-md-3 col-form-label">Slideshow Image 1: </label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" id="slideshow1" name="slideshow1" [(ngModel)]="newCompany.slideshow_imgPath_1" required>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="slideshow2" class="col-md-3 col-form-label">Slideshow Image 2: </label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" id="slideshow2" name="slideshow2" [(ngModel)]="newCompany.slideshow_imgPath_2" required>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="slideshow3" class="col-md-3 col-form-label">Slideshow Image 3: </label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" id="slideshow3" name="slideshow3" [(ngModel)]="newCompany.slideshow_imgPath_3" required>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="slideshow4" class="col-md-3 col-form-label">Slideshow Image 4: </label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" id="slideshow4" name="slideshow4" [(ngModel)]="newCompany.slideshow_imgPath_4" required>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="slideshow5" class="col-md-3 col-form-label">Slideshow Image 5: </label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" id="slideshow5" name="slideshow5" [(ngModel)]="newCompany.slideshow_imgPath_5" required>
+            </div>
+        </div>
+        <div class="mb-5 d-flex flex-row-reverse">
+            <button class="btn btn-success float-right" type="submit">Add Company</button>
+        </div>
+    </form>
 </div>

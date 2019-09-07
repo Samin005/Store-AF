@@ -10,11 +10,11 @@ export class EditCompanyComponent implements OnInit {
 
     isLoggedIn = false;
 
-    constructor(private adminService: AdminService) {
-        this.isLoggedIn = adminService.loggedIn;
+    constructor(public adminService: AdminService) {
     }
 
     ngOnInit() {
+        this.isLoggedIn = this.adminService.loggedIn;
     }
 
 }

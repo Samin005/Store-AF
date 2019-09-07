@@ -70,4 +70,8 @@ export class FirestoreService {
     getAdminCredentials() {
         return this.db.doc('admin/Store-AF').valueChanges();
     }
+
+    getCompaniesCollection() {
+        return this.db.collection('companies');
+    }
 }

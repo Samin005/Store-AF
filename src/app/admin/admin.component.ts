@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AdminService} from '../service/admin.service';
-import {Observable} from 'rxjs';
+import {merge, Observable, of, fromEvent} from 'rxjs';
+import {mapTo} from 'rxjs/operators';
 
 @Component({
     selector: 'app-admin',
@@ -9,6 +10,8 @@ import {Observable} from 'rxjs';
 })
 export class AdminComponent implements OnInit {
 
+    public isOnline: boolean;
+    online$: Observable<boolean>;
     admin$: Observable<any>;
     constructor(public adminService: AdminService) {
     }
@@ -20,6 +23,15 @@ export class AdminComponent implements OnInit {
             this.adminService.password = admin.password;
             // console.table({Username: admin.username, Pass: admin.password});
         });
-    }
 
+        this.online$ = merge(
+            of(navigator.onLine),
+            fromEvent(window, 'online').pipe(mapTo(true)),
+            fromEvent(window, 'offline').pipe(mapTo(false))
+        );
+        this.online$.subscribe(status => {
+            this.isOnline = status;
+            console.log('Internet connected: ' + this.isOnline);
+        });
+    }
 }
