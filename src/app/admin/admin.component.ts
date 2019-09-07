@@ -31,7 +31,7 @@ export class AdminComponent implements OnInit {
         );
         this.online$.subscribe(status => {
             this.isOnline = status;
-            console.log('Internet connected: ' + this.isOnline);
+            // console.log('Internet connected: ' + this.isOnline);
         });
     }
 }
