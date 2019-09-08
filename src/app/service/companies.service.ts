@@ -12,8 +12,8 @@ export class CompaniesService {
     companiesCollection: AngularFirestoreCollection;
     companies$: Observable<any>;
 
-    constructor(firestoreService: FirestoreService) {
-        this.companiesCollection = firestoreService.getCompaniesCollection();
+    constructor(public firestoreService: FirestoreService) {
+        this.companiesCollection = this.firestoreService.getCompaniesCollection();
         this.companies$ = this.companiesCollection.valueChanges();
     }
 
@@ -30,11 +30,19 @@ export class CompaniesService {
                 }).finally();
             })
             .catch(reason => {
-            Swal.fire({
-                type: 'error',
-                title: 'Error',
-                text: reason
-            }).finally();
-        });
+                Swal.fire({
+                    type: 'error',
+                    title: 'Error',
+                    text: reason
+                }).finally();
+            });
+    }
+
+    getCompanies() {
+        return this.companies$;
+    }
+
+    getCompanyObservableByID(companyID) {
+        return this.firestoreService.getCompanyObservableByID(companyID);
     }
 }

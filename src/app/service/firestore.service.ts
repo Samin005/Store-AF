@@ -11,6 +11,7 @@ export class FirestoreService {
     companyID: string;
     company$: Observable<any>;
     companies$: Observable<any[]>;
+
     // sugarlockDetails: string;
 
     static showLoader() {
@@ -73,5 +74,9 @@ export class FirestoreService {
 
     getCompaniesCollection() {
         return this.db.collection('companies');
+    }
+
+    getCompanyObservableByID(companyID) {
+        return this.db.doc('companies/' + companyID).valueChanges();
     }
 }
