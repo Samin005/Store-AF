@@ -24,6 +24,7 @@
         "angular-particle": "^1.0.4",
         "angular-popper": "^2.0.1",
         "angular-typing-animation": "^0.5.4",
+        "bootstrap-select": "^1.13.10",
         "core-js": "^2.5.4",
         "firebase": "^5.11.1",
         "jquery": "^3.4.0",
