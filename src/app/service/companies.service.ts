@@ -19,13 +19,32 @@ export class CompaniesService {
 
     addCompany(newCompany) {
         Swal.showLoading();
-        this.companiesCollection.doc(newCompany.id)
-            .set(Object.assign({}, newCompany))
+        this.companiesCollection.doc(newCompany.id).set(Object.assign({}, newCompany))
             .then(() => {
                 Swal.fire({
                     type: 'success',
-                    title: 'Success!',
+                    title: 'Added!',
                     html: 'Successfully added new company: <b>' + newCompany.id + '</b>',
+                    timer: 3000
+                }).finally();
+            })
+            .catch(reason => {
+                Swal.fire({
+                    type: 'error',
+                    title: 'Error',
+                    text: reason
+                }).finally();
+            });
+    }
+
+    updateCompany(selectedCompany) {
+        Swal.showLoading();
+        this.companiesCollection.doc(selectedCompany.id).update(Object.assign({}, selectedCompany))
+            .then(() => {
+                Swal.fire({
+                    type: 'success',
+                    title: 'Updated!',
+                    html: 'Successfully updated company: <b>' + selectedCompany.id + '</b>',
                     timer: 3000
                 }).finally();
             })

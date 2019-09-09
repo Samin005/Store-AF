@@ -17,7 +17,7 @@ export class EditCompanyComponent implements OnInit {
     selectedCompanyID: string;
     companySelected = false;
     companies$: Observable<any>;
-    selectedCompany: Company;
+    selectedCompany = new Company();
 
     constructor(public adminService: AdminService,
                 public companiesService: CompaniesService) {
@@ -31,13 +31,34 @@ export class EditCompanyComponent implements OnInit {
 
     onCompanySelect(value) {
         this.selectedCompanyID = value;
-        this.companySelected = true;
         this.companiesService.getCompanyObservableByID(this.selectedCompanyID).subscribe(company => {
-                this.selectedCompany = (company as Company);
-            });
+            this.selectedCompany = (company as Company);
+            this.companySelected = true;
+        });
     }
 
     refreshSelect() {
         $('.selectpicker').selectpicker('refresh');
+    }
+
+    updateCompany() {
+        // this.selectedCompany.Create_date = new Date();
+        this.companiesService.updateCompany(this.selectedCompany);
+        this.resetCompanyValues();
+    }
+
+    setDefaultValues() {
+        this.selectedCompany.name = this.selectedCompany.id;
+        this.selectedCompany.details = 'A ' + this.selectedCompany.id;
+        this.selectedCompany.img_path = 'assets/img/' + this.selectedCompany.id + '.png';
+        this.selectedCompany.slideshow_imgPath_1 = 'assets/img/' + this.selectedCompany.id + '/' + this.selectedCompany.id + '-slideshow-1.jpg';
+        this.selectedCompany.slideshow_imgPath_2 = 'assets/img/' + this.selectedCompany.id + '/' + this.selectedCompany.id + '-slideshow-2.jpg';
+        this.selectedCompany.slideshow_imgPath_3 = 'assets/img/' + this.selectedCompany.id + '/' + this.selectedCompany.id + '-slideshow-3.jpg';
+        this.selectedCompany.slideshow_imgPath_4 = 'assets/img/' + this.selectedCompany.id + '/' + this.selectedCompany.id + '-slideshow-4.jpg';
+        this.selectedCompany.slideshow_imgPath_5 = 'assets/img/' + this.selectedCompany.id + '/' + this.selectedCompany.id + '-slideshow-5.jpg';
+    }
+
+    resetCompanyValues() {
+        this.selectedCompany = new Company();
     }
 }
