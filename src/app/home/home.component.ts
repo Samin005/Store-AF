@@ -154,6 +154,7 @@ export class HomeComponent implements OnInit, AfterContentInit {
             retina_detect: true
         };
         $(document).ready(() => console.log('doc ready.'));
+        window.addEventListener('load', () => console.log('window loaded'));
     }
 
     ngAfterContentInit() {
