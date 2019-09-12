@@ -25,6 +25,7 @@
         "angular-popper": "^2.0.1",
         "angular-typing-animation": "^0.5.4",
         "bootstrap-select": "^1.13.10",
+        "chart.js": "^2.8.0",
         "core-js": "^2.6.9",
         "firebase": "^5.11.1",
         "jquery": "^3.4.1",

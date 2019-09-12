@@ -20,6 +20,7 @@ import { NewCompanyComponent } from './admin/new-company/new-company.component';
 import { EditCompanyComponent } from './admin/edit-company/edit-company.component';
 import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
 import {FormsModule} from '@angular/forms';
+import { DashboardComponent } from './back-office/dashboard/dashboard.component';
 
 @NgModule({
     declarations: [
@@ -33,7 +34,8 @@ import {FormsModule} from '@angular/forms';
         AdminComponent,
         NewCompanyComponent,
         EditCompanyComponent,
-        AdminHomeComponent
+        AdminHomeComponent,
+        DashboardComponent
     ],
     imports: [
         BrowserModule,
