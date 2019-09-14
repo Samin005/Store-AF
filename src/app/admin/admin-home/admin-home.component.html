@@ -1,10 +1,9 @@
 <div class="col-md-4 mx-auto mt-5">
     <div *ngIf="!showWelcomeDiv" class="p-3 shadow" style="border-radius: 3%;">
-        <h3 class="mb-4">2 Step Verification: </h3>
+        <h4 class="mb-4">2-Step Verification: </h4>
         <div *ngIf="angularFireAuth.user | async as user; else showLogin" class="d-flex justify-content-center my-3">
-            <button class="dropdown-toggle btn btn-outline-primary" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false"><i class="fas fa-user-circle"></i>
-                {{ user.displayName }}
+            <button class="dropdown-toggle btn btn-light" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false"><img src="{{ user.photoURL }}" class="avatar"> {{ user.displayName }}
             </button>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <div class="dropdown-item signoutDiv">
@@ -32,7 +31,7 @@
             </div>
             <div *ngIf="loginFailed" class="text-danger text-center mb-2">Login Failed. Incorrect Username/Password.</div>
             <div class="form-group">
-                <button class="btn btn-primary" type="submit" id="loginButton" disabled="true"><i class="fas fa-sign-in-alt"></i> Log In</button>
+                <button class="btn btn-primary" type="submit" id="loginButton"><i class="fas fa-sign-in-alt"></i> Log In</button>
             </div>
         </form>
     </div>

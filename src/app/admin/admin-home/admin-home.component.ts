@@ -32,16 +32,12 @@ export class AdminHomeComponent implements OnInit {
         if (this.showWelcomeDiv) {
             this.userName = this.adminService.userName;
         }
-        this.angularFireAuth.user.subscribe((response) => {
-            if (response != null && response.emailVerified) {
+        this.angularFireAuth.user.subscribe((user) => {
+            if (user != null && user.emailVerified) {
                 $('#loginButton').attr('disabled', false);
-                console.log(response.uid);
-                this.usersService.getUserDocByID(response.uid).get().then(docSnapshot => {
-                    if (docSnapshot.exists) {
-                        console.log('Exists!');
-                    } else {
-                        console.log('does not exist');
-                        this.usersService.addUser(response);
+                this.usersService.getUserDocByID(user.uid).get().then(docSnapshot => {
+                    if (!docSnapshot.exists) {
+                        this.usersService.addUser(user);
                     }
                 });
             } else {
@@ -74,17 +70,8 @@ export class AdminHomeComponent implements OnInit {
                 Swal.showLoading();
             }
         }).finally();
-        this.angularFireAuth.auth.signInWithPopup(new auth.GoogleAuthProvider())
-            .then(response => {
-                Swal.fire({
-                    type: 'success',
-                    title: 'Sign In Successful!',
-                    html: 'Welcome, <b>' + response.user.displayName + '</b>',
-                    confirmButtonText: 'Great!',
-                    timer: 3000
-                }).finally(() => {
-                });
-            }).catch(reason => {
+        this.angularFireAuth.auth.signInWithPopup(new auth.GoogleAuthProvider()).then(() => Swal.close())
+            .catch(reason => {
             Swal.fire({
                 type: 'error',
                 title: 'Sign In Failed!',
@@ -94,19 +81,14 @@ export class AdminHomeComponent implements OnInit {
     }
     signOut() {
         Swal.fire({
-            title: 'Signing In...',
+            title: 'Signing Out...',
             onBeforeOpen: () => {
                 Swal.showLoading();
             }
         }).finally();
         this.angularFireAuth.auth.signOut()
             .then(() => {
-                Swal.fire({
-                    type: 'success',
-                    title: 'Signed Out!',
-                    timer: 1500
-                }).finally();
-                $('#loginButton').attr('disabled', true);
+                Swal.close();
             }).catch(reason => {
             Swal.fire({
                 type: 'error',

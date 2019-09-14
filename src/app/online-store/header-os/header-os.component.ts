@@ -42,8 +42,7 @@ export class HeaderOSComponent implements OnInit {
                 html: 'Welcome, <b>' + response.user.displayName + '</b>',
                 confirmButtonText: 'Great!',
                 timer: 3000
-            }).finally(() => {
-            });
+            }).finally();
         }).catch(reason => {
             Swal.fire({
                 type: 'error',
@@ -54,7 +53,7 @@ export class HeaderOSComponent implements OnInit {
     }
     signOut() {
         Swal.fire({
-            title: 'Signing In...',
+            title: 'Signing Out...',
             onBeforeOpen: () => {
                 Swal.showLoading();
             }

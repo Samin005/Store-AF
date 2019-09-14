@@ -1,17 +1,16 @@
-import {Component, OnInit, AfterContentInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 import {Observable} from 'rxjs';
 import {Router} from '@angular/router';
 import {FirestoreService} from '../service/firestore.service';
 
-declare var $;
 
 @Component({
     selector: 'app-home',
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit, AfterContentInit {
+export class HomeComponent implements OnInit {
     title = 'Store-AF';
     companies$: Observable<any[]>;
     myStyle: object = {};
@@ -153,12 +152,8 @@ export class HomeComponent implements OnInit, AfterContentInit {
             },
             retina_detect: true
         };
-        $(document).ready(() => console.log('doc ready.'));
-        window.addEventListener('load', () => console.log('window loaded'));
-    }
-
-    ngAfterContentInit() {
-        console.log('after view init');
+        // $(document).ready(() => console.log('doc ready.'));
+        // window.addEventListener('load', () => console.log('window loaded'));
     }
 
     onComplete() {

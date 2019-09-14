@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {FirestoreService} from './firestore.service';
 import {AngularFirestoreCollection} from '@angular/fire/firestore';
+import Swal from 'sweetalert2';
 
 @Injectable({
     providedIn: 'root'
@@ -17,6 +18,20 @@ export class UsersService {
     }
 
     addUser(user) {
-        this.usersCollection.doc(user.uid).set({name: user.displayName, id: user.uid, role: 'guest'});
+        this.usersCollection.doc(user.uid).set({
+            name: user.displayName,
+            uid: user.uid,
+            email: user.email,
+            emailVerified: user.emailVerified,
+            photoURL: user.photoURL,
+            role: 'guest',
+            createdDate: new Date()
+        }).catch(error => {
+                Swal.fire({
+                    type: 'error',
+                    title: 'Error',
+                    text: error
+                }).finally();
+            });
     }
 }
