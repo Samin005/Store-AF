@@ -41,6 +41,7 @@ export class AdminHomeComponent implements OnInit {
                         console.log('Exists!');
                     } else {
                         console.log('does not exist');
+                        this.usersService.addUser(response);
                     }
                 });
             } else {

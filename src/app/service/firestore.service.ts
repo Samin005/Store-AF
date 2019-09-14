@@ -83,4 +83,8 @@ export class FirestoreService {
     getUsersDocById(userUID) {
         return this.db.firestore.doc('users/' + userUID);
     }
+
+    getUsersCollection() {
+        return this.db.collection('users');
+    }
 }
