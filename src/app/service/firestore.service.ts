@@ -79,4 +79,8 @@ export class FirestoreService {
     getCompanyObservableByID(companyID) {
         return this.db.doc('companies/' + companyID).valueChanges();
     }
+
+    getUsersDocById(userUID) {
+        return this.db.firestore.doc('users/' + userUID);
+    }
 }
