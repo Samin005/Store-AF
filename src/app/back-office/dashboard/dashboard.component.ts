@@ -15,6 +15,7 @@ export class DashboardComponent implements OnInit {
     @ViewChild('revenueLineChart') lineChart: ElementRef;
     @ViewChild('revenuePieChart') pieChart: ElementRef;
     company$: Observable<any>;
+    companyID: string;
 
     constructor(public companiesService: CompaniesService,
                 private activatedRoute: ActivatedRoute) {
@@ -22,13 +23,14 @@ export class DashboardComponent implements OnInit {
 
     ngOnInit() {
         this.activatedRoute.params.subscribe((params: Params) => {
+            this.companyID = params.companyID;
             this.company$ = this.companiesService.getCompanyObservableByID(params.companyID);
         });
         this.createLineChart();
         this.createPieChart();
 
         // Toggle the side navigation
-        $('#sidebarToggleTop').on('click', (e) => {
+        $('#sidebarToggleTop').on('click', () => {
             $('body').toggleClass('sidebar-toggled');
             $('.sidebar').toggleClass('toggled');
             $('#fixedSidebar').toggleClass('position-sticky');
@@ -36,7 +38,7 @@ export class DashboardComponent implements OnInit {
                 $('.sidebar .collapse').collapse('hide');
             }
         });
-        $('#sidebarToggle').on('click', (e) => {
+        $('#sidebarToggle').on('click', () => {
             $('body').toggleClass('sidebar-toggled');
             $('.sidebar').toggleClass('toggled');
             if ($('.sidebar').hasClass('toggled')) {
@@ -52,6 +54,20 @@ export class DashboardComponent implements OnInit {
             } else {
                 $('.scroll-to-top').fadeOut();
             }
+        });
+    }
+
+    navigateToTop() {
+        window.scroll({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }
+
+    navigateToColors() {
+        window.scroll({
+            top: $('#colorsContainer').offset().top,
+            behavior: 'smooth'
         });
     }
 
@@ -176,13 +192,6 @@ export class DashboardComponent implements OnInit {
                 },
                 cutoutPercentage: 80,
             },
-        });
-    }
-
-    navigateToTop() {
-        window.scroll({
-            top: 0,
-            behavior: 'smooth'
         });
     }
 }
