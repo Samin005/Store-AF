@@ -43,6 +43,16 @@ export class DashboardComponent implements OnInit {
                 $('.sidebar .collapse').collapse('hide');
             }
         });
+
+        // Scroll to top button appear
+        $(document).on('scroll', function() {
+            const scrollDistance = $(this).scrollTop();
+            if (scrollDistance > 100) {
+                $('.scroll-to-top').fadeIn();
+            } else {
+                $('.scroll-to-top').fadeOut();
+            }
+        });
     }
 
     createLineChart() {
@@ -166,6 +176,13 @@ export class DashboardComponent implements OnInit {
                 },
                 cutoutPercentage: 80,
             },
+        });
+    }
+
+    navigateToTop() {
+        window.scroll({
+            top: 0,
+            behavior: 'smooth'
         });
     }
 }
