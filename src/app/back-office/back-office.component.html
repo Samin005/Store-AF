@@ -1,10 +1,42 @@
 <div *ngIf="inCompanyList">
-<!--    <h3 style="text-align: center;">-->
-<!--        {{ (company$ | async)?.name }}'s Back-office-->
-<!--    </h3>-->
-
 <!--    <input type="file" (change)="onFileSelected($event)">-->
-    <app-dashboard></app-dashboard>
+    <div *ngIf="!authorizedUser" class="my-5">
+        <h3 style="text-align: center;">
+            {{ (company$ | async)?.name }}'s Back-office Security Check
+        </h3>
+        <div class="col-md-4 mx-auto mt-5">
+            <div class="p-3 shadow" style="border-radius: 3%;">
+                <div *ngIf="angularFireAuth.user | async as user; else showLogin">
+                    <div class="d-flex justify-content-center my-3">
+                        <button class="dropdown-toggle btn btn-light" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false"><img src="{{ user.photoURL }}" class="avatar"> {{ user.displayName }}
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <div class="dropdown-item signoutDiv">
+                                <button class="btn btn-outline-danger my-2 my-sm-0" (click)="signOut()">
+                                    <i class="fas fa-sign-out-alt"></i> Sign Out
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="my-4">
+                        <h5 class="text-center">It looks like you are not authorized.<br>You can still see a demo dashboard <a href="/Demo Comp/back-office">here</a></h5>
+                    </div>
+                </div>
+                <ng-template #showLogin>
+                    <h5 class="mb-4">Please Sign in to continue: </h5>
+                    <div class="d-flex justify-content-center my-3">
+                        <button class="btn btn-danger my-2 my-sm-0 text-white" (click)="signIn()">
+                            <i class="fab fa-google"></i> Sign In with Google
+                        </button>
+                    </div>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="authorizedUser">
+        <app-dashboard></app-dashboard>
+    </div>
 </div>
 
 <div *ngIf="!inCompanyList">

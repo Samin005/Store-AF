@@ -3,8 +3,8 @@ import {AdminService} from '../../service/admin.service';
 import {Observable} from 'rxjs';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {auth} from 'firebase/app';
-import Swal from 'sweetalert2';
 import {UsersService} from '../../service/users.service';
+import Swal from 'sweetalert2';
 declare var $;
 
 @Component({
@@ -35,9 +35,12 @@ export class AdminHomeComponent implements OnInit {
         this.angularFireAuth.user.subscribe((user) => {
             if (user != null && user.emailVerified) {
                 $('#loginButton').attr('disabled', false);
-                this.usersService.getUserDocByID(user.uid).get().then(docSnapshot => {
+                // if (!this.usersService.userExists(user.uid)) {
+                //     this.usersService.addDefaultUser(user);
+                // }
+                this.usersService.getFirestoreUserDocByID(user.uid).get().then(docSnapshot => {
                     if (!docSnapshot.exists) {
-                        this.usersService.addUser(user);
+                        this.usersService.addDefaultUser(user);
                     }
                 });
             } else {

@@ -24,6 +24,7 @@ export class AdminComponent implements OnInit {
             // console.table({Username: admin.username, Pass: admin.password});
         });
 
+        // to check internet status
         this.online$ = merge(
             of(navigator.onLine),
             fromEvent(window, 'online').pipe(mapTo(true)),

@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 
 import {Observable} from 'rxjs';
 import {Router} from '@angular/router';
-import {FirestoreService} from '../service/firestore.service';
+import {CompaniesService} from '../service/companies.service';
 
 
 @Component({
@@ -19,20 +19,20 @@ export class HomeComponent implements OnInit {
     height = 100;
     typewriterText1 = 'Hi';
     typewriterText2 = 'Welcome to ' + this.title;
-    typewriterText3 = 'This is an application for any kind of business';
-    typewriterText4 = 'You will get an online shop and a back office to keep track of your business';
+    typewriterText3 = 'This is an application to get you started for any kind of business';
+    typewriterText4 = 'You will be provided with an online-shop along with a back-office to sell your products and keep track of your business';
     typewriterText = this.typewriterText1;
     eraseLine = false;
     // topClients;
     // sugarlockCompany: Observable<any>;
 
 
-    constructor(private firestoreService: FirestoreService,
+    constructor(public companiesService: CompaniesService,
                 private router: Router) {
     }
 
     ngOnInit() {
-        this.companies$ = this.firestoreService.getCompanies();
+        this.companies$ = this.companiesService.getCompaniesObservable();
         // this.companiesService.setAllCompaniesList(this.db);
         // this.topClients = this.firestoreService.getCompany('Sugarlock');
         // this.sugarlockCompany = this.firestoreService.getSugarlock();

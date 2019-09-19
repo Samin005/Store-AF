@@ -26,7 +26,7 @@ export class EditCompanyComponent implements OnInit {
     ngOnInit() {
         this.isLoggedIn = this.adminService.loggedIn;
         $(document).ready(() => $('.selectpicker').selectpicker('refresh'));
-        this.companies$ = this.companiesService.getCompanies();
+        this.companies$ = this.companiesService.getCompaniesObservable();
     }
 
     onCompanySelect(value) {

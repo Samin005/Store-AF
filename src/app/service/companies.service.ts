@@ -11,6 +11,7 @@ export class CompaniesService {
 
     companiesCollection: AngularFirestoreCollection;
     companies$: Observable<any>;
+    companyID: string;
 
     constructor(public firestoreService: FirestoreService) {
         this.companiesCollection = this.firestoreService.getCompaniesCollection();
@@ -57,11 +58,33 @@ export class CompaniesService {
             });
     }
 
-    getCompanies() {
+    getCompaniesObservable() {
         return this.companies$;
     }
 
     getCompanyObservableByID(companyID) {
         return this.firestoreService.getCompanyObservableByID(companyID);
+    }
+
+    // companyExists(companyID) {
+    //     this.firestoreService.getFirestoreCompanyDocById(companyID).get().then(docSnapshot => {
+    //         if (docSnapshot.exists) {
+    //             return true;
+    //         } else {
+    //             return false;
+    //         }
+    //     });
+    // }
+
+    getFirestoreCompanyDocById(companyID) {
+        return this.firestoreService.getFirestoreCompanyDocById(companyID);
+    }
+
+    getCompanyID(): string {
+        return this.companyID;
+    }
+
+    setCompanyID(value: string) {
+        this.companyID = value;
     }
 }

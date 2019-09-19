@@ -27,6 +27,7 @@ export class FirestoreService {
     }
 
     constructor(private db: AngularFirestore) {
+        console.log('firestore service created');
     }
 
     getCompanies() {
@@ -80,7 +81,17 @@ export class FirestoreService {
         return this.db.doc('companies/' + companyID).valueChanges();
     }
 
-    getUsersDocById(userUID) {
+    // used for checking if doc exists
+    getFirestoreCompanyDocById(companyID) {
+        return this.db.firestore.doc('companies/' + companyID);
+    }
+
+    getUserObservableById(userUID) {
+        return this.db.doc('users/' + userUID).valueChanges();
+    }
+
+    // used for checking if doc exists
+    getFirestoreUserDocById(userUID) {
         return this.db.firestore.doc('users/' + userUID);
     }
 
