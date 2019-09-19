@@ -42,6 +42,9 @@ export class AdminHomeComponent implements OnInit {
                     if (!docSnapshot.exists) {
                         this.usersService.addDefaultUser(user);
                     }
+                    // else {
+                    //     this.usersService.updateDefaultUser(user);
+                    // }
                 });
             } else {
                 $('#loginButton').attr('disabled', true);

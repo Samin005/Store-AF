@@ -7,3 +7,7 @@
 .signoutDiv:active {
     background-color: #ffffff;
 }
+
+.bigIcon {
+    font-size: 5rem;
+}

@@ -27,7 +27,6 @@ export class FirestoreService {
     }
 
     constructor(private db: AngularFirestore) {
-        console.log('firestore service created');
     }
 
     getCompanies() {

@@ -54,6 +54,26 @@ export class UsersService {
         });
     }
 
+    // updateDefaultUser(user) {
+    //     this.usersCollection.doc(user.uid).update({
+    //         name: user.displayName,
+    //         emailVerified: user.emailVerified,
+    //         photoURL: user.photoURL,
+    //         role: 'guest',
+    //         roleOS: 'guest',
+    //         companyIDOS: 'Demo Comp',
+    //         roleBO: 'guest',
+    //         companyIDBO: 'Demo Comp',
+    //         modifiedDate: new Date()
+    //     }).catch(error => {
+    //         Swal.fire({
+    //             type: 'error',
+    //             title: 'Error',
+    //             text: error
+    //         }).finally();
+    //     });
+    // }
+
     addBackOfficeUser(user, companyID: string) {
         this.usersCollection.doc(user.uid).set({
             name: user.displayName,
@@ -75,4 +95,21 @@ export class UsersService {
             }).finally();
         });
     }
+
+    // updateBackOfficeUser(user, companyID: string) {
+    //     this.usersCollection.doc(user.uid).update({
+    //         name: user.displayName,
+    //         emailVerified: user.emailVerified,
+    //         photoURL: user.photoURL,
+    //         roleBO: 'guest',
+    //         companyIDBO: companyID,
+    //         modifiedDate: new Date()
+    //     }).catch(error => {
+    //         Swal.fire({
+    //             type: 'error',
+    //             title: 'Error',
+    //             text: error
+    //         }).finally();
+    //     });
+    // }
 }

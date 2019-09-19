@@ -1,10 +1,11 @@
 <div *ngIf="inCompanyList">
 <!--    <input type="file" (change)="onFileSelected($event)">-->
-    <div *ngIf="!authorizedUser" class="my-5">
+    <div *ngIf="!authorizedUser" class="my-5 mx-3 text-center">
+        <i class="fas fa-user-lock bigIcon"></i>
         <h3 style="text-align: center;">
             {{ (company$ | async)?.name }}'s Back-office Security Check
         </h3>
-        <div class="col-md-4 mx-auto mt-5">
+        <div class="col-10 mx-auto mt-5">
             <div class="p-3 shadow" style="border-radius: 3%;">
                 <div *ngIf="angularFireAuth.user | async as user; else showLogin">
                     <div class="d-flex justify-content-center my-3">
@@ -20,7 +21,7 @@
                         </div>
                     </div>
                     <div class="my-4">
-                        <h5 class="text-center">It looks like you are not authorized.<br>You can still see a demo dashboard <a href="/Demo Comp/back-office">here</a></h5>
+                        <h5>It looks like you are not authorized for {{ companyName }}'s Back-office.<br>You can still see a demo dashboard <a href="/Demo Comp/back-office">here</a></h5>
                     </div>
                 </div>
                 <ng-template #showLogin>
