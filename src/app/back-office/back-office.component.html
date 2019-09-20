@@ -10,7 +10,7 @@
                 <div *ngIf="angularFireAuth.user | async as user; else showLogin">
                     <div class="d-flex justify-content-center my-3">
                         <button class="dropdown-toggle btn btn-light" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false"><img src="{{ user.photoURL }}" class="avatar"> {{ user.displayName }}
+                                aria-haspopup="true" aria-expanded="false"><img src="{{ user.photoURL }}" class="avatar" alt="{{ user.displayName }}'s photo"> {{ user.displayName }}
                         </button>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <div class="dropdown-item signoutDiv">

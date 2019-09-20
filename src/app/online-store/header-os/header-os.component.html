@@ -43,8 +43,8 @@
             </div>
         </form>
         <div *ngIf="afAuth.user | async as user; else showLogin" class="nav-item dropdown d-inline-block">
-            <button class="dropdown-toggle btn btn-outline-info" data-toggle="dropdown"
-               aria-haspopup="true" aria-expanded="false"><i class="fas fa-user-circle"></i>
+            <button class="dropdown-toggle btn btn-light" data-toggle="dropdown"
+               aria-haspopup="true" aria-expanded="false"><img src="{{ user.photoURL }}" class="avatar" alt="{{ user.displayName }}'s photo">
                 {{ user.displayName }}
             </button>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">

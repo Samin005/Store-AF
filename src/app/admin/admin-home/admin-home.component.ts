@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {AdminService} from '../../service/admin.service';
-import {Observable} from 'rxjs';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {auth} from 'firebase/app';
 import {UsersService} from '../../service/users.service';
 import Swal from 'sweetalert2';
+
 declare var $;
 
 @Component({
@@ -14,7 +14,6 @@ declare var $;
 })
 export class AdminHomeComponent implements OnInit {
 
-    admin$: Observable<any>;
     userName: string;
     password: string;
     showWelcomeDiv = false;
@@ -26,7 +25,8 @@ export class AdminHomeComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.admin$ = this.adminService.getAdminCredentials();
+        Swal.fire({animation: false});
+        Swal.showLoading();
         this.showWelcomeDiv = this.adminService.loggedIn;
         // to keep username on input after logout
         if (this.showWelcomeDiv) {
@@ -49,6 +49,7 @@ export class AdminHomeComponent implements OnInit {
             } else {
                 $('#loginButton').attr('disabled', true);
             }
+            Swal.close();
         });
     }
 
@@ -78,13 +79,14 @@ export class AdminHomeComponent implements OnInit {
         }).finally();
         this.angularFireAuth.auth.signInWithPopup(new auth.GoogleAuthProvider()).then(() => Swal.close())
             .catch(reason => {
-            Swal.fire({
-                type: 'error',
-                title: 'Sign In Failed!',
-                text: reason
-            }).finally();
-        });
+                Swal.fire({
+                    type: 'error',
+                    title: 'Sign In Failed!',
+                    text: reason
+                }).finally();
+            });
     }
+
     signOut() {
         Swal.fire({
             title: 'Signing Out...',

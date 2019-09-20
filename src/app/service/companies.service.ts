@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {FirestoreService} from './firestore.service';
 import {AngularFirestoreCollection} from '@angular/fire/firestore';
-import {Observable} from 'rxjs';
 import Swal from 'sweetalert2';
 
 @Injectable({
@@ -10,12 +9,10 @@ import Swal from 'sweetalert2';
 export class CompaniesService {
 
     companiesCollection: AngularFirestoreCollection;
-    companies$: Observable<any>;
     companyID: string;
 
-    constructor(public firestoreService: FirestoreService) {
+    constructor(private firestoreService: FirestoreService) {
         this.companiesCollection = this.firestoreService.getCompaniesCollection();
-        this.companies$ = this.companiesCollection.valueChanges();
     }
 
     addCompany(newCompany) {
@@ -59,7 +56,7 @@ export class CompaniesService {
     }
 
     getCompaniesObservable() {
-        return this.companies$;
+        return this.firestoreService.getCompaniesObservable();
     }
 
     getCompanyObservableByID(companyID) {

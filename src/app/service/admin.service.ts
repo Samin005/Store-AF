@@ -12,8 +12,8 @@ export class AdminService {
     password: string;
     loggedIn = false;
 
-    constructor(firestoreService: FirestoreService) {
-        this.admin$ = firestoreService.getAdminCredentials();
+    constructor(private firestoreService: FirestoreService) {
+        this.admin$ = this.firestoreService.getAdminCredentials();
     }
 
     // returns if login failed

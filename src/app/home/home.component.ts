@@ -3,6 +3,8 @@ import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
 import {Router} from '@angular/router';
 import {CompaniesService} from '../service/companies.service';
+import {LoadingService} from '../service/loading.service';
+import {FirestoreService} from '../service/firestore.service';
 
 
 @Component({
@@ -27,16 +29,24 @@ export class HomeComponent implements OnInit {
     // sugarlockCompany: Observable<any>;
 
 
-    constructor(public companiesService: CompaniesService,
+    constructor(private companiesService: CompaniesService, private firestoreService: FirestoreService,
                 private router: Router) {
     }
 
     ngOnInit() {
+        LoadingService.showLoader();
         this.companies$ = this.companiesService.getCompaniesObservable();
-        // this.companiesService.setAllCompaniesList(this.db);
+        this.setMyStyle();
+        this.setMyParams();
+        this.companies$.subscribe(() => LoadingService.closeLoader());
         // this.topClients = this.firestoreService.getCompany('Sugarlock');
         // this.sugarlockCompany = this.firestoreService.getSugarlock();
         // this.firestoreService.getSugarlockDetails();
+        // $(document).ready(() => console.log('doc ready.'));
+        // window.addEventListener('load', () => console.log('window loaded'));
+    }
+
+    setMyStyle() {
         this.myStyle = {
             position: 'fixed',
             width: '100%',
@@ -47,7 +57,9 @@ export class HomeComponent implements OnInit {
             right: 0,
             bottom: 0
         };
+    }
 
+    setMyParams() {
         this.myParams = {
             particles: {
                 number: {
@@ -152,8 +164,6 @@ export class HomeComponent implements OnInit {
             },
             retina_detect: true
         };
-        // $(document).ready(() => console.log('doc ready.'));
-        // window.addEventListener('load', () => console.log('window loaded'));
     }
 
     onComplete() {
