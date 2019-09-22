@@ -21,6 +21,7 @@ import { EditCompanyComponent } from './admin/edit-company/edit-company.componen
 import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
 import {FormsModule} from '@angular/forms';
 import { DashboardComponent } from './back-office/dashboard/dashboard.component';
+import { LayoutBoComponent } from './back-office/layout-bo/layout-bo.component';
 
 @NgModule({
     declarations: [
@@ -35,7 +36,8 @@ import { DashboardComponent } from './back-office/dashboard/dashboard.component'
         NewCompanyComponent,
         EditCompanyComponent,
         AdminHomeComponent,
-        DashboardComponent
+        DashboardComponent,
+        LayoutBoComponent
     ],
     imports: [
         BrowserModule,

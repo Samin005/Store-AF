@@ -29,48 +29,7 @@ export class BackOfficeComponent implements OnInit {
 
     ngOnInit() {
         Swal.showLoading();
-        // checking if company exists
-        this.activatedRoute.params.subscribe((params: Params) => {
-            this.companyID = params.companyID;
-            this.companiesService.setCompanyID(this.companyID);
-            this.companiesService.getFirestoreCompanyDocById(this.companyID).get().then(docSnapshot => {
-                if (!docSnapshot.exists) {
-                    Swal.close();
-                    this.inCompanyList = false;
-                } else {
-                    // getting company observable
-                    this.company$ = this.companiesService.getCompanyObservableByID(this.companyID);
-                    this.company$.subscribe((company) => {
-                        Swal.close();
-                        this.companyName = company.name;
-                    });
-                    // checking if user exists
-                    this.angularFireAuth.user.subscribe((user) => {
-                        if (user != null && user.emailVerified) {
-                            this.usersService.getFirestoreUserDocByID(user.uid).get().then(userSnapshot => {
-                                if (!userSnapshot.exists) {
-                                    this.usersService.addBackOfficeUser(user, this.companyID);
-                                }
-                                // else {
-                                //     this.usersService.updateBackOfficeUser(user, this.companyID);
-                                // }
-                            });
-                            // checking user roles for authorization
-                            this.user$ = this.usersService.getUserObservableByID(user.uid);
-                            this.user$.subscribe(u => {
-                                if (((u.companyIDBO === this.companyID || u.companyIDBO === 'Store-AF') && (u.roleBO === 'admin' || u.roleBO === 'editor')) || this.companyID === 'Demo Comp') {
-                                    this.authorizedUser = true;
-                                    console.log('authorized');
-                                } else {
-                                    this.authorizedUser = false;
-                                    console.log('not authorized');
-                                }
-                            });
-                        }
-                    });
-                }
-            });
-        });
+        this.startSecurityCheck();
     }
 
     signIn() {
@@ -85,13 +44,14 @@ export class BackOfficeComponent implements OnInit {
         this.angularFireAuth.auth.signInWithPopup(new auth.GoogleAuthProvider()).then(() => {
             Swal.close();
         }).catch(reason => {
-                Swal.fire({
-                    type: 'error',
-                    title: 'Sign In Failed!',
-                    text: reason
-                }).finally();
-            });
+            Swal.fire({
+                type: 'error',
+                title: 'Sign In Failed!',
+                text: reason
+            }).finally();
+        });
     }
+
     signOut() {
         Swal.fire({
             title: 'Signing Out...',
@@ -108,6 +68,63 @@ export class BackOfficeComponent implements OnInit {
                 title: 'Sign Out Failed...',
                 text: reason
             }).finally();
+        });
+    }
+
+    startSecurityCheck() {
+        this.checkCompanyExists();
+    }
+
+    checkCompanyExists() {
+        this.activatedRoute.params.subscribe((params: Params) => {
+            this.companyID = params.companyID;
+            this.companiesService.setCompanyID(this.companyID);
+            this.companiesService.getFirestoreCompanyDocById(this.companyID).get().then(docSnapshot => {
+                if (!docSnapshot.exists) {
+                    Swal.close();
+                    this.inCompanyList = false;
+                } else {
+                    this.getCompanyObservable();
+                    this.checkUserExists();
+                }
+            });
+        });
+    }
+
+    getCompanyObservable() {
+        this.company$ = this.companiesService.getCompanyObservableByID(this.companyID);
+        this.company$.subscribe((company) => {
+            Swal.close();
+            this.companyName = company.name;
+        });
+    }
+
+    checkUserExists() {
+        this.angularFireAuth.user.subscribe((user) => {
+            if (user != null && user.emailVerified) {
+                this.usersService.getFirestoreUserDocByID(user.uid).get().then(userSnapshot => {
+                    if (!userSnapshot.exists) {
+                        this.usersService.addBackOfficeUser(user, this.companyID);
+                    }
+                    // else {
+                    //     this.usersService.updateBackOfficeUser(user, this.companyID);
+                    // }
+                });
+                this.checkUserRole(user);
+            }
+        });
+    }
+
+    checkUserRole(user) {
+        this.user$ = this.usersService.getUserObservableByID(user.uid);
+        this.user$.subscribe(u => {
+            if (((u.companyIDBO === this.companyID || u.companyIDBO === 'Store-AF') && (u.roleBO === 'admin' || u.roleBO === 'editor')) || this.companyID === 'Demo Comp') {
+                this.authorizedUser = true;
+                console.log('authorized');
+            } else {
+                this.authorizedUser = false;
+                console.log('not authorized');
+            }
         });
     }
 
