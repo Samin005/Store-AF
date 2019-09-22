@@ -12,7 +12,7 @@ export class DashboardComponent implements OnInit {
     @ViewChild('revenueLineChart') lineChart: ElementRef;
     @ViewChild('revenuePieChart') pieChart: ElementRef;
 
-    constructor(private companiesService: CompaniesService) {
+    constructor(public companiesService: CompaniesService) {
     }
 
     ngOnInit() {

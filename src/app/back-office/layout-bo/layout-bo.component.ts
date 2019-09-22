@@ -11,7 +11,7 @@ declare var $;
 })
 export class LayoutBoComponent implements OnInit {
 
-    constructor(private companiesService: CompaniesService) {
+    constructor(public companiesService: CompaniesService) {
     }
 
     ngOnInit() {
