@@ -15,9 +15,7 @@ import {UsersService} from '../service/users.service';
 })
 export class BackOfficeComponent implements OnInit {
     companyID: string;
-    companyName: string;
     inCompanyList = true;
-    company$: Observable<any>;
     user$: Observable<any>;
     authorizedUser = false;
 
@@ -92,11 +90,7 @@ export class BackOfficeComponent implements OnInit {
     }
 
     getCompanyObservable() {
-        this.company$ = this.companiesService.getCompanyObservableByID(this.companyID);
-        this.company$.subscribe((company) => {
-            Swal.close();
-            this.companyName = company.name;
-        });
+        this.companiesService.setCompanyByID(this.companyID);
     }
 
     checkUserExists() {

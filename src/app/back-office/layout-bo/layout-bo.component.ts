@@ -1,7 +1,5 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {CompaniesService} from '../../service/companies.service';
-import {ActivatedRoute, Params} from '@angular/router';
-import {Observable} from 'rxjs';
 
 declare var $;
 
@@ -13,18 +11,10 @@ declare var $;
 })
 export class LayoutBoComponent implements OnInit {
 
-    company$: Observable<any>;
-    companyID: string;
-
-    constructor(public companiesService: CompaniesService,
-                private activatedRoute: ActivatedRoute) {
+    constructor(private companiesService: CompaniesService) {
     }
 
     ngOnInit() {
-        this.activatedRoute.params.subscribe((params: Params) => {
-            this.companyID = params.companyID;
-            this.company$ = this.companiesService.getCompanyObservableByID(params.companyID);
-        });
         // Toggle the side navigation
         $('#sidebarToggleTop').on('click', () => {
             $('body').toggleClass('sidebar-toggled');
@@ -43,7 +33,7 @@ export class LayoutBoComponent implements OnInit {
         });
 
         // Scroll to top button appear
-        $(document).on('scroll', function () {
+        $(document).on('scroll', function() {
             const scrollDistance = $(this).scrollTop();
             if (scrollDistance > 100) {
                 $('.scroll-to-top').fadeIn();

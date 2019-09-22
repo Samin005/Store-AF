@@ -10,6 +10,7 @@ export class CompaniesService {
 
     companiesCollection: AngularFirestoreCollection;
     companyID: string;
+    company;
 
     constructor(private firestoreService: FirestoreService) {
         this.companiesCollection = this.firestoreService.getCompaniesCollection();
@@ -59,6 +60,13 @@ export class CompaniesService {
         return this.firestoreService.getCompaniesObservable();
     }
 
+    setCompanyByID(companyID) {
+        this.firestoreService.getCompanyObservableByID(companyID).subscribe(comp => {
+            this.company = comp;
+            Swal.close();
+        });
+    }
+
     getCompanyObservableByID(companyID) {
         return this.firestoreService.getCompanyObservableByID(companyID);
     }
@@ -75,10 +83,6 @@ export class CompaniesService {
 
     getFirestoreCompanyDocById(companyID) {
         return this.firestoreService.getFirestoreCompanyDocById(companyID);
-    }
-
-    getCompanyID(): string {
-        return this.companyID;
     }
 
     setCompanyID(value: string) {

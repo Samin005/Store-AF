@@ -1,7 +1,5 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {CompaniesService} from '../../service/companies.service';
-import {ActivatedRoute, Params} from '@angular/router';
-import {Observable} from 'rxjs';
 
 declare var Chart;
 
@@ -13,18 +11,11 @@ declare var Chart;
 export class DashboardComponent implements OnInit {
     @ViewChild('revenueLineChart') lineChart: ElementRef;
     @ViewChild('revenuePieChart') pieChart: ElementRef;
-    company$: Observable<any>;
-    companyID: string;
 
-    constructor(public companiesService: CompaniesService,
-                private activatedRoute: ActivatedRoute) {
+    constructor(private companiesService: CompaniesService) {
     }
 
     ngOnInit() {
-        this.activatedRoute.params.subscribe((params: Params) => {
-            this.companyID = params.companyID;
-            this.company$ = this.companiesService.getCompanyObservableByID(params.companyID);
-        });
         this.createLineChart();
         this.createPieChart();
     }
