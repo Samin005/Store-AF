@@ -9,6 +9,7 @@ import Swal from 'sweetalert2';
 export class UsersService {
 
     usersCollection: AngularFirestoreCollection;
+    authorizedUser = false;
 
     constructor(public firestoreService: FirestoreService) {
         this.usersCollection = firestoreService.getUsersCollection();

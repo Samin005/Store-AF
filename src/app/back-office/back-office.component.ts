@@ -1,12 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Params} from '@angular/router';
 
-import {Observable} from 'rxjs';
 import {AngularFireAuth} from '@angular/fire/auth';
-import {auth} from 'firebase/app';
 import {CompaniesService} from '../service/companies.service';
-import Swal from 'sweetalert2';
 import {UsersService} from '../service/users.service';
+import {Observable} from 'rxjs';
+import {auth} from 'firebase/app';
+import Swal from 'sweetalert2';
 
 @Component({
     selector: 'app-back-office',
@@ -17,7 +17,6 @@ export class BackOfficeComponent implements OnInit {
     companyID: string;
     inCompanyList = true;
     user$: Observable<any>;
-    authorizedUser = false;
 
     constructor(public companiesService: CompaniesService,
                 public usersService: UsersService,
@@ -113,10 +112,10 @@ export class BackOfficeComponent implements OnInit {
         this.user$ = this.usersService.getUserObservableByID(user.uid);
         this.user$.subscribe(u => {
             if (((u.companyIDBO === this.companyID || u.companyIDBO === 'Store-AF') && (u.roleBO === 'admin' || u.roleBO === 'editor')) || this.companyID === 'Demo Comp') {
-                this.authorizedUser = true;
+                this.usersService.authorizedUser = true;
                 console.log('authorized');
             } else {
-                this.authorizedUser = false;
+                this.usersService.authorizedUser = false;
                 console.log('not authorized');
             }
         });

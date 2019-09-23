@@ -1,6 +1,6 @@
 <div *ngIf="inCompanyList">
 <!--    <input type="file" (change)="onFileSelected($event)">-->
-    <div *ngIf="!authorizedUser" class="my-5 mx-3 text-center">
+    <div *ngIf="!usersService.authorizedUser" class="my-5 mx-3 text-center">
         <i class="fas fa-user-lock bigIcon"></i>
         <h3 style="text-align: center;">
             {{ companiesService.company?.name }}'s Back-office Security Check
@@ -35,7 +35,7 @@
             </div>
         </div>
     </div>
-    <div *ngIf="authorizedUser">
+    <div *ngIf="usersService.authorizedUser">
         <app-layout-bo></app-layout-bo>
     </div>
 </div>

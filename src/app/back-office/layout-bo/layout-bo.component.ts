@@ -1,5 +1,8 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {CompaniesService} from '../../service/companies.service';
+import {AngularFireAuth} from '@angular/fire/auth';
+import {UsersService} from '../../service/users.service';
+import Swal from 'sweetalert2';
 
 declare var $;
 
@@ -11,7 +14,9 @@ declare var $;
 })
 export class LayoutBoComponent implements OnInit {
 
-    constructor(public companiesService: CompaniesService) {
+    constructor(public companiesService: CompaniesService,
+                public angularFireAuth: AngularFireAuth,
+                public usersService: UsersService) {
     }
 
     ngOnInit() {
@@ -54,6 +59,26 @@ export class LayoutBoComponent implements OnInit {
         window.scroll({
             top: $('#colorsContainer').offset().top,
             behavior: 'smooth'
+        });
+    }
+
+    signOut() {
+        Swal.fire({
+            title: 'Signing Out...',
+            onBeforeOpen: () => {
+                Swal.showLoading();
+            }
+        }).finally();
+        this.angularFireAuth.auth.signOut()
+            .then(() => {
+                this.usersService.authorizedUser = false;
+                Swal.close();
+            }).catch(reason => {
+            Swal.fire({
+                type: 'error',
+                title: 'Sign Out Failed...',
+                text: reason
+            }).finally();
         });
     }
 }
