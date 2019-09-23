@@ -22,6 +22,7 @@ import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
 import {FormsModule} from '@angular/forms';
 import { DashboardComponent } from './back-office/dashboard/dashboard.component';
 import { LayoutBoComponent } from './back-office/layout-bo/layout-bo.component';
+import { OrdersComponent } from './back-office/orders/orders.component';
 
 @NgModule({
     declarations: [
@@ -37,7 +38,8 @@ import { LayoutBoComponent } from './back-office/layout-bo/layout-bo.component';
         EditCompanyComponent,
         AdminHomeComponent,
         DashboardComponent,
-        LayoutBoComponent
+        LayoutBoComponent,
+        OrdersComponent
     ],
     imports: [
         BrowserModule,
@@ -45,7 +47,7 @@ import { LayoutBoComponent } from './back-office/layout-bo/layout-bo.component';
         AppRoutingModule,
         ParticlesModule,
         TypingAnimationModule,
-        AngularFirestoreModule.enablePersistence(),
+        AngularFirestoreModule.enablePersistence({experimentalTabSynchronization: true}),
         AngularFireModule.initializeApp(environment.firebaseConfig),
         AngularFireAuthModule
     ],

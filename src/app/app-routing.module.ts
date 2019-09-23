@@ -9,6 +9,7 @@ import {NewCompanyComponent} from './admin/new-company/new-company.component';
 import {EditCompanyComponent} from './admin/edit-company/edit-company.component';
 import {AdminHomeComponent} from './admin/admin-home/admin-home.component';
 import {DashboardComponent} from './back-office/dashboard/dashboard.component';
+import {OrdersComponent} from './back-office/orders/orders.component';
 
 const routes: Routes = [
     {path: '', component: HomeComponent},
@@ -20,7 +21,8 @@ const routes: Routes = [
         ]},
     {path: ':companyID', component: OnlineStoreComponent},
     {path: ':companyID/back-office', component: BackOfficeComponent, children: [
-            {path: '', component: DashboardComponent}
+            {path: '', component: DashboardComponent},
+            {path: 'orders', component: OrdersComponent}
         ]},
     {path: '**', redirectTo: 'page-not-found'}
     ];
