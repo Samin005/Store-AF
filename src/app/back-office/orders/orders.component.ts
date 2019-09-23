@@ -11,7 +11,12 @@ export class OrdersComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-      $('#dataTable').DataTable();
+      $('#dataTable').DataTable({
+          dom: 'lBfrtip',
+          buttons: [
+              'copyHtml5', 'excelHtml5', 'pdfHtml5', 'csvHtml5', 'print'
+          ]
+      });
   }
 
 }
