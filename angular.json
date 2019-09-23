@@ -38,6 +38,7 @@
                             "node_modules/chart.js/dist/Chart.min.js",
                             "node_modules/pdfmake/build/pdfmake.min.js",
                             "node_modules/pdfmake/build/vfs_fonts.js",
+                            "node_modules/jszip/dist/jszip.min.js",
                             "node_modules/datatables.net/js/jquery.dataTables.min.js",
                             "node_modules/datatables.net-bs4/js/dataTables.bootstrap4.min.js",
                             "node_modules/datatables.net-buttons/js/dataTables.buttons.min.js",
