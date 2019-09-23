@@ -27,6 +27,8 @@
         "bootstrap-select": "^1.13.10",
         "chart.js": "^2.8.0",
         "core-js": "^2.6.9",
+        "datatables.net": "^1.10.19",
+        "datatables.net-bs4": "^1.10.19",
         "firebase": "^5.11.1",
         "jquery": "^3.4.1",
         "popper.js": "^1.15.0",

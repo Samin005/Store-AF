@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+declare var $;
 
 @Component({
   selector: 'app-orders',
@@ -10,6 +11,7 @@ export class OrdersComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+      $('#dataTable').DataTable();
   }
 
 }
