@@ -12,7 +12,7 @@ export class OrdersComponent implements OnInit {
 
   ngOnInit() {
       $('#dataTable').DataTable({
-          dom: 'lBfrtip',
+          dom: 'lfBtipr',
           buttons: [
               {
                   extend: 'copyHtml5',
