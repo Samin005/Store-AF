@@ -1,5 +1,5 @@
 <div *ngIf="inCompanyList">
-<!--    <input type="file" (change)="onFileSelected($event)">-->
+    <!--    <input type="file" (change)="onFileSelected($event)">-->
     <div *ngIf="!usersService.authorizedUser" class="my-5 mx-3 text-center">
         <i class="fas fa-user-lock bigIcon"></i>
         <h3 style="text-align: center;">
@@ -10,7 +10,8 @@
                 <div *ngIf="angularFireAuth.user | async as user; else showLogin">
                     <div class="d-flex justify-content-center my-3">
                         <button class="dropdown-toggle btn btn-light" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false"><img src="{{ user.photoURL }}" class="avatar" alt="{{ user.displayName }}'s photo"> {{ user.displayName }}
+                                aria-haspopup="true" aria-expanded="false"><img src="{{ user.photoURL }}" class="avatar"
+                                                                                alt="{{ user.displayName }}'s photo"> {{ user.displayName }}
                         </button>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <div class="dropdown-item signoutDiv">
@@ -21,7 +22,8 @@
                         </div>
                     </div>
                     <div class="my-4">
-                        <h5>It looks like you are not authorized for {{ companiesService.company?.name }}'s Back-office.<br>You can still see a demo dashboard <a routerLink="/Demo Comp/back-office">here</a></h5>
+                        <h5>It looks like you are not authorized for {{ companiesService.company?.name }}'s Back-office.<br>You
+                            can still see a demo dashboard <a routerLink="/Demo Comp/back-office">here</a></h5>
                     </div>
                 </div>
                 <ng-template #showLogin>
