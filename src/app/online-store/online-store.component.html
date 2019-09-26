@@ -4,7 +4,7 @@
         Welcome to {{ (company$ | async)?.name }}
     </h3>
     <app-slideshow></app-slideshow>
-    <button (click)="loadBackOffice()" class="float-right">Back-office</button>
+    <button (click)="loadBackOffice()" class="float-right btn btn-secondary">Back-office</button>
 </div>
 
 <div *ngIf="!inCompanyList">
