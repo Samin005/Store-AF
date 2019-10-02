@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 
-import {Observable} from 'rxjs';
 import {Router} from '@angular/router';
 import {CompaniesService} from '../service/companies.service';
 import {LoadingService} from '../service/loading.service';
@@ -14,7 +13,7 @@ import {FirestoreService} from '../service/firestore.service';
 })
 export class HomeComponent implements OnInit {
     title = 'Store-AF';
-    companies$: Observable<any[]>;
+    // companies$: Observable<any[]>;
     myStyle: object = {};
     myParams: object = {};
     width = 100;
@@ -29,16 +28,20 @@ export class HomeComponent implements OnInit {
     // sugarlockCompany: Observable<any>;
 
 
-    constructor(private companiesService: CompaniesService, private firestoreService: FirestoreService,
+    constructor(public companiesService: CompaniesService, private firestoreService: FirestoreService,
                 private router: Router) {
     }
 
     ngOnInit() {
         LoadingService.showLoader();
-        this.companies$ = this.companiesService.getCompaniesObservable();
+        this.companiesService.setCompanies();
+        // this.companies$ = this.companiesService.getCompaniesObservable();
         this.setMyStyle();
         this.setMyParams();
-        this.companies$.subscribe(() => LoadingService.closeLoader());
+        // this.companies$.subscribe(companies => {
+        //     this.companiesCount = companies.length;
+        //     LoadingService.closeLoader();
+        // });
         // this.topClients = this.firestoreService.getCompany('Sugarlock');
         // this.sugarlockCompany = this.firestoreService.getSugarlock();
         // this.firestoreService.getSugarlockDetails();

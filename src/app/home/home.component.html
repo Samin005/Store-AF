@@ -27,9 +27,9 @@
     <!--    <h3>-->
     <!--        {{ firestoreService.sugarlockDetails }}-->
     <!--    </h3>-->
-    <h4 style="margin-top: 15%;">Clients:</h4>
+    <h4 style="margin-top: 15%;">Clients: ({{companiesService.companiesCount}})</h4>
     <div class="card-deck" style="margin: 5%;">
-        <div class="card client-cards" *ngFor="let company of companies$ | async"
+        <div class="card client-cards" *ngFor="let company of companiesService.companies"
              (click)="loadOnlineStore(company.id)">
             <img src="{{ company.img_path }}" class="card-img-top" alt="{{company.name}} image">
             <div class="card-body">

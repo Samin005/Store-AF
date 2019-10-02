@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {FirestoreService} from './firestore.service';
 import {AngularFirestoreCollection} from '@angular/fire/firestore';
 import Swal from 'sweetalert2';
+import {LoadingService} from './loading.service';
 
 @Injectable({
     providedIn: 'root'
@@ -11,9 +12,19 @@ export class CompaniesService {
     companiesCollection: AngularFirestoreCollection;
     companyID: string;
     company;
+    companies;
+    companiesCount;
 
     constructor(private firestoreService: FirestoreService) {
         this.companiesCollection = this.firestoreService.getCompaniesCollection();
+    }
+
+    setCompanies() {
+        this.firestoreService.getCompaniesObservable().subscribe(companies => {
+            this.companies = companies;
+            this.companiesCount = companies.length;
+            LoadingService.closeLoader();
+        });
     }
 
     addCompany(newCompany) {
@@ -63,7 +74,7 @@ export class CompaniesService {
     setCompanyByID(companyID) {
         this.firestoreService.getCompanyObservableByID(companyID).subscribe(comp => {
             this.company = comp;
-            Swal.close();
+            LoadingService.closeLoader();
         });
     }
 

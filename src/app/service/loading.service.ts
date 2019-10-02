@@ -21,6 +21,8 @@ export class LoadingService {
     }
 
     static closeLoader() {
-        Swal.close();
+        if (Swal.isVisible()) {
+            Swal.close();
+        }
     }
 }
