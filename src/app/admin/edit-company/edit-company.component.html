@@ -2,11 +2,11 @@
     You have to log in to interact.
 </div>
 <div *ngIf="isLoggedIn" class="col-md-8 mx-auto my-5">
-    <div class="d-flex justify-content-end align-items-center text-center" (click)="refreshSelect()">
+    <div class="d-flex justify-content-end align-items-center text-center">
         <label for="companySelect" class="mx-3">Select Company: </label>
         <select class="selectpicker d-flex flex-row-reverse" data-live-search="true" id="companySelect" (change)="onCompanySelect($event.target.value)">
             <option disabled hidden></option>
-            <option data-tokens="ketchup mustard" *ngFor="let company of companies$ | async">{{ company.id }}</option>
+            <option data-tokens="ketchup mustard" *ngFor="let company of companiesService.companies">{{ company.id }}</option>
         </select>
     </div>
     <div *ngIf="companySelected" class="my-5">

@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AdminService} from '../../service/admin.service';
 import {CompaniesService} from '../../service/companies.service';
-import {Observable} from 'rxjs';
 import {Company} from '../../model/company.model';
 
 declare var $;
@@ -16,7 +15,6 @@ export class EditCompanyComponent implements OnInit {
     isLoggedIn = false;
     selectedCompanyID: string;
     companySelected = false;
-    companies$: Observable<any>;
     selectedCompany = new Company();
 
     constructor(public adminService: AdminService,
@@ -25,8 +23,11 @@ export class EditCompanyComponent implements OnInit {
 
     ngOnInit() {
         this.isLoggedIn = this.adminService.loggedIn;
-        $(document).ready(() => $('.selectpicker').selectpicker('refresh'));
-        this.companies$ = this.companiesService.getCompaniesObservable();
+        $(document).ready(() => {
+            $('.selectpicker').selectpicker('refresh');
+            $('.bs-placeholder').click(() => this.refreshSelect());
+        });
+        this.companiesService.setCompanies();
     }
 
     onCompanySelect(value) {

@@ -12,6 +12,7 @@ export class CompaniesService {
     companiesCollection: AngularFirestoreCollection;
     companyID: string;
     company;
+    companyExists = true;
     companies;
     companiesCount;
 
@@ -28,7 +29,7 @@ export class CompaniesService {
     }
 
     addCompany(newCompany) {
-        Swal.showLoading();
+        LoadingService.showLoaderNoAnimation();
         this.companiesCollection.doc(newCompany.id).set(Object.assign({}, newCompany))
             .then(() => {
                 Swal.fire({
@@ -48,7 +49,7 @@ export class CompaniesService {
     }
 
     updateCompany(selectedCompany) {
-        Swal.showLoading();
+        LoadingService.showLoaderNoAnimation();
         this.companiesCollection.doc(selectedCompany.id).update(Object.assign({}, selectedCompany))
             .then(() => {
                 Swal.fire({
@@ -67,13 +68,17 @@ export class CompaniesService {
             });
     }
 
-    getCompaniesObservable() {
-        return this.firestoreService.getCompaniesObservable();
-    }
+    // getCompaniesObservable() {
+    //     return this.firestoreService.getCompaniesObservable();
+    // }
 
     setCompanyByID(companyID) {
         this.firestoreService.getCompanyObservableByID(companyID).subscribe(comp => {
-            this.company = comp;
+            if (comp === undefined) {
+                this.companyExists = false;
+            } else {
+                this.company = comp;
+            }
             LoadingService.closeLoader();
         });
     }
@@ -92,9 +97,9 @@ export class CompaniesService {
     //     });
     // }
 
-    getFirestoreCompanyDocById(companyID) {
-        return this.firestoreService.getFirestoreCompanyDocById(companyID);
-    }
+    // getFirestoreCompanyDocById(companyID) {
+    //     return this.firestoreService.getFirestoreCompanyDocById(companyID);
+    // }
 
     setCompanyID(value: string) {
         this.companyID = value;

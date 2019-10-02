@@ -85,9 +85,9 @@ export class FirestoreService {
     }
 
     // used for checking if doc exists
-    getFirestoreCompanyDocById(companyID) {
-        return this.db.firestore.doc('companies/' + companyID);
-    }
+    // getFirestoreCompanyDocById(companyID) {
+    //     return this.db.firestore.doc('companies/' + companyID);
+    // }
 
     getUserObservableById(userUID) {
         return this.db.doc('users/' + userUID).valueChanges();

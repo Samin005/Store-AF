@@ -20,6 +20,11 @@ export class LoadingService {
         }).finally();
     }
 
+    static showLoaderNoAnimation() {
+        Swal.fire({animation: false});
+        Swal.showLoading();
+    }
+
     static closeLoader() {
         if (Swal.isVisible()) {
             Swal.close();

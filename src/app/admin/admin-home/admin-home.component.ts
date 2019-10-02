@@ -4,6 +4,7 @@ import {AngularFireAuth} from '@angular/fire/auth';
 import {auth} from 'firebase/app';
 import {UsersService} from '../../service/users.service';
 import Swal from 'sweetalert2';
+import {LoadingService} from '../../service/loading.service';
 
 declare var $;
 
@@ -25,8 +26,7 @@ export class AdminHomeComponent implements OnInit {
     }
 
     ngOnInit() {
-        Swal.fire({animation: false});
-        Swal.showLoading();
+        LoadingService.showLoaderNoAnimation();
         this.showWelcomeDiv = this.adminService.loggedIn;
         // to keep username on input after logout
         if (this.showWelcomeDiv) {

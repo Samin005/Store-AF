@@ -15,7 +15,6 @@ import Swal from 'sweetalert2';
 })
 export class BackOfficeComponent implements OnInit {
     companyID: string;
-    inCompanyList = true;
     user$: Observable<any>;
 
     constructor(public companiesService: CompaniesService,
@@ -27,6 +26,52 @@ export class BackOfficeComponent implements OnInit {
     ngOnInit() {
         Swal.showLoading();
         this.startSecurityCheck();
+    }
+
+    startSecurityCheck() {
+        this.checkCompanyExists();
+    }
+
+    checkCompanyExists() {
+        this.activatedRoute.params.subscribe((params: Params) => {
+            this.companyID = params.companyID;
+            this.companiesService.setCompanyID(this.companyID);
+            this.setCompanyByID(this.companyID);
+            this.checkUserExists();
+        });
+    }
+
+    setCompanyByID(compID) {
+        this.companiesService.setCompanyByID(compID);
+    }
+
+    checkUserExists() {
+        this.angularFireAuth.user.subscribe((user) => {
+            if (user != null && user.emailVerified) {
+                this.usersService.getFirestoreUserDocByID(user.uid).get().then(userSnapshot => {
+                    if (!userSnapshot.exists) {
+                        this.usersService.addBackOfficeUser(user, this.companyID);
+                    }
+                    // else {
+                    //     this.usersService.updateBackOfficeUser(user, this.companyID);
+                    // }
+                });
+                this.checkUserRole(user);
+            }
+        });
+    }
+
+    checkUserRole(user) {
+        this.user$ = this.usersService.getUserObservableByID(user.uid);
+        this.user$.subscribe(u => {
+            if (((u.companyIDBO === this.companyID || u.companyIDBO === 'Store-AF') && (u.roleBO === 'admin' || u.roleBO === 'editor')) || this.companyID === 'Demo Comp') {
+                this.usersService.authorizedUser = true;
+                console.log('authorized');
+            } else {
+                this.usersService.authorizedUser = false;
+                console.log('not authorized');
+            }
+        });
     }
 
     signIn() {
@@ -68,59 +113,6 @@ export class BackOfficeComponent implements OnInit {
         });
     }
 
-    startSecurityCheck() {
-        this.checkCompanyExists();
-    }
-
-    checkCompanyExists() {
-        this.activatedRoute.params.subscribe((params: Params) => {
-            this.companyID = params.companyID;
-            this.companiesService.setCompanyID(this.companyID);
-            this.companiesService.getFirestoreCompanyDocById(this.companyID).get().then(docSnapshot => {
-                if (!docSnapshot.exists) {
-                    Swal.close();
-                    this.inCompanyList = false;
-                } else {
-                    this.getCompanyObservable();
-                    this.checkUserExists();
-                }
-            });
-        });
-    }
-
-    getCompanyObservable() {
-        this.companiesService.setCompanyByID(this.companyID);
-    }
-
-    checkUserExists() {
-        this.angularFireAuth.user.subscribe((user) => {
-            if (user != null && user.emailVerified) {
-                this.usersService.getFirestoreUserDocByID(user.uid).get().then(userSnapshot => {
-                    if (!userSnapshot.exists) {
-                        this.usersService.addBackOfficeUser(user, this.companyID);
-                    }
-                    // else {
-                    //     this.usersService.updateBackOfficeUser(user, this.companyID);
-                    // }
-                });
-                this.checkUserRole(user);
-            }
-        });
-    }
-
-    checkUserRole(user) {
-        this.user$ = this.usersService.getUserObservableByID(user.uid);
-        this.user$.subscribe(u => {
-            if (((u.companyIDBO === this.companyID || u.companyIDBO === 'Store-AF') && (u.roleBO === 'admin' || u.roleBO === 'editor')) || this.companyID === 'Demo Comp') {
-                this.usersService.authorizedUser = true;
-                console.log('authorized');
-            } else {
-                this.usersService.authorizedUser = false;
-                console.log('not authorized');
-            }
-        });
-    }
-
     // listAndFind(companyID) {
     //     this.companies$ = this.firestoreService.getCompanies();
     //     this.allCompaniesList = [];
@@ -148,5 +140,17 @@ export class BackOfficeComponent implements OnInit {
     //             response => console.log(response),
     //             error => console.log(error)
     //         );
+    // }
+
+    // checks if company exits, commented out because it take a little more time
+    // checkIfCompanyExists() {
+    //     let inCompanyList = true;
+    //     this.companiesService.getFirestoreCompanyDocById(this.companyID).get().then(docSnapshot => {
+    //         if (docSnapshot.exists) {
+    //             //Exists!
+    //         } else {
+    //             inCompanyList = false;
+    //         }
+    //     });
     // }
 }

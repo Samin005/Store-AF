@@ -1,4 +1,4 @@
-<div *ngIf="inCompanyList">
+<div *ngIf="companiesService.companyExists">
     <!--    <input type="file" (change)="onFileSelected($event)">-->
     <div *ngIf="!usersService.authorizedUser" class="my-5 mx-3 text-center">
         <i class="fas fa-user-lock bigIcon"></i>
@@ -42,7 +42,7 @@
     </div>
 </div>
 
-<div *ngIf="!inCompanyList">
+<div *ngIf="!companiesService.companyExists">
     <app-page-not-found></app-page-not-found>
     <div class="text-center">no company found</div>
 </div>
