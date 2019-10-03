@@ -62,6 +62,29 @@ export class LayoutBoComponent implements OnInit {
         });
     }
 
+    scrollDown() {
+        window.scroll({
+            top: 500,
+            behavior: 'smooth'
+        });
+    }
+
+    showUtilitiesCollapseItemsOnSmallScreen() {
+        if ($('#collapseUtilities').attr('class') === 'collapse') {
+            $('#fixedSidebar').css('overflow-y', 'visible');
+        } else {
+            $('#fixedSidebar').css('overflow-y', 'scroll');
+        }
+    }
+
+    showComponentsCollapseItemsOnSmallScreen() {
+        if ($('#collapseTwo').attr('class') === 'collapse') {
+            $('#fixedSidebar').css('overflow-y', 'visible');
+        } else {
+            $('#fixedSidebar').css('overflow-y', 'scroll');
+        }
+    }
+
     signOut() {
         Swal.fire({
             title: 'Signing Out...',
