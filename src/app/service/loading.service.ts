@@ -25,6 +25,25 @@ export class LoadingService {
         Swal.showLoading();
     }
 
+    static showLoaderNoEscapeNoOutsideClick() {
+        Swal.fire({
+            allowEscapeKey: false,
+            allowOutsideClick: false,
+            onBeforeOpen: () => {
+                Swal.showLoading();
+            }
+        }).finally();
+    }
+
+    static showLoaderNoOutsideClick() {
+        Swal.fire({
+            allowOutsideClick: false,
+            onBeforeOpen: () => {
+                Swal.showLoading();
+            }
+        }).finally();
+    }
+
     static closeLoader() {
         if (Swal.isVisible()) {
             Swal.close();

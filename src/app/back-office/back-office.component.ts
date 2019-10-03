@@ -7,6 +7,7 @@ import {UsersService} from '../service/users.service';
 import {Observable} from 'rxjs';
 import {auth} from 'firebase/app';
 import Swal from 'sweetalert2';
+import {LoadingService} from '../service/loading.service';
 
 @Component({
     selector: 'app-back-office',
@@ -24,7 +25,7 @@ export class BackOfficeComponent implements OnInit {
     }
 
     ngOnInit() {
-        Swal.showLoading();
+        LoadingService.showLoaderNoOutsideClick();
         this.startSecurityCheck();
     }
 

@@ -11,6 +11,8 @@ declare var Chart;
 export class DashboardComponent implements OnInit {
     @ViewChild('revenueLineChart') lineChart: ElementRef;
     @ViewChild('revenuePieChart') pieChart: ElementRef;
+    revenueLineChart;
+    revenuePieChart;
 
     constructor(public companiesService: CompaniesService) {
     }
@@ -22,7 +24,7 @@ export class DashboardComponent implements OnInit {
 
     createLineChart() {
         const ctx = this.lineChart.nativeElement.getContext('2d');
-        const revenueLineChart = new Chart(ctx, {
+        this.revenueLineChart  = new Chart(ctx, {
             type: 'line',
             data: {
                 labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
@@ -113,7 +115,7 @@ export class DashboardComponent implements OnInit {
 
     createPieChart() {
         const ctx = this.pieChart.nativeElement.getContext('2d');
-        const revenuePieChart = new Chart(ctx, {
+        this.revenuePieChart = new Chart(ctx, {
             type: 'doughnut',
             data: {
                 labels: ['Direct', 'Referral', 'Social'],
@@ -142,5 +144,11 @@ export class DashboardComponent implements OnInit {
                 cutoutPercentage: 80,
             },
         });
+    }
+
+    updateLineChart() {
+        this.revenueLineChart.data.datasets[0].data = [0, 10000, 25000, 20000, 10000, 20000, 30000, 25000, 20000, 15000, 25000, 45000];
+        this.revenueLineChart.update();
+        console.log('updated');
     }
 }
