@@ -1516,6 +1516,14 @@ button.bg-primary-custom:focus {
     background-color: #2653d4 !important;
 }
 
+.btn-link {
+    color: #4e73df;
+}
+
+.btn-link:hover {
+    border-color: #4e73df;
+}
+
 .btn-primary-custom {
     color: #fff;
     background-color: #4e73df;
@@ -1592,4 +1600,14 @@ a {
     color: #fff;
     background-color: #4e73df;
     border-color: #4e73df;
+}
+
+#fixedSidebar {
+    width: min-content;
+    overflow-y: scroll;
+    height: 100vh;
+}
+#fixedSidebar::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
 }

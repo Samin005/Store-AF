@@ -149,6 +149,20 @@ export class DashboardComponent implements OnInit {
     updateLineChart() {
         this.revenueLineChart.data.datasets[0].data = [0, 10000, 25000, 20000, 10000, 20000, 30000, 25000, 20000, 15000, 25000, 45000];
         this.revenueLineChart.update();
-        console.log('updated');
+    }
+
+    initializeLineChart() {
+        this.revenueLineChart.data.datasets[0].data = [0, 10000, 5000, 15000, 10000, 20000, 15000, 25000, 20000, 30000, 25000, 40000];
+        this.revenueLineChart.update();
+    }
+
+    updatePieChart() {
+        this.revenuePieChart.data.datasets[0].data = [20, 15, 65];
+        this.revenuePieChart.update();
+    }
+
+    initializePieChart() {
+        this.revenuePieChart.data.datasets[0].data = [55, 30, 15];
+        this.revenuePieChart.update();
     }
 }
