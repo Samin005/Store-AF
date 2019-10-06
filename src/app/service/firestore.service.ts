@@ -89,6 +89,23 @@ export class FirestoreService {
     //     return this.db.firestore.doc('companies/' + companyID);
     // }
 
+    // adding a doc and setting the auto generated id as a field
+    // addAdmin() {
+    //     console.log('clicked!');
+    //     this.db.collection('admin').add({name: 'YOLO'}).then(ref => {
+    //         ref.update({id: ref.id});
+    //     }).catch(reason => console.log(reason));
+    // }
+
+    // find and delete unnecessary admins created by addAdmin()
+    // deleteUnnecessaryAdmins() {
+    //     this.db.collection('admin', ref => ref.where('name', '==', 'YOLO')).valueChanges().subscribe(values => {
+    //         values.forEach((value: any) => {
+    //             this.db.doc('admin/' + value.id).delete().then(() => console.log('delete success')).catch(reason => console.log(reason));
+    //         });
+    //     });
+    // }
+
     getUserObservableById(userUID) {
         return this.db.doc('users/' + userUID).valueChanges();
     }
