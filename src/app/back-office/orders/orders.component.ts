@@ -52,7 +52,39 @@ export class OrdersComponent implements OnInit {
                     className: 'btn btn-primary-custom',
                     title: this.companiesService.company.name
                 }
-            ]
+            ],
+            footerCallback() {
+                const api = this.api();
+
+                // Remove the formatting to get integer data for summation
+                const intVal = (i) => {
+                    return typeof i === 'string' ?
+                        +i.replace(/[\$,]/g, '') * 1 :
+                        typeof i === 'number' ?
+                            i : 0;
+                };
+
+                // Total over all pages
+                const total = api
+                    .column(5)
+                    .data()
+                    .reduce((a, b) => {
+                        return intVal(a) + intVal(b);
+                    }, 0);
+
+                // Total over this page
+                const pageTotal = api
+                    .column(5, {page: 'current'})
+                    .data()
+                    .reduce((a, b) => {
+                        return intVal(a) + intVal(b);
+                    }, 0);
+
+                // Update footer
+                $(api.column(5).footer()).html(
+                    '$' + pageTotal + '<br>( $' + total + ' Total )'
+                );
+            }
         });
     }
 
