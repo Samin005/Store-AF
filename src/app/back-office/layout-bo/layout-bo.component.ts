@@ -104,4 +104,14 @@ export class LayoutBoComponent implements OnInit {
             }).finally();
         });
     }
+
+    // printBlobContent(e) {
+    //     this.selectedFile = e.target.files[0];
+    //     const fileReader = new FileReader();
+    //     fileReader.readAsDataURL(this.selectedFile);
+    //     fileReader.onloadend = () => {
+    //         console.log(fileReader.result);
+    //         console.log(fileReader.result.toString().split(',')[1]);
+    //     };
+    // }
 }

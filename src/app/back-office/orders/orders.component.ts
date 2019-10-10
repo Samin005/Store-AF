@@ -10,11 +10,12 @@ declare var $;
 })
 export class OrdersComponent implements OnInit {
 
+    dtTable;
     constructor(public companiesService: CompaniesService) {
     }
 
     ngOnInit() {
-        $('#dataTable').DataTable({
+        this.dtTable = $('#dataTable').DataTable({
             dom: 'lfBtipr',
             buttons: [
                 {
@@ -85,6 +86,30 @@ export class OrdersComponent implements OnInit {
                     '$' + pageTotal + '<br>( $' + total + ' Total )'
                 );
             }
+        });
+
+        // setting today for toDate
+        $('#toDate').val(new Date().toISOString().substring(0, 10));
+
+        // date-range search function
+        $.fn.dataTableExt.afnFiltering.push((settings, data, dataIndex) => {
+            let min = $('#fromDate').val();
+            let max = $('#toDate').val();
+            let startDate = new Date(data[4]).toISOString().substring(0, 10);
+
+            min = min.substring(0, 4) + min.substring(5, 7) + min.substring(8, 10);
+            max = max.substring(0, 4) + max.substring(5, 7) + max.substring(8, 10);
+            startDate = startDate.substring(0, 4) + startDate.substring(5, 7) + startDate.substring(8, 10);
+
+            if (min === '' && max === '') { return true; }
+            if (min === '' && startDate <= max) { return true; }
+            if (max === '' && startDate >= min) { return true; }
+            if (startDate <= max && startDate >= min) { return true; }
+            return false;
+        });
+        $('#fromDate, #toDate').change(() => {
+            console.log('drawing table');
+            this.dtTable.draw();
         });
     }
 
