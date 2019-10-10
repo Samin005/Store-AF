@@ -23,35 +23,40 @@ export class OrdersComponent implements OnInit {
                     text: '<i class="fas fa-copy"></i> Copy</button>',
                     titleAttr: 'Copy',
                     className: 'btn btn-primary-custom',
-                    title: this.companiesService.company.name
+                    title: this.companiesService.company.name,
+                    footer: true
                 },
                 {
                     extend: 'excelHtml5',
                     text: '<i class="fas fa-file-excel"></i> Excel</button>',
                     titleAttr: 'Excel',
                     className: 'btn btn-primary-custom',
-                    title: this.companiesService.company.name
+                    title: this.companiesService.company.name,
+                    footer: true
                 },
                 {
                     extend: 'pdfHtml5',
                     text: '<i class="fas fa-file-pdf"></i> PDF</button>',
                     titleAttr: 'PDF',
                     className: 'btn btn-primary-custom',
-                    title: this.companiesService.company.name
+                    title: this.companiesService.company.name,
+                    footer: true
                 },
                 {
                     extend: 'csvHtml5',
                     text: '<i class="fas fa-file-csv"></i> CSV</button>',
                     titleAttr: 'CSV',
                     className: 'btn btn-primary-custom',
-                    title: this.companiesService.company.name
+                    title: this.companiesService.company.name,
+                    footer: true
                 },
                 {
                     extend: 'print',
                     text: '<i class="fas fa-print"></i> Print</button>',
                     titleAttr: 'Print',
                     className: 'btn btn-primary-custom',
-                    title: this.companiesService.company.name
+                    title: this.companiesService.company.name,
+                    footer: true
                 }
             ],
             footerCallback() {
