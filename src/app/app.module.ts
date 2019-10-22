@@ -23,6 +23,10 @@ import {FormsModule} from '@angular/forms';
 import { DashboardComponent } from './back-office/dashboard/dashboard.component';
 import { LayoutBoComponent } from './back-office/layout-bo/layout-bo.component';
 import { OrdersComponent } from './back-office/orders/orders.component';
+import { InventoryManagementComponent } from './back-office/inventory-management/inventory-management.component';
+import { NewItemComponent } from './back-office/inventory-management/new-item/new-item.component';
+import { CurrentItemsComponent } from './back-office/inventory-management/current-items/current-items.component';
+import { UpdateExistingItemComponent } from './back-office/inventory-management/update-existing-item/update-existing-item.component';
 
 @NgModule({
     declarations: [
@@ -39,7 +43,11 @@ import { OrdersComponent } from './back-office/orders/orders.component';
         AdminHomeComponent,
         DashboardComponent,
         LayoutBoComponent,
-        OrdersComponent
+        OrdersComponent,
+        InventoryManagementComponent,
+        NewItemComponent,
+        CurrentItemsComponent,
+        UpdateExistingItemComponent
     ],
     imports: [
         BrowserModule,

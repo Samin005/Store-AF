@@ -10,6 +10,10 @@ import {EditCompanyComponent} from './admin/edit-company/edit-company.component'
 import {AdminHomeComponent} from './admin/admin-home/admin-home.component';
 import {DashboardComponent} from './back-office/dashboard/dashboard.component';
 import {OrdersComponent} from './back-office/orders/orders.component';
+import {InventoryManagementComponent} from './back-office/inventory-management/inventory-management.component';
+import {NewItemComponent} from './back-office/inventory-management/new-item/new-item.component';
+import {CurrentItemsComponent} from './back-office/inventory-management/current-items/current-items.component';
+import {UpdateExistingItemComponent} from './back-office/inventory-management/update-existing-item/update-existing-item.component';
 
 const routes: Routes = [
     {path: '', component: HomeComponent},
@@ -22,7 +26,12 @@ const routes: Routes = [
     {path: ':companyID', component: OnlineStoreComponent},
     {path: ':companyID/back-office', component: BackOfficeComponent, children: [
             {path: '', component: DashboardComponent},
-            {path: 'orders', component: OrdersComponent}
+            {path: 'orders', component: OrdersComponent},
+            {path: 'inventory-management', component: InventoryManagementComponent, children: [
+                    {path: '', component: CurrentItemsComponent},
+                    {path: 'new-item', component: NewItemComponent},
+                    {path: 'update-existing-item', component: UpdateExistingItemComponent}
+                ]}
         ]},
     {path: '**', redirectTo: 'page-not-found'}
     ];
