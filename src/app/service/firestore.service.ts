@@ -76,6 +76,10 @@ export class FirestoreService {
         return this.db.collection('companies');
     }
 
+    getCompanyItemsCollection(companyID) {
+        return this.db.collection(companyID + '-items');
+    }
+
     getCompaniesObservable() {
         return this.db.collection('companies').valueChanges();
     }
