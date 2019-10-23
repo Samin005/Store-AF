@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {ActivatedRoute, Params} from '@angular/router';
 
 import {AngularFireAuth} from '@angular/fire/auth';
@@ -12,7 +12,8 @@ import {LoadingService} from '../service/loading.service';
 @Component({
     selector: 'app-back-office',
     templateUrl: './back-office.component.html',
-    styleUrls: ['./back-office.component.css']
+    styleUrls: ['./back-office.component.css'],
+    encapsulation: ViewEncapsulation.None
 })
 export class BackOfficeComponent implements OnInit {
     companyID: string;

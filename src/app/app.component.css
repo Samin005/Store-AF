@@ -18,6 +18,7 @@
 
 .nav-tabs > .nav-item > .active {
     color: #4e73df;
+    font-weight: bold;
 }
 
 input[type=date]::-webkit-inner-spin-button {
