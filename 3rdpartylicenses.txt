@@ -36,6 +36,8 @@ MIT
 
 @angular/fire/firestore
 
+@angular/fire/storage
+
 @angular/forms
 MIT
 
@@ -263,6 +265,9 @@ Apache-2.0
 @firebase/polyfill
 Apache-2.0
 
+@firebase/storage
+Apache-2.0
+
 @firebase/util
 Apache-2.0
 
@@ -429,6 +434,8 @@ firebase/app
 firebase/auth
 
 firebase/firestore
+
+firebase/storage
 
 promise-polyfill
 MIT
