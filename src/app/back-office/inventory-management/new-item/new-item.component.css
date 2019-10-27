@@ -1,5 +1,6 @@
 .close {
     float: none;
+    cursor: pointer;
 }
 
 .deleteSelect:hover {
