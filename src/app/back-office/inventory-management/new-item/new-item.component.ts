@@ -70,7 +70,7 @@ export class NewItemComponent implements OnInit {
             title: 'Uploading Images (0%)',
             html: '<div class="progress mb-4"> <div class="progress-bar bg-primary-custom" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div> </div>',
             showConfirmButton: false
-        });
+        }).finally();
         const uploadPath = 'img/' + this.companiesService.companyID + '/items/' + this.item.id + '/';
         this.updateImgPathsWithItemID(uploadPath);
         const totalImages = this.imagesForUpload.length;
@@ -97,7 +97,7 @@ export class NewItemComponent implements OnInit {
                     title: 'Error',
                     type: 'error',
                     text: error
-                });
+                }).finally();
             });
         });
     }

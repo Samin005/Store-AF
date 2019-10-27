@@ -24,14 +24,14 @@ export class EditCompanyComponent implements OnInit {
     ngOnInit() {
         this.isLoggedIn = this.adminService.loggedIn;
         $(document).ready(() => {
-            $('.selectpicker').selectpicker('refresh');
+            this.refreshSelect();
             $('.bs-placeholder').click(() => this.refreshSelect());
         });
         this.companiesService.setCompanies();
     }
 
-    onCompanySelect(value) {
-        this.selectedCompanyID = value;
+    onCompanySelect(event) {
+        this.selectedCompanyID = event.target.value;
         this.companiesService.getCompanyObservableByID(this.selectedCompanyID).subscribe(company => {
             this.selectedCompany = (company as Company);
             this.companySelected = true;
