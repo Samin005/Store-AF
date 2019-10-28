@@ -8,4 +8,8 @@ export class Item {
     imgPaths: Array<string>;
     createDate;
     lastModified;
+
+    constructor() {
+        this.imgPaths = [];
+    }
 }

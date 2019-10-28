@@ -80,6 +80,10 @@ export class FirestoreService {
         return this.db.collection(companyID + '-items');
     }
 
+    getCompanyItemsObservable(companyID) {
+        return this.db.collection(companyID + '-items').valueChanges();
+    }
+
     getCompaniesObservable() {
         return this.db.collection('companies').valueChanges();
     }

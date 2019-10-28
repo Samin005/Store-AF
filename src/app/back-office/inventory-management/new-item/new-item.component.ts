@@ -25,7 +25,6 @@ export class NewItemComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.item.imgPaths = [];
         // for displaying img
         // this.afStorage.ref('img/salamence').getDownloadURL().subscribe(src => {
         //     this.imgRef = src;
@@ -115,7 +114,6 @@ export class NewItemComponent implements OnInit {
 
     resetItemValues() {
         this.item = new Item();
-        this.item.imgPaths = [];
         this.imgThumbnailUrls = [];
         this.imagesForUpload = [];
     }

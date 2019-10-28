@@ -17,11 +17,11 @@
                 <thead>
                 <tr>
                     <th>Name</th>
-                    <th>Position</th>
-                    <th>Office</th>
-                    <th>Age</th>
-                    <th>Start date</th>
-                    <th>Salary</th>
+                    <th>Images</th>
+                    <th>Details</th>
+                    <th>Stock</th>
+                    <th>Last Modified date</th>
+                    <th>Price</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -40,6 +40,14 @@
                     <td>61</td>
                     <td>2013/08/11</td>
                     <td>$98,540</td>
+                </tr>
+                <tr *ngFor="let item of itemsService.itemsList">
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.details }}</td>
+                    <td>{{ item.stock }}</td>
+                    <td>{{ item.lastModified.toDate().toISOString().substring(0, 10) }}</td>
+                    <td>{{ item.price }}</td>
                 </tr>
                 </tbody>
                 <tfoot>
