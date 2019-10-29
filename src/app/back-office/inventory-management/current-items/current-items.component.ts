@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
+import {AngularFireStorage} from '@angular/fire/storage';
 import {CompaniesService} from '../../../service/companies.service';
 import {ItemsService} from '../../../service/items.service';
 import {Item} from '../../../model/item.model';
-import {AngularFireStorage} from '@angular/fire/storage';
 
 declare var $;
 
@@ -20,7 +20,7 @@ export class CurrentItemsComponent implements OnInit {
                 public itemsService: ItemsService,
                 private afStorage: AngularFireStorage) {
         itemsService.itemsList.forEach((item: Item) => {
-            this.dataset.push([item.name, '<h1>' + item.name + '</h1>', item.details, item.stock, item.lastModified.toDate().toISOString().substring(0, 10), item.price]);
+            this.dataset.push([item.name, '(Loading images...)', item.details, item.stock, item.lastModified.toDate().toISOString().substring(0, 10), item.price]);
         });
     }
 
@@ -113,11 +113,15 @@ export class CurrentItemsComponent implements OnInit {
         this.itemsService.getAllItemsObservableByComapnyID(this.companiesService.companyID).subscribe((items) => {
             this.dataset = [];
             items.forEach((item: Item) => {
+                let imgPathCount = 0;
+                let imgPathsString = '';
                 item.imgPaths.forEach((imgPaths) => {
                     this.afStorage.ref(imgPaths).getDownloadURL().subscribe((imgPath) => {
-                        console.log(imgPath);
-                        this.dataset.push([item.name, '<img src="' + imgPath + '" width="80"></img><img src="' + imgPath + '" width="80"></img>', item.details, item.stock, item.lastModified.toDate().toISOString().substring(0, 10), item.price]);
-                        this.updateDtTable();
+                        imgPathsString = imgPathsString + '<img src="' + imgPath + '" width="40" alt="' + item.name + ' image">';
+                        imgPathCount++;
+                        if (imgPathCount === item.imgPaths.length) {
+                            this.updateDatasetImagePaths(item, imgPathsString);
+                        }
                     });
                 });
             });
@@ -155,15 +159,14 @@ export class CurrentItemsComponent implements OnInit {
         });
     }
 
+    updateDatasetImagePaths(item, imgPaths) {
+        this.dataset.push([item.name, imgPaths, item.details, item.stock, item.lastModified.toDate().toISOString().substring(0, 10), item.price]);
+        this.updateDtTable();
+    }
+
     updateDtTable() {
         this.dtTable.clear();
         this.dtTable.rows.add(this.dataset);
         this.dtTable.draw();
-    }
-
-    async getImagePath(imgPath) {
-        const result = await this.afStorage.ref(imgPath).getDownloadURL().toPromise();
-        console.log('Result: '+ result);
-        return result;
     }
 }
