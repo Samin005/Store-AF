@@ -8,6 +8,7 @@ import {Observable} from 'rxjs';
 import {auth} from 'firebase/app';
 import Swal from 'sweetalert2';
 import {LoadingService} from '../service/loading.service';
+import {ItemsService} from '../service/items.service';
 
 @Component({
     selector: 'app-back-office',
@@ -22,7 +23,8 @@ export class BackOfficeComponent implements OnInit {
     constructor(public companiesService: CompaniesService,
                 public usersService: UsersService,
                 private activatedRoute: ActivatedRoute,
-                public angularFireAuth: AngularFireAuth) {
+                public angularFireAuth: AngularFireAuth,
+                private itemsService: ItemsService) {
     }
 
     ngOnInit() {
@@ -39,12 +41,17 @@ export class BackOfficeComponent implements OnInit {
             this.companyID = params.companyID;
             this.companiesService.setCompanyID(this.companyID);
             this.setCompanyByID(this.companyID);
+            this.setCompanyItems(this.companyID);
             this.checkUserExists();
         });
     }
 
     setCompanyByID(compID) {
         this.companiesService.setCompanyByID(compID);
+    }
+
+    setCompanyItems(compID) {
+        this.itemsService.setAllItemsByCompanyID(compID);
     }
 
     checkUserExists() {

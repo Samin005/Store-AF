@@ -1,6 +1,8 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CompaniesService} from '../../../service/companies.service';
 import {ItemsService} from '../../../service/items.service';
+import {Item} from '../../../model/item.model';
+import {AngularFireStorage} from '@angular/fire/storage';
 
 declare var $;
 
@@ -9,17 +11,23 @@ declare var $;
     templateUrl: './current-items.component.html',
     styleUrls: ['./current-items.component.css']
 })
-export class CurrentItemsComponent implements OnInit, OnDestroy {
+export class CurrentItemsComponent implements OnInit {
 
     dtTable;
+    dataset = [];
 
     constructor(public companiesService: CompaniesService,
-                public itemsService: ItemsService) {
+                public itemsService: ItemsService,
+                private afStorage: AngularFireStorage) {
+        itemsService.itemsList.forEach((item: Item) => {
+            this.dataset.push([item.name, '<h1>' + item.name + '</h1>', item.details, item.stock, item.lastModified.toDate().toISOString().substring(0, 10), item.price]);
+        });
     }
 
     ngOnInit() {
         this.dtTable = $('#dataTable').DataTable({
             dom: 'lfBtipr',
+            data: this.dataset,
             buttons: [
                 {
                     extend: 'copyHtml5',
@@ -98,11 +106,22 @@ export class CurrentItemsComponent implements OnInit, OnDestroy {
         });
         this.setupDateRangeSearch();
         $('#fromDate, #toDate').change(() => {
-            console.log('drawing table');
             this.dtTable.draw();
         });
-        this.itemsService.getAllItemsByCompanyID(this.companiesService.companyID);
-        setTimeout(() => console.log(this.dtTable.data()), 3000);
+
+        // updating dtTable in realtime
+        this.itemsService.getAllItemsObservableByComapnyID(this.companiesService.companyID).subscribe((items) => {
+            this.dataset = [];
+            items.forEach((item: Item) => {
+                item.imgPaths.forEach((imgPaths) => {
+                    this.afStorage.ref(imgPaths).getDownloadURL().subscribe((imgPath) => {
+                        console.log(imgPath);
+                        this.dataset.push([item.name, '<img src="' + imgPath + '" width="80"></img><img src="' + imgPath + '" width="80"></img>', item.details, item.stock, item.lastModified.toDate().toISOString().substring(0, 10), item.price]);
+                        this.updateDtTable();
+                    });
+                });
+            });
+        });
     }
 
     setupDateRangeSearch() {
@@ -136,8 +155,15 @@ export class CurrentItemsComponent implements OnInit, OnDestroy {
         });
     }
 
-    ngOnDestroy(): void {
-        this.itemsService.itemsList = [];
+    updateDtTable() {
+        this.dtTable.clear();
+        this.dtTable.rows.add(this.dataset);
+        this.dtTable.draw();
     }
 
+    async getImagePath(imgPath) {
+        const result = await this.afStorage.ref(imgPath).getDownloadURL().toPromise();
+        console.log('Result: '+ result);
+        return result;
+    }
 }
