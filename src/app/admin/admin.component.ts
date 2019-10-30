@@ -22,7 +22,7 @@ export class AdminComponent implements OnInit {
             this.adminService.userName = admin.username;
             this.adminService.password = admin.password;
             // console.table({Username: admin.username, Pass: admin.password});
-        });
+        }, error => console.log(error.message));
 
         // to check internet status
         this.online$ = merge(

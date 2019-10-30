@@ -33,7 +33,7 @@ export class ItemsService {
                 Swal.fire({
                     type: 'error',
                     title: 'Error',
-                    text: reason
+                    text: reason.message
                 }).finally();
             });
     }

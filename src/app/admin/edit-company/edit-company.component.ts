@@ -27,7 +27,7 @@ export class EditCompanyComponent implements OnInit {
             this.refreshSelect();
             $('.bs-placeholder').click(() => this.refreshSelect());
         });
-        this.companiesService.setCompanies();
+        this.companiesService.setCompaniesNoLoading();
     }
 
     onCompanySelect(event) {
@@ -45,7 +45,6 @@ export class EditCompanyComponent implements OnInit {
     updateCompany() {
         // this.selectedCompany.Create_date = new Date();
         this.companiesService.updateCompany(this.selectedCompany);
-        this.resetCompanyValues();
     }
 
     setDefaultValues() {
@@ -57,9 +56,5 @@ export class EditCompanyComponent implements OnInit {
         this.selectedCompany.slideshow_imgPath_3 = 'assets/img/' + this.selectedCompany.id + '/' + this.selectedCompany.id + '-slideshow-3.jpg';
         this.selectedCompany.slideshow_imgPath_4 = 'assets/img/' + this.selectedCompany.id + '/' + this.selectedCompany.id + '-slideshow-4.jpg';
         this.selectedCompany.slideshow_imgPath_5 = 'assets/img/' + this.selectedCompany.id + '/' + this.selectedCompany.id + '-slideshow-5.jpg';
-    }
-
-    resetCompanyValues() {
-        this.selectedCompany = new Company();
     }
 }

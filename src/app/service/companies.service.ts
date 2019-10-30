@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {FirestoreService} from './firestore.service';
 import {AngularFirestoreCollection} from '@angular/fire/firestore';
-import Swal from 'sweetalert2';
 import {LoadingService} from './loading.service';
+import Swal from 'sweetalert2';
 
 @Injectable({
     providedIn: 'root'
@@ -28,6 +28,13 @@ export class CompaniesService {
         });
     }
 
+    setCompaniesNoLoading() {
+        this.firestoreService.getCompaniesObservable().subscribe(companies => {
+            this.companies = companies;
+            this.companiesCount = companies.length;
+        });
+    }
+
     addCompany(newCompany) {
         LoadingService.showLoaderNoAnimation();
         this.companiesCollection.doc(newCompany.id).set(Object.assign({}, newCompany))
@@ -43,7 +50,7 @@ export class CompaniesService {
                 Swal.fire({
                     type: 'error',
                     title: 'Error',
-                    text: reason
+                    text: reason.message
                 }).finally();
             });
     }
@@ -63,7 +70,7 @@ export class CompaniesService {
                 Swal.fire({
                     type: 'error',
                     title: 'Error',
-                    text: reason
+                    text: reason.message
                 }).finally();
             });
     }
