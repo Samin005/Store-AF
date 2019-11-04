@@ -3,6 +3,8 @@ import {ActivatedRoute, Params, Router} from '@angular/router';
 
 import {Observable} from 'rxjs';
 import {FirestoreService} from '../service/firestore.service';
+import {CompaniesService} from '../service/companies.service';
+import {ItemsService} from '../service/items.service';
 
 @Component({
     selector: 'app-online-store',
@@ -18,14 +20,19 @@ export class OnlineStoreComponent implements OnInit {
 
     constructor(private router: Router,
                 private activatedRoute: ActivatedRoute,
+                private companiesService: CompaniesService,
+                private itemsService: ItemsService,
                 private firestoreService: FirestoreService) {
     }
 
     ngOnInit() {
         this.activatedRoute.params.subscribe((params: Params) => {
             this.companyID = params.companyID;
-            this.firestoreService.setCompanyID(this.companyID);
+            this.companiesService.setCompanyID(this.companyID);
+            this.companiesService.setCompanyByID(this.companyID);
+            this.itemsService.setAllItemsByCompanyID(this.companyID);
         });
+        // should be removed
         this.listAndFind(this.companyID);
         this.company$ = this.firestoreService.getCompany(this.companyID);
     }

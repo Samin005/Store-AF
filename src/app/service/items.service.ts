@@ -16,6 +16,8 @@ export class ItemsService {
     itemsCollection: AngularFirestoreCollection;
     currentItemsDataset = [];
     currentItemsDtTable;
+    companyItems;
+    tempItems;
 
     constructor(private companiesService: CompaniesService,
                 private firestoreService: FirestoreService,
@@ -46,17 +48,24 @@ export class ItemsService {
 
     setAllItemsByCompanyID(companyID) {
         this.firestoreService.getCompanyItemsObservable(companyID).subscribe((items) => {
+            this.tempItems = items;
+            let itemsCount = 0;
             this.currentItemsDataset = [];
-            items.forEach((item: Item) => {
+            items.forEach((item: Item, itemIndex) => {
                 let imgPathCount = 0;
                 let imgPathsString = '';
-                item.imgPaths.forEach((imgPaths) => {
+                item.imgPaths.forEach((imgPaths, imgIndex) => {
                     this.afStorage.ref(imgPaths).getDownloadURL().subscribe((imgPath) => {
                         imgPathsString = imgPathsString + '<img src="' + imgPath + '" width="40" alt="' + item.name + ' image">';
                         imgPathCount++;
+                        this.tempItems[itemIndex].imgPaths[imgIndex] = imgPath;
                         if (imgPathCount === item.imgPaths.length) {
                             this.currentItemsDataset.push([item.name, imgPathsString, item.details, item.stock, item.lastModified.toDate().toISOString().substring(0, 10), item.price]);
                             this.updateDtTable();
+                            itemsCount++;
+                            if (itemsCount === items.length) {
+                                this.companyItems = this.tempItems;
+                            }
                         }
                     });
                 });
@@ -182,6 +191,10 @@ export class ItemsService {
         this.currentItemsDtTable.clear();
         this.currentItemsDtTable.rows.add(this.currentItemsDataset);
         this.currentItemsDtTable.draw();
+    } // done with current-items datatable
+
+    setCompanyItemsWithoutImgPaths(items) {
+
     }
 
 }
