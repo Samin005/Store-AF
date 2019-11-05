@@ -15,7 +15,7 @@ export class OnlineStoreComponent implements OnInit {
 
     constructor(private router: Router,
                 private activatedRoute: ActivatedRoute,
-                private companiesService: CompaniesService,
+                public companiesService: CompaniesService,
                 private itemsService: ItemsService) {
     }
 
