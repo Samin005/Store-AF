@@ -48,6 +48,7 @@ export class ItemsService {
     }
 
     setAllItemsByCompanyID(companyID, inBO: boolean) {
+        this.companyItemsLoadingComplete = false;
         this.firestoreService.getCompanyItemsObservable(companyID).subscribe((items) => {
             if (items.length === 0) {
                 this.companyItems = items;
@@ -201,9 +202,5 @@ export class ItemsService {
         this.currentItemsDtTable.rows.add(this.currentItemsDataset);
         this.currentItemsDtTable.draw();
     } // done with current-items datatable
-
-    setCompanyItemsWithoutImgPaths(items) {
-
-    }
 
 }

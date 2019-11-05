@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {CompaniesService} from '../../service/companies.service';
 import {ItemsService} from '../../service/items.service';
 
 @Component({
@@ -9,13 +8,9 @@ import {ItemsService} from '../../service/items.service';
 })
 export class ItemsComponent implements OnInit {
 
-    constructor(public companiesService: CompaniesService,
-                public itemsService: ItemsService) {
-    }
+    constructor(public itemsService: ItemsService) {}
 
-    ngOnInit() {
-        this.companiesService.setCompanies();
-    }
+    ngOnInit() {}
 
     navigateToItem(itemID) {
         console.log(itemID);
