@@ -8,7 +8,7 @@ import {CompaniesService} from '../../service/companies.service';
 })
 export class SlideshowComponent implements OnInit {
 
-    constructor(private companiesService: CompaniesService) {}
+    constructor(public companiesService: CompaniesService) {}
 
     ngOnInit() {}
 
