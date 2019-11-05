@@ -1,50 +1,11 @@
 <div class="card-deck" style="margin: 5%;">
-    <div class="card client-cards" *ngFor="let item of itemsService.companyItems"
+    <div class="card items-cards" *ngFor="let item of itemsService.companyItems"
          (click)="navigateToItem(item.id)">
-        <img src="{{ item.imgPaths[0] }}" class="card-img-top" alt="{{item.name}} image">
+        <img src="{{ item.imgPaths[0] }}" class="card-img-top itemImg mx-auto" alt="{{item.name}} image">
         <div class="card-body">
             <h5 class="card-title">{{ item.name }}</h5>
-            <p class="card-text">Price: {{ item.price }}</p>
-        </div>
-    </div>
-</div>
-
-<div *ngFor="let item of itemsService.tempItems">
-    {{item.name}}
-
-    <div class="container">
-        <div class="carousel slide" data-ride="carousel" data-interval="1000">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img class="d-block"
-                         src="https://firebasestorage.googleapis.com/v0/b/store-af.appspot.com/o/img%2FDemo%20Comp%2Fitems%2Fitem%201%2F250px-373Salamence.png?alt=media&token=d1cfca56-a10b-4fa4-a1ff-e24d47b8f2f6"
-                         alt="First slide" width="100">
-                </div>
-                <div class="carousel-item">
-                    <img class="d-block"
-                         src="https://firebasestorage.googleapis.com/v0/b/store-af.appspot.com/o/img%2FDemo%20Comp%2Fitems%2Fitem%202%2FIMG_20190330_234828.jpg?alt=media&token=53c744f7-fb12-4f25-bdbc-f285b519b1f7"
-                         alt="Second slide" width="100">
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div *ngFor="let number of [0,1]">
-    {{ number }}
-    <div class="container">
-        <div class="carousel slide" data-ride="carousel" data-interval="1000">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img class="d-block"
-                         src="https://firebasestorage.googleapis.com/v0/b/store-af.appspot.com/o/img%2FDemo%20Comp%2Fitems%2Fitem%201%2F250px-373Salamence.png?alt=media&token=d1cfca56-a10b-4fa4-a1ff-e24d47b8f2f6"
-                         alt="First slide" width="100">
-                </div>
-                <div class="carousel-item">
-                    <img class="d-block"
-                         src="https://firebasestorage.googleapis.com/v0/b/store-af.appspot.com/o/img%2FDemo%20Comp%2Fitems%2Fitem%201%2F250px-373Salamence.png?alt=media&token=d1cfca56-a10b-4fa4-a1ff-e24d47b8f2f6"
-                         alt="Second slide" width="100">
-                </div>
-            </div>
+            <p class="card-text">{{ item.details }}</p>
+            <div class="card-footer text-right">Price: {{ item.price }}</div>
         </div>
     </div>
 </div>

@@ -1,0 +1,30 @@
+
+@media (min-width:27em) {
+    .card-deck > .card
+    {
+        width: 20%;
+    }
+}
+
+.items-cards {
+    transition: 1s;
+}
+
+.items-cards:active {
+    background: #cd2e48;
+    color: white;
+    cursor: pointer;
+    transition: none;
+}
+
+.items-cards:hover {
+    background: #cd2e48;
+    color: white;
+    cursor: pointer;
+}
+
+.itemImg {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
