@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {FirestoreService} from './firestore.service';
 import {AngularFirestoreCollection} from '@angular/fire/firestore';
 import {LoadingService} from './loading.service';
+import {Company} from '../model/company.model';
 import Swal from 'sweetalert2';
 
 @Injectable({
@@ -18,6 +19,7 @@ export class CompaniesService {
 
     constructor(private firestoreService: FirestoreService) {
         this.companiesCollection = this.firestoreService.getCompaniesCollection();
+        this.company = new Company();
     }
 
     setCompanies() {

@@ -51,7 +51,7 @@ export class BackOfficeComponent implements OnInit {
     }
 
     setCompanyItems(compID) {
-        this.itemsService.setAllItemsByCompanyID(compID);
+        this.itemsService.setAllItemsByCompanyID(compID, true);
     }
 
     checkUserExists() {

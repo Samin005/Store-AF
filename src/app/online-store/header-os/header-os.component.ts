@@ -1,8 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-
-import {Observable} from 'rxjs';
-import {FirestoreService} from '../../service/firestore.service';
 import {AngularFireAuth} from '@angular/fire/auth';
+import {CompaniesService} from '../../service/companies.service';
 import {auth} from 'firebase/app';
 import Swal from 'sweetalert2';
 
@@ -13,16 +11,11 @@ import Swal from 'sweetalert2';
 })
 export class HeaderOSComponent implements OnInit {
 
-    companyID: string;
-    company$: Observable<any>;
-
-    constructor(private firestoreService: FirestoreService,
-                public afAuth: AngularFireAuth) {
+    constructor(public afAuth: AngularFireAuth,
+                public companiesService: CompaniesService) {
     }
 
     ngOnInit() {
-        this.companyID = this.firestoreService.getCompanyID();
-        this.company$ = this.firestoreService.company$;
     }
 
     signIn() {

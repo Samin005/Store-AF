@@ -1,9 +1,9 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow-sm p-3 mb-5 bg-white rounded">
-    <img src="{{ (company$ | async)?.img_path }}" width="80" height="80"
+    <img src="{{ companiesService.company.img_path }}" width="80" height="80"
          class="d-inline-block align-top rounded-circle mr-1" alt="logo">
     <a class="navbar-brand" href="#">
 
-        {{ (company$ | async)?.name }}
+        {{ companiesService.company.name }}
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

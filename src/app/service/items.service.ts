@@ -46,9 +46,13 @@ export class ItemsService {
             });
     }
 
-    setAllItemsByCompanyID(companyID) {
+    setAllItemsByCompanyID(companyID, inBO: boolean) {
         this.firestoreService.getCompanyItemsObservable(companyID).subscribe((items) => {
-            this.tempItems = items;
+            if (items.length == 0) {
+                this.companyItems = items;
+            } else {
+                this.tempItems = items;
+            }
             let itemsCount = 0;
             this.currentItemsDataset = [];
             items.forEach((item: Item, itemIndex) => {
@@ -60,11 +64,13 @@ export class ItemsService {
                         imgPathCount++;
                         this.tempItems[itemIndex].imgPaths[imgIndex] = imgPath;
                         if (imgPathCount === item.imgPaths.length) {
-                            this.currentItemsDataset.push([item.name, imgPathsString, item.details, item.stock, item.lastModified.toDate().toISOString().substring(0, 10), item.price]);
-                            this.updateDtTable();
                             itemsCount++;
                             if (itemsCount === items.length) {
                                 this.companyItems = this.tempItems;
+                            }
+                            if (inBO) {
+                                this.currentItemsDataset.push([item.name, imgPathsString, item.details, item.stock, item.lastModified.toDate().toISOString().substring(0, 10), item.price]);
+                                this.updateDtTable();
                             }
                         }
                     });

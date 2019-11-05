@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {FirestoreService} from '../../service/firestore.service';
 import {Observable} from 'rxjs';
+import {CompaniesService} from '../../service/companies.service';
 
 @Component({
     selector: 'app-slideshow',
@@ -9,13 +9,8 @@ import {Observable} from 'rxjs';
 })
 export class SlideshowComponent implements OnInit {
 
-    company$: Observable<any>;
+    constructor(private companiesService: CompaniesService) {}
 
-    constructor(private firestoreService: FirestoreService) {
-    }
-
-    ngOnInit() {
-        this.company$ = this.firestoreService.company$;
-    }
+    ngOnInit() {}
 
 }
