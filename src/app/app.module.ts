@@ -29,6 +29,7 @@ import { NewItemComponent } from './back-office/inventory-management/new-item/ne
 import { CurrentItemsComponent } from './back-office/inventory-management/current-items/current-items.component';
 import { UpdateExistingItemComponent } from './back-office/inventory-management/update-existing-item/update-existing-item.component';
 import { ItemsComponent } from './online-store/items/items.component';
+import { LoadingComponent } from './online-store/loading/loading.component';
 
 @NgModule({
     declarations: [
@@ -50,7 +51,8 @@ import { ItemsComponent } from './online-store/items/items.component';
         NewItemComponent,
         CurrentItemsComponent,
         UpdateExistingItemComponent,
-        ItemsComponent
+        ItemsComponent,
+        LoadingComponent
     ],
     imports: [
         BrowserModule,

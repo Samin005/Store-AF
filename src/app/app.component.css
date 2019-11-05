@@ -36,6 +36,7 @@ input[type=date]::-webkit-calendar-picker-indicator {
     padding: 2%;
     transition: .1s ease;
 }
+
 input[type=date]::-webkit-calendar-picker-indicator:hover {
     width: 18px;
     height: 18px;
@@ -44,6 +45,7 @@ input[type=date]::-webkit-calendar-picker-indicator:hover {
     background-color: #eeeeee;
 }
 
+/*used in home from here*/
 @media (min-width:27em) {
     .card-deck > .card
     {
@@ -106,3 +108,4 @@ input[type=date]::-webkit-calendar-picker-indicator:hover {
     color: white;
     cursor: pointer;
 }
+/*used in home end here*/

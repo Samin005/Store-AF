@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {CompaniesService} from '../service/companies.service';
 import {ItemsService} from '../service/items.service';
+import {LoadingService} from '../service/loading.service';
 
 @Component({
     selector: 'app-online-store',
@@ -19,6 +20,7 @@ export class OnlineStoreComponent implements OnInit {
     }
 
     ngOnInit() {
+        LoadingService.showLoader();
         this.activatedRoute.params.subscribe((params: Params) => {
             this.companyID = params.companyID;
             this.companiesService.setCompanyID(this.companyID);

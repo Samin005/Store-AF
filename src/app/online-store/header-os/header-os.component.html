@@ -1,8 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow-sm p-3 mb-5 bg-white rounded">
     <img src="{{ companiesService.company.img_path }}" width="80" height="80"
          class="d-inline-block align-top rounded-circle mr-1" alt="logo">
-    <a class="navbar-brand" href="#">
-
+    <a class="navbar-brand" routerLink="/{{ companiesService.companyID }}">
         {{ companiesService.company.name }}
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -44,7 +43,7 @@
         </form>
         <div *ngIf="afAuth.user | async as user; else showLogin" class="nav-item dropdown d-inline-block">
             <button class="dropdown-toggle btn btn-light" data-toggle="dropdown"
-               aria-haspopup="true" aria-expanded="false"><img src="{{ user.photoURL }}" class="avatar" alt="{{ user.displayName }}'s photo">
+                    aria-haspopup="true" aria-expanded="false"><img src="{{ user.photoURL }}" class="avatar" alt="{{ user.displayName }}'s photo">
                 {{ user.displayName }}
             </button>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">

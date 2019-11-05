@@ -17,6 +17,7 @@ export class ItemsService {
     currentItemsDataset = [];
     currentItemsDtTable;
     companyItems;
+    companyItemsLoadingComplete = false;
     tempItems;
 
     constructor(private companiesService: CompaniesService,
@@ -48,8 +49,9 @@ export class ItemsService {
 
     setAllItemsByCompanyID(companyID, inBO: boolean) {
         this.firestoreService.getCompanyItemsObservable(companyID).subscribe((items) => {
-            if (items.length == 0) {
+            if (items.length === 0) {
                 this.companyItems = items;
+                this.companyItemsLoadingComplete = true;
             } else {
                 this.tempItems = items;
             }
@@ -67,6 +69,7 @@ export class ItemsService {
                             itemsCount++;
                             if (itemsCount === items.length) {
                                 this.companyItems = this.tempItems;
+                                this.companyItemsLoadingComplete = true;
                             }
                             if (inBO) {
                                 this.currentItemsDataset.push([item.name, imgPathsString, item.details, item.stock, item.lastModified.toDate().toISOString().substring(0, 10), item.price]);
