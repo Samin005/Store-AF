@@ -19,12 +19,15 @@ export class ItemsService {
     companyItems;
     companyItemsLoadingComplete = false;
     tempItems;
+    selectedItemID;
+    selectedItem;
 
     constructor(private companiesService: CompaniesService,
                 private firestoreService: FirestoreService,
                 private afStorage: AngularFireStorage) {
         this.itemsCollection = firestoreService.getCompanyItemsCollection(companiesService.companyID);
         this.currentItemsDtTable = $('#dataTable').DataTable();
+        this.selectedItem = new Item();
     }
 
     addItem(newItem) {
@@ -70,6 +73,9 @@ export class ItemsService {
                             itemsCount++;
                             if (itemsCount === items.length) {
                                 this.companyItems = this.tempItems;
+                                if (this.selectedItemID != undefined) {
+                                    this.setSelectedItemIfExists(this.selectedItemID);
+                                }
                                 this.companyItemsLoadingComplete = true;
                             }
                             if (inBO) {
@@ -202,5 +208,15 @@ export class ItemsService {
         this.currentItemsDtTable.rows.add(this.currentItemsDataset);
         this.currentItemsDtTable.draw();
     } // done with current-items datatable
+
+    setSelectedItemIfExists(itemID) {
+        if (this.companyItems != undefined) {
+            this.companyItems.forEach((item: Item) => {
+                if (item.id === itemID) {
+                    this.selectedItem = item;
+                }
+            });
+        }
+    }
 
 }

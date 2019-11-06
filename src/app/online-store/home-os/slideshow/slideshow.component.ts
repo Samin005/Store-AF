@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {CompaniesService} from '../../service/companies.service';
+import {CompaniesService} from '../../../service/companies.service';
 
 @Component({
     selector: 'app-slideshow',

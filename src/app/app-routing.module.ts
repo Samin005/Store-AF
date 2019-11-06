@@ -14,6 +14,8 @@ import {InventoryManagementComponent} from './back-office/inventory-management/i
 import {NewItemComponent} from './back-office/inventory-management/new-item/new-item.component';
 import {CurrentItemsComponent} from './back-office/inventory-management/current-items/current-items.component';
 import {UpdateExistingItemComponent} from './back-office/inventory-management/update-existing-item/update-existing-item.component';
+import {HomeOsComponent} from './online-store/home-os/home-os.component';
+import {SelectedItemComponent} from './online-store/selected-item/selected-item.component';
 
 const routes: Routes = [
     {path: '', component: HomeComponent},
@@ -23,7 +25,10 @@ const routes: Routes = [
             {path: 'newCompany', component: NewCompanyComponent},
             {path: 'editCompany', component: EditCompanyComponent}
         ]},
-    {path: ':companyID', component: OnlineStoreComponent},
+    {path: ':companyID', component: OnlineStoreComponent, children: [
+            {path: '', component: HomeOsComponent},
+            {path: ':itemID', component: SelectedItemComponent}
+        ]},
     {path: ':companyID/back-office', component: BackOfficeComponent, children: [
             {path: '', component: DashboardComponent},
             {path: 'orders', component: OrdersComponent},

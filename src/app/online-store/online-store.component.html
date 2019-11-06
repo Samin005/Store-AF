@@ -1,10 +1,6 @@
 <div *ngIf="companiesService.companyExists">
     <app-header-os></app-header-os>
-    <h3 style="text-align: center;">
-        Welcome to {{ companiesService.company.name }}
-    </h3>
-    <app-slideshow></app-slideshow>
-    <app-items></app-items>
+    <router-outlet></router-outlet>
     <button (click)="loadBackOffice()" class="float-right btn btn-secondary">Back-office</button>
 </div>
 

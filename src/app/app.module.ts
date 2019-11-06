@@ -16,7 +16,7 @@ import { OnlineStoreComponent } from './online-store/online-store.component';
 import { BackOfficeComponent } from './back-office/back-office.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { HeaderOSComponent } from './online-store/header-os/header-os.component';
-import { SlideshowComponent } from './online-store/slideshow/slideshow.component';
+import { SlideshowComponent } from './online-store/home-os/slideshow/slideshow.component';
 import { AdminComponent } from './admin/admin.component';
 import { NewCompanyComponent } from './admin/new-company/new-company.component';
 import { EditCompanyComponent } from './admin/edit-company/edit-company.component';
@@ -28,8 +28,10 @@ import { InventoryManagementComponent } from './back-office/inventory-management
 import { NewItemComponent } from './back-office/inventory-management/new-item/new-item.component';
 import { CurrentItemsComponent } from './back-office/inventory-management/current-items/current-items.component';
 import { UpdateExistingItemComponent } from './back-office/inventory-management/update-existing-item/update-existing-item.component';
-import { ItemsComponent } from './online-store/items/items.component';
+import { ItemsComponent } from './online-store/home-os/items/items.component';
 import { LoadingComponent } from './online-store/loading/loading.component';
+import { HomeOsComponent } from './online-store/home-os/home-os.component';
+import { SelectedItemComponent } from './online-store/selected-item/selected-item.component';
 
 @NgModule({
     declarations: [
@@ -52,7 +54,9 @@ import { LoadingComponent } from './online-store/loading/loading.component';
         CurrentItemsComponent,
         UpdateExistingItemComponent,
         ItemsComponent,
-        LoadingComponent
+        LoadingComponent,
+        HomeOsComponent,
+        SelectedItemComponent
     ],
     imports: [
         BrowserModule,

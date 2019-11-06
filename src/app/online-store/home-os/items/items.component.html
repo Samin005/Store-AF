@@ -3,8 +3,7 @@
 </div>
 <span *ngIf="itemsService.companyItemsLoadingComplete">
     <div class="card-deck" style="margin: 5%;">
-        <div class="card items-cards" *ngFor="let item of itemsService.companyItems"
-             (click)="navigateToItem(item.id)">
+        <div class="card items-cards" *ngFor="let item of itemsService.companyItems" (click)="navigateToItem(item.id)">
             <img src="{{ item.imgPaths[0] }}" class="card-img-top itemImg mx-auto" alt="{{item.name}} image">
             <div class="card-body">
                 <h5 class="card-title">{{ item.name }}</h5>
