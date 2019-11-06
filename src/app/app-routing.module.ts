@@ -25,10 +25,6 @@ const routes: Routes = [
             {path: 'newCompany', component: NewCompanyComponent},
             {path: 'editCompany', component: EditCompanyComponent}
         ]},
-    {path: ':companyID', component: OnlineStoreComponent, children: [
-            {path: '', component: HomeOsComponent},
-            {path: ':itemID', component: SelectedItemComponent}
-        ]},
     {path: ':companyID/back-office', component: BackOfficeComponent, children: [
             {path: '', component: DashboardComponent},
             {path: 'orders', component: OrdersComponent},
@@ -37,6 +33,10 @@ const routes: Routes = [
                     {path: 'new-item', component: NewItemComponent},
                     {path: 'update-existing-item', component: UpdateExistingItemComponent}
                 ]}
+        ]},
+    {path: ':companyID', component: OnlineStoreComponent, children: [
+            {path: '', component: HomeOsComponent},
+            {path: ':itemID', component: SelectedItemComponent}
         ]},
     {path: '**', redirectTo: 'page-not-found'}
     ];

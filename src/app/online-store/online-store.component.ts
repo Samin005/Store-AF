@@ -30,7 +30,7 @@ export class OnlineStoreComponent implements OnInit {
     }
 
     loadBackOffice() {
-        this.router.navigate(['back-office'], {relativeTo: this.activatedRoute})
+        this.router.navigate([this.companiesService.companyID + '/back-office'])
             .catch(error => console.log(error));
     }
 }

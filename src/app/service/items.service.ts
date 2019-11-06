@@ -21,6 +21,7 @@ export class ItemsService {
     tempItems;
     selectedItemID;
     selectedItem;
+    selectedItemExists = true;
 
     constructor(private companiesService: CompaniesService,
                 private firestoreService: FirestoreService,
@@ -56,6 +57,7 @@ export class ItemsService {
             if (items.length === 0) {
                 this.companyItems = items;
                 this.companyItemsLoadingComplete = true;
+                this.selectedItemExists = false;
             } else {
                 this.tempItems = items;
             }
@@ -214,8 +216,12 @@ export class ItemsService {
             this.companyItems.forEach((item: Item) => {
                 if (item.id === itemID) {
                     this.selectedItem = item;
+                    this.selectedItemExists = true;
                 }
             });
+            if (this.selectedItem.id === undefined) {
+                this.selectedItemExists = false;
+            }
         }
     }
 

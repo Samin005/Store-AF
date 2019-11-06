@@ -1,3 +1,8 @@
-<p>
-  selected-item: {{ itemsService.selectedItem.name }}
-</p>
+<div *ngIf="!itemsService.selectedItemExists">
+    <app-page-not-found></app-page-not-found>
+</div>
+<span *ngIf="itemsService.selectedItemExists">
+    <p>
+      selected-item: {{ itemsService.selectedItem.name }}
+    </p>
+</span>

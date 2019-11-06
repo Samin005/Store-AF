@@ -87,6 +87,7 @@ export class CompaniesService {
                 this.companyExists = false;
             } else {
                 this.company = comp;
+                this.companyExists = true;
             }
             LoadingService.closeLoader();
         });
