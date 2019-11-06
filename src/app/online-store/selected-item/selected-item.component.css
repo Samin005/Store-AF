@@ -1,0 +1,10 @@
+.imgSelect:hover {
+    border: 1px solid #cd2e48;
+    opacity: 0.9;
+}
+
+.displayImage {
+    max-width: 80%;
+    height: 280px;
+    object-fit: scale-down;
+}

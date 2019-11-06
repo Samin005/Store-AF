@@ -2,7 +2,36 @@
     <app-page-not-found></app-page-not-found>
 </div>
 <span *ngIf="itemsService.selectedItemExists">
-    <p>
-      selected-item: {{ itemsService.selectedItem.name }}
-    </p>
+    <div *ngIf="!itemsService.companyItemsLoadingComplete">
+        <app-loading></app-loading>
+    </div>
+    <span *ngIf="itemsService.companyItemsLoadingComplete">
+        <div class="container">
+            <h3>{{ itemsService.selectedItem.name }}</h3>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="row mt-3">
+                        <img class="displayImage mx-auto" src="{{ itemsService.selectedItem.imgPaths[0] }}" #displayImage>
+                    </div>
+                    <div class="row my-3">
+                        <span *ngFor="let url of itemsService.selectedItem.imgPaths">
+                            <img [src]="url" class="rounded mr-2 imgSelect cursor-pointer" width="50"
+                                 (click)="viewImage(url)" title="Click to View Image" alt="{{itemsService.selectedItem.name}} image">
+                        </span>
+                    </div>
+                </div>
+                <div class="col-sm-6 pl-5">
+                    <div class="row">
+                        <h5>{{ itemsService.selectedItem.name }}</h5>
+                    </div>
+                    <div class="row">
+                        Details: {{ itemsService.selectedItem.details }}
+                    </div>
+                    <div class="row">
+                        <h6>Price: {{ itemsService.selectedItem.price }}</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </span>
 </span>
