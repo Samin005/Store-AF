@@ -3,6 +3,7 @@ import {AngularFireAuth} from '@angular/fire/auth';
 import {CompaniesService} from '../../service/companies.service';
 import {auth} from 'firebase/app';
 import Swal from 'sweetalert2';
+import {CartService} from '../../service/cart.service';
 
 @Component({
     selector: 'app-header-os',
@@ -12,7 +13,8 @@ import Swal from 'sweetalert2';
 export class HeaderOSComponent implements OnInit {
 
     constructor(public afAuth: AngularFireAuth,
-                public companiesService: CompaniesService) {
+                public companiesService: CompaniesService,
+                private cartService: CartService) {
     }
 
     ngOnInit() {
@@ -65,6 +67,10 @@ export class HeaderOSComponent implements OnInit {
                     text: reason
                 }).finally();
         });
+    }
+    
+    viewCart() {
+        this.cartService.viewCart();
     }
 
 }

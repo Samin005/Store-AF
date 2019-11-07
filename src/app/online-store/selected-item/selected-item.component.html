@@ -25,10 +25,20 @@
                         <h5>{{ itemsService.selectedItem.name }}</h5>
                     </div>
                     <div class="row">
+                        In Stock:
+                        <span *ngIf="itemsService.selectedItem.stock < 10" class="text-danger ml-1">{{ itemsService.selectedItem.stock }}</span>
+                        <span *ngIf="itemsService.selectedItem.stock > 10 || itemsService.selectedItem.stock == 10" class="ml-1">{{ itemsService.selectedItem.stock }}</span>
+                    </div>
+                    <div class="row mt-3">
                         Details: {{ itemsService.selectedItem.details }}
                     </div>
                     <div class="row">
                         <h6>Price: {{ itemsService.selectedItem.price }}</h6>
+                    </div>
+                    <div class="row">
+                        <label class="quantityLabel mr-2">Quantity:</label>
+                        <input type="number" class="form-control w-15" value="1" min="1" max="{{ itemsService.selectedItem.stock }}" name="quantity" [(ngModel)] = "quantity">
+                        <button class="btn btn-warning text-white ml-auto" (click)="addToCart(itemsService.selectedItem)">Add to Cart <i class="fas fa-shopping-cart"></i>+</button>
                     </div>
                 </div>
             </div>

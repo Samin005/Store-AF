@@ -8,3 +8,11 @@
     height: 280px;
     object-fit: scale-down;
 }
+
+.quantityLabel {
+    align-self: flex-end;
+}
+
+.w-15 {
+    width: 13%!important;
+}

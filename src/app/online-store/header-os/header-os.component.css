@@ -1,3 +1,13 @@
 .signoutDiv:active {
     background-color: #ffffff;
 }
+
+.btn-outline-warning:hover {
+    color: white;
+}
+
+.badge-counter {
+    position: relative;
+    bottom: 1.25rem;
+    right: 1.25rem;
+}
