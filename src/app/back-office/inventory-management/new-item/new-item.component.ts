@@ -16,8 +16,6 @@ export class NewItemComponent implements OnInit {
     item = new Item();
     imgThumbnailUrls = [];
     imagesForUpload = [];
-    // imgRef;
-    // imageLoaded = false;
 
     constructor(public itemsService: ItemsService,
                 private afStorage: AngularFireStorage,
@@ -25,12 +23,6 @@ export class NewItemComponent implements OnInit {
     }
 
     ngOnInit() {
-        // for displaying img
-        // this.afStorage.ref('img/salamence').getDownloadURL().subscribe(src => {
-        //     this.imgRef = src;
-        //     console.log(this.imgRef);
-        //     this.imageLoaded = true;
-        // });
     }
 
     updateImgPaths(event) {

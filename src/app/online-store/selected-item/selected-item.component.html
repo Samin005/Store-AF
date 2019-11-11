@@ -11,9 +11,9 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="row mt-3">
-                        <img class="displayImage mx-auto" src="{{ itemsService.selectedItem.imgPaths[0] }}" #displayImage>
+                        <img class="displayImage mx-auto" src="{{ itemsService.selectedItem.imgPaths[0] }}" alt="{{ itemsService.selectedItem.name }}" #displayImage>
                     </div>
-                    <div class="row my-3">
+                    <div class="row my-3 container">
                         <span *ngFor="let url of itemsService.selectedItem.imgPaths">
                             <img [src]="url" class="rounded mr-2 imgSelect cursor-pointer" width="50"
                                  (click)="viewImage(url)" title="Click to View Image" alt="{{itemsService.selectedItem.name}} image">
@@ -38,7 +38,7 @@
                     <div class="row">
                         <label class="quantityLabel mr-2">Quantity:</label>
                         <input type="number" class="form-control w-15" value="1" min="1" max="{{ itemsService.selectedItem.stock }}" name="quantity" [(ngModel)] = "quantity">
-                        <button class="btn btn-warning text-white ml-auto" (click)="addToCart(itemsService.selectedItem)">Add to Cart <i class="fas fa-shopping-cart"></i>+</button>
+                        <button class="btn btn-warning text-white mx-auto" (click)="addToCart(itemsService.selectedItem)">Add to Cart <i class="fas fa-shopping-cart"></i>+</button>
                     </div>
                 </div>
             </div>

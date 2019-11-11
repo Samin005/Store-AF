@@ -21,7 +21,7 @@ export class CartService {
             text: item.name + ' was added to cart.',
             showConfirmButton: false,
             timer: 1500
-        });
+        }).finally();
     }
 
     viewCart() {
