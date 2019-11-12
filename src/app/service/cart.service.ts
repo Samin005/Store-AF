@@ -45,10 +45,6 @@ export class CartService {
         }
     }
 
-    viewCart() {
-        console.log(this.cart);
-    }
-
     convertToCartItemWithQuantity(item: Item, quantity: number) {
         const cartItem = new CartItem();
         cartItem.id = item.id;

@@ -20,7 +20,8 @@ export class CartComponent implements OnInit {
     }
 
     navigateToItem(itemID) {
-        this.router.navigate(['/' + this.companiesService.companyID + '/' + itemID]);
+        this.router.navigate(['/' + this.companiesService.companyID + '/' + itemID])
+            .catch(reason => console.log(reason));
     }
 
     removeItemFromCart(item) {

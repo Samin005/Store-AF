@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {AngularFireAuth} from '@angular/fire/auth';
+import {Router} from '@angular/router';
 import {CompaniesService} from '../../service/companies.service';
+import {CartService} from '../../service/cart.service';
 import {auth} from 'firebase/app';
 import Swal from 'sweetalert2';
-import {CartService} from '../../service/cart.service';
-import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-header-os',
@@ -72,7 +72,8 @@ export class HeaderOSComponent implements OnInit {
     }
 
     viewCart() {
-        this.router.navigate(['/' + this.companiesService.companyID + '/cart']);
+        this.router.navigate(['/' + this.companiesService.companyID + '/cart'])
+            .catch(reason => console.log(reason));
     }
 
 }

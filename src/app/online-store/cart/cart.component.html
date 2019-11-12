@@ -11,7 +11,7 @@
         </thead>
         <tbody>
         <tr *ngFor="let cartItems of cartService.cart">
-            <td (click)="navigateToItem(cartItems.id)">
+            <td (click)="navigateToItem(cartItems.id)" class="cursor-pointer">
                 <div class="d-flex flex-row">
                     <div class="p-2"><img src="{{ cartItems.imgUrl }}" alt="{{ cartItems.name }}'s Image" width="60"></div>
                     <div class="p-2">
