@@ -1,5 +1,8 @@
 import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 import {CartService} from '../../service/cart.service';
+import {CompaniesService} from '../../service/companies.service';
+import Swal from 'sweetalert2';
 
 @Component({
     selector: 'app-cart',
@@ -8,10 +11,31 @@ import {CartService} from '../../service/cart.service';
 })
 export class CartComponent implements OnInit {
 
-    constructor(public cartService: CartService) {
+    constructor(private router: Router,
+                private companiesService: CompaniesService,
+                public cartService: CartService) {
     }
 
     ngOnInit() {
+    }
+
+    navigateToItem(itemID) {
+        this.router.navigate(['/' + this.companiesService.companyID + '/' + itemID]);
+    }
+
+    removeItemFromCart(item) {
+        Swal.fire({
+            title: 'Are you sure?',
+            html: 'Remove <b>' + item.name + '</b> from cart?',
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            confirmButtonText: 'Yes'
+        }).then((result) => {
+            if (result.value) {
+                this.cartService.removeItemFromCart(item);
+            }
+        });
     }
 
 }
