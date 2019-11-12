@@ -1,0 +1,18 @@
+<div class="container">
+    <table class="table table-bordered table-hover text-center">
+        <thead>
+        <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Quantity</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let cartItems of cartService.cart">
+            <td><img src="{{ cartItems.imgUrl }}" alt="{{ cartItems.name }}'s Image" width="60"></td>
+            <td>{{ cartItems.name }}</td>
+            <td>{{ cartItems.quantity }}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>

@@ -32,6 +32,7 @@ import { ItemsComponent } from './online-store/home-os/items/items.component';
 import { LoadingComponent } from './online-store/loading/loading.component';
 import { HomeOsComponent } from './online-store/home-os/home-os.component';
 import { SelectedItemComponent } from './online-store/selected-item/selected-item.component';
+import { CartComponent } from './online-store/cart/cart.component';
 
 @NgModule({
     declarations: [
@@ -56,7 +57,8 @@ import { SelectedItemComponent } from './online-store/selected-item/selected-ite
         ItemsComponent,
         LoadingComponent,
         HomeOsComponent,
-        SelectedItemComponent
+        SelectedItemComponent,
+        CartComponent
     ],
     imports: [
         BrowserModule,

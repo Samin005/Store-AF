@@ -4,12 +4,17 @@
     height: 40px;
     border-radius: 50%;
 }
+
 .signoutDiv:active {
     background-color: #ffffff;
 }
 
 .cursor-pointer {
     cursor: pointer;
+}
+
+.border-circle {
+    border-radius: 50%;
 }
 
 .nav-tabs > .nav-item > .nav-link {

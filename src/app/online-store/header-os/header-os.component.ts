@@ -4,6 +4,7 @@ import {CompaniesService} from '../../service/companies.service';
 import {auth} from 'firebase/app';
 import Swal from 'sweetalert2';
 import {CartService} from '../../service/cart.service';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-header-os',
@@ -12,7 +13,8 @@ import {CartService} from '../../service/cart.service';
 })
 export class HeaderOSComponent implements OnInit {
 
-    constructor(public afAuth: AngularFireAuth,
+    constructor(private router: Router,
+                public afAuth: AngularFireAuth,
                 public companiesService: CompaniesService,
                 private cartService: CartService) {
     }
@@ -68,9 +70,9 @@ export class HeaderOSComponent implements OnInit {
                 }).finally();
         });
     }
-    
+
     viewCart() {
-        this.cartService.viewCart();
+        this.router.navigate(['/' + this.companiesService.companyID + '/cart']);
     }
 
 }
