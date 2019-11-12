@@ -16,7 +16,7 @@ export class HeaderOSComponent implements OnInit {
     constructor(private router: Router,
                 public afAuth: AngularFireAuth,
                 public companiesService: CompaniesService,
-                private cartService: CartService) {
+                public cartService: CartService) {
     }
 
     ngOnInit() {
