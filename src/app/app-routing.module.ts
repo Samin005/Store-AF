@@ -17,6 +17,7 @@ import {UpdateExistingItemComponent} from './back-office/inventory-management/up
 import {HomeOsComponent} from './online-store/home-os/home-os.component';
 import {SelectedItemComponent} from './online-store/selected-item/selected-item.component';
 import {CartComponent} from './online-store/cart/cart.component';
+import {CheckoutComponent} from './online-store/checkout/checkout.component';
 
 const routes: Routes = [
     {path: '', component: HomeComponent},
@@ -38,6 +39,7 @@ const routes: Routes = [
     {path: ':companyID', component: OnlineStoreComponent, children: [
             {path: '', component: HomeOsComponent},
             {path: 'cart', component: CartComponent},
+            {path: 'checkout', component: CheckoutComponent},
             {path: ':itemID', component: SelectedItemComponent}
         ]},
     {path: '**', redirectTo: 'page-not-found'}

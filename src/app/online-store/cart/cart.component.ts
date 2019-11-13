@@ -12,7 +12,7 @@ import Swal from 'sweetalert2';
 export class CartComponent implements OnInit {
 
     constructor(private router: Router,
-                private companiesService: CompaniesService,
+                public companiesService: CompaniesService,
                 public cartService: CartService) {
     }
 
@@ -37,6 +37,10 @@ export class CartComponent implements OnInit {
                 this.cartService.removeItemFromCart(item);
             }
         });
+    }
+
+    navigateToCheckout() {
+        this.router.navigate([this.companiesService.companyID + '/checkout'])
     }
 
 }

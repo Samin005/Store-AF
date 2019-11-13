@@ -33,6 +33,7 @@ import { LoadingComponent } from './online-store/loading/loading.component';
 import { HomeOsComponent } from './online-store/home-os/home-os.component';
 import { SelectedItemComponent } from './online-store/selected-item/selected-item.component';
 import { CartComponent } from './online-store/cart/cart.component';
+import { CheckoutComponent } from './online-store/checkout/checkout.component';
 
 @NgModule({
     declarations: [
@@ -58,7 +59,8 @@ import { CartComponent } from './online-store/cart/cart.component';
         LoadingComponent,
         HomeOsComponent,
         SelectedItemComponent,
-        CartComponent
+        CartComponent,
+        CheckoutComponent
     ],
     imports: [
         BrowserModule,

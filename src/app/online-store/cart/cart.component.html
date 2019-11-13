@@ -1,41 +1,52 @@
-<div class="container table-responsive">
-    <table class="table table-hover text-center">
-        <thead class="thead-dark">
-        <tr>
-            <th>Item Info</th>
-            <th>Quantity</th>
-            <th>Price</th>
-            <th>Sub-total</th>
-            <th></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let cartItems of cartService.cart">
-            <td (click)="navigateToItem(cartItems.id)" class="cursor-pointer">
-                <div class="d-flex flex-row">
-                    <div class="p-2"><img src="{{ cartItems.imgUrl }}" alt="{{ cartItems.name }}'s Image" width="60"></div>
-                    <div class="p-2">
-                        <div class="d-flex flex-column">
-                            <div class="p-2">{{ cartItems.name }}</div>
-                            <div class="p-2">{{ cartItems.details }}</div>
+<div class="container">
+    <div class="table-responsive">
+        <table class="table table-hover text-center">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Item Info</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Sub-total</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let cartItems of cartService.cart">
+                    <td (click)="navigateToItem(cartItems.id)" class="cursor-pointer">
+                        <div class="d-flex flex-row">
+                            <div class="p-2"><img src="{{ cartItems.imgUrl }}" alt="{{ cartItems.name }}'s Image" width="60"></div>
+                            <div class="p-2">
+                                <div class="d-flex flex-column">
+                                    <div class="p-2">{{ cartItems.name }}</div>
+                                    <div class="p-2">{{ cartItems.details }}</div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </td>
-            <td>{{ cartItems.quantity }}</td>
-            <td>{{ cartItems.price }}</td>
-            <td>{{ cartItems.subTotal }}</td>
-            <td><div class="close cursor-pointer" title="Click to Remove Item form Cart" (click)="removeItemFromCart(cartItems)">&times;</div></td>
-        </tr>
-        </tbody>
-        <tfoot *ngIf="cartService.cart.length > 0">
-            <th></th>
-            <th></th>
-            <th class="text-right">Total: </th>
-            <th>{{ cartService.totalPrice }}</th>
-        </tfoot>
-        <tfoot *ngIf="cartService.cart.length == 0">
-            <td colspan="4">Your cart is empty.</td>
-        </tfoot>
-    </table>
+                    </td>
+                    <td>{{ cartItems.quantity }}</td>
+                    <td>{{ cartItems.price }}</td>
+                    <td>{{ cartItems.subTotal }}</td>
+                    <td><div class="close cursor-pointer" title="Click to Remove Item form Cart" (click)="removeItemFromCart(cartItems)">&times;</div></td>
+                </tr>
+            </tbody>
+            <tfoot *ngIf="cartService.cart.length > 0">
+                <th></th>
+                <th></th>
+                <th class="text-right">Total: </th>
+                <th>{{ cartService.totalPrice }}</th>
+            </tfoot>
+            <tfoot *ngIf="cartService.cart.length == 0">
+                <td colspan="4">Your cart is empty.</td>
+            </tfoot>
+        </table>
+    </div>
+    <div class="row">
+        <button *ngIf="cartService.cart.length > 0; else backToHomeBtn"
+                class="btn btn-primary-custom mx-auto"
+                (click)="navigateToCheckout()">Proceed to Checkout <i class="fas fa-forward"></i></button>
+        <ng-template #backToHomeBtn>
+            <button class="btn btn-primary-custom mx-auto my-5"
+                    routerLink="/{{ companiesService.companyID }}"><i class="fas fa-backward"></i> Go Back to Shopping</button>
+        </ng-template>
+    </div>
 </div>

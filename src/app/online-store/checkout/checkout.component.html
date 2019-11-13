@@ -1,0 +1,11 @@
+<div *ngIf="cartService.cart.length > 0; else cartEmpty">
+  <div class="text-center">checkout works!</div>
+</div>
+<ng-template #cartEmpty>
+    <div class="text-center">
+        <h3>Your cart is empty!</h3>
+        <div class="row">
+            <button class="btn btn-primary-custom mx-auto my-5" routerLink="/{{ companiesService.companyID }}"><i class="fas fa-backward"></i> Go Back to Shopping</button>
+        </div>
+    </div>
+</ng-template>

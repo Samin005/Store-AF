@@ -1,14 +1,14 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {ActivatedRoute, Params} from '@angular/router';
-
 import {AngularFireAuth} from '@angular/fire/auth';
+
 import {CompaniesService} from '../service/companies.service';
 import {UsersService} from '../service/users.service';
+import {LoadingService} from '../service/loading.service';
+import {ItemsService} from '../service/items.service';
 import {Observable} from 'rxjs';
 import {auth} from 'firebase/app';
 import Swal from 'sweetalert2';
-import {LoadingService} from '../service/loading.service';
-import {ItemsService} from '../service/items.service';
 
 @Component({
     selector: 'app-back-office',

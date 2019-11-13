@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {CompaniesService} from '../service/companies.service';
 import {ItemsService} from '../service/items.service';
@@ -7,7 +7,8 @@ import {LoadingService} from '../service/loading.service';
 @Component({
     selector: 'app-online-store',
     templateUrl: './online-store.component.html',
-    styleUrls: ['./online-store.component.css']
+    styleUrls: ['./online-store.component.css'],
+    encapsulation: ViewEncapsulation.None
 })
 export class OnlineStoreComponent implements OnInit {
 
