@@ -48,6 +48,7 @@ export class HeaderOSComponent implements OnInit {
             }).finally();
         });
     }
+
     signOut() {
         Swal.fire({
             title: 'Signing Out...',
