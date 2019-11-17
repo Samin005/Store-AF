@@ -51,7 +51,7 @@ input[type=date]::-webkit-calendar-picker-indicator:hover {
 }
 
 /*used in home from here*/
-@media (min-width:27em) {
+@media (min-width:48em) {
     .card-deck > .card
     {
         width: 29%;
