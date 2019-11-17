@@ -3,6 +3,7 @@ import {ActivatedRoute, Params, Router} from '@angular/router';
 import {CompaniesService} from '../service/companies.service';
 import {ItemsService} from '../service/items.service';
 import {LoadingService} from '../service/loading.service';
+import {CartService} from '../service/cart.service';
 
 @Component({
     selector: 'app-online-store',
@@ -17,7 +18,8 @@ export class OnlineStoreComponent implements OnInit {
     constructor(private router: Router,
                 private activatedRoute: ActivatedRoute,
                 public companiesService: CompaniesService,
-                private itemsService: ItemsService) {
+                private itemsService: ItemsService,
+                public cartService: CartService) {
     }
 
     ngOnInit() {
@@ -33,5 +35,10 @@ export class OnlineStoreComponent implements OnInit {
     loadBackOffice() {
         this.router.navigate([this.companiesService.companyID + '/back-office'])
             .catch(error => console.log(error));
+    }
+
+    navigateToCart() {
+        this.router.navigate(['/' + this.companiesService.companyID + '/cart'])
+            .catch(reason => console.log(reason));
     }
 }

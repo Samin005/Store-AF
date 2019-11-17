@@ -33,3 +33,10 @@
     -webkit-box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.5);
     box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.5);
 }
+
+.cartBadge-counter {
+    position: fixed!important;
+    top: unset!important;
+    bottom: 10%;
+    right: 5%;
+}
