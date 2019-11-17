@@ -41,7 +41,7 @@
                 </button>
             </div>
         </form>
-        <div *ngIf="afAuth.user | async as user; else showLogin" class="nav-item dropdown d-inline-block">
+        <div *ngIf="authService.afAuth.user | async as user; else showLogin" class="nav-item dropdown d-inline-block">
             <button class="dropdown-toggle btn btn-light" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false"><img src="{{ user.photoURL }}" class="avatar" alt="{{ user.displayName }}'s photo">
                 {{ user.displayName }}
