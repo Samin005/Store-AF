@@ -41,6 +41,7 @@ export class CartComponent implements OnInit {
 
     navigateToCheckout() {
         this.router.navigate([this.companiesService.companyID + '/checkout'])
+            .catch(reason => console.log(reason));
     }
 
 }

@@ -1,6 +1,6 @@
 <div *ngIf="cartService.cart.length > 0; else cartEmpty">
     <div *ngIf="authService.afAuth.user | async as user; else showLogin" class="nav-item dropdown container">
-        <button class="dropdown-toggle btn btn-light d-md-none d-inline-block" data-toggle="dropdown"
+        <button class="dropdown-toggle btn btn-light d-lg-none d-inline-block" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false"><img src="{{ user.photoURL }}" class="avatar" alt="{{ user.displayName }}'s photo">
             {{ user.displayName }}
         </button>
