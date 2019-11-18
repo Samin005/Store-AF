@@ -34,6 +34,7 @@ import { HomeOsComponent } from './online-store/home-os/home-os.component';
 import { SelectedItemComponent } from './online-store/selected-item/selected-item.component';
 import { CartComponent } from './online-store/cart/cart.component';
 import { CheckoutComponent } from './online-store/checkout/checkout.component';
+import { ProfileComponent } from './online-store/profile/profile.component';
 
 @NgModule({
     declarations: [
@@ -60,7 +61,8 @@ import { CheckoutComponent } from './online-store/checkout/checkout.component';
         HomeOsComponent,
         SelectedItemComponent,
         CartComponent,
-        CheckoutComponent
+        CheckoutComponent,
+        ProfileComponent
     ],
     imports: [
         BrowserModule,

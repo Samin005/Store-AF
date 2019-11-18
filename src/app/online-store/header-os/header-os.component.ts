@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 import {CompaniesService} from '../../service/companies.service';
 import {CartService} from '../../service/cart.service';
 import {AuthService} from '../../service/auth.service';
+import {UsersService} from '../../service/users.service';
 
 @Component({
     selector: 'app-header-os',
@@ -14,10 +15,16 @@ export class HeaderOSComponent implements OnInit {
     constructor(private router: Router,
                 public authService: AuthService,
                 public companiesService: CompaniesService,
-                public cartService: CartService) {
+                public cartService: CartService,
+                private usersService: UsersService) {
     }
 
     ngOnInit() {
+        this.authService.afAuth.user.subscribe((user) => {
+            if (user !== null) {
+                this.usersService.setCurrentUser(user.uid);
+            }
+        });
     }
 
     signIn() {

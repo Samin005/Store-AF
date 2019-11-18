@@ -5,7 +5,7 @@
     <button (click)="loadBackOffice()" class="float-right btn btn-secondary">Back-office</button>
     <div class="btn btn-warning floatingBtn cursor-pointer d-lg-none d-inline-block" (click)="navigateToCart()">
         <i class="fa fa-shopping-cart my-3"></i>
-        <span class="badge badge-danger cartBadge-counter border-circle position-fixed" *ngIf="cartService.cart.length > 0">{{ cartService.cart.length }}</span>
+        <span class="badge badge-danger cartBadge-counter border-circle" *ngIf="cartService.cart.length > 0">{{ cartService.cart.length }}</span>
     </div>
 </div>
 

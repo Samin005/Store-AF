@@ -18,6 +18,7 @@ import {HomeOsComponent} from './online-store/home-os/home-os.component';
 import {SelectedItemComponent} from './online-store/selected-item/selected-item.component';
 import {CartComponent} from './online-store/cart/cart.component';
 import {CheckoutComponent} from './online-store/checkout/checkout.component';
+import {ProfileComponent} from './online-store/profile/profile.component';
 
 const routes: Routes = [
     {path: '', component: HomeComponent},
@@ -40,6 +41,7 @@ const routes: Routes = [
             {path: '', component: HomeOsComponent},
             {path: 'cart', component: CartComponent},
             {path: 'checkout', component: CheckoutComponent},
+            {path: 'profile', component: ProfileComponent},
             {path: ':itemID', component: SelectedItemComponent}
         ]},
     {path: '**', redirectTo: 'page-not-found'}

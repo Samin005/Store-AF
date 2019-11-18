@@ -10,9 +10,11 @@ export class UsersService {
 
     usersCollection: AngularFirestoreCollection;
     authorizedUser = false;
+    currentUser;
 
     constructor(public firestoreService: FirestoreService) {
         this.usersCollection = firestoreService.getUsersCollection();
+        this.currentUser = '';
     }
 
     getUserObservableByID(userID) {
@@ -113,4 +115,10 @@ export class UsersService {
     //         }).finally();
     //     });
     // }
+
+    setCurrentUser(userID) {
+        this.firestoreService.getUserObservableById(userID).subscribe((user) => {
+            this.currentUser = user;
+        });
+    }
 }

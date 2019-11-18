@@ -35,8 +35,12 @@
 }
 
 .cartBadge-counter {
-    position: fixed!important;
+    position: relative!important;
     top: unset!important;
-    bottom: 10%;
-    right: 5%;
+    bottom: 150%;
+    left: 50%;
+}
+
+.menuDropdownItem:active {
+    background-color: #cd2e48;
 }

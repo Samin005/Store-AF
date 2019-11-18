@@ -1,0 +1,6 @@
+.profileImage {
+    max-width: 80%;
+    height: 280px;
+    object-fit: scale-down;
+    border-radius: 50%;
+}
