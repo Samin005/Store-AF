@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {FirestoreService} from './firestore.service';
 import {AngularFirestoreCollection} from '@angular/fire/firestore';
 import Swal from 'sweetalert2';
+import {User} from '../model/user.model';
 
 @Injectable({
     providedIn: 'root'
@@ -10,11 +11,10 @@ export class UsersService {
 
     usersCollection: AngularFirestoreCollection;
     authorizedUser = false;
-    currentUser;
+    currentUser = new User();
 
     constructor(public firestoreService: FirestoreService) {
         this.usersCollection = firestoreService.getUsersCollection();
-        this.currentUser = '';
     }
 
     getUserObservableByID(userID) {
@@ -118,7 +118,7 @@ export class UsersService {
 
     setCurrentUser(userID) {
         this.firestoreService.getUserObservableById(userID).subscribe((user) => {
-            this.currentUser = user;
+            this.currentUser = (user as User);
         });
     }
 }

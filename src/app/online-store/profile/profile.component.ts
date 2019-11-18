@@ -20,4 +20,8 @@ export class ProfileComponent implements OnInit {
         this.authService.signInOS();
     }
 
+    updateUserInfo() {
+        console.log(this.usersService.currentUser.phoneNo);
+    }
+
 }

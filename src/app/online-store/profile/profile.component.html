@@ -2,8 +2,31 @@
     <div class="row">
         <img src="{{ user.photoURL }}" class="mx-auto profileImage" alt="{{ user.displayName }}'s photo">
     </div>
-    <div>User Name: {{ usersService.currentUser.name }}</div>
-    <div>Email: {{ usersService.currentUser.email }}</div>
+    <div class="row my-5">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-6">
+            <div class="mb-2"><span class="input-group-text d-inline-block">User Name: </span> {{ usersService.currentUser.name }}</div>
+            <div class="mb-2"><span class="input-group-text d-inline-block">Email: </span> {{ usersService.currentUser.email }}</div>
+            <form (submit)="updateUserInfo()" ngNativeValidate>
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Phone No: </span>
+                    </div>
+                    <input type="text" class="form-control" value="{{ usersService.currentUser.phoneNo }}" pattern="\d*" name="phoneNo" [(ngModel)]="usersService.currentUser.phoneNo" required>
+                </div>
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Address: </span>
+                    </div>
+                    <input type="text" class="form-control" value="{{ usersService.currentUser.address }}" required>
+                </div>
+                <div class="row mt-4">
+                    <button class="btn btn-primary-custom mx-auto" type="submit">Update Info</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-lg-3"></div>
+    </div>
 </div>
 <ng-template #showLogin>
     <div class="row">
