@@ -41,8 +41,10 @@
     left: 50%;
 }
 
-.menuDropdownItem:active {
+.menuDropdownItem:active, .menuDropdownItem:hover {
+    color: white;
     background-color: #cd2e48;
+    transition: 0.4s ease;
 }
 
 .menuDropdownItem:focus {

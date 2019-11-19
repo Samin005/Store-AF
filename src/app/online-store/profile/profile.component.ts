@@ -29,7 +29,6 @@ export class ProfileComponent implements OnInit {
         this.usersService.currentUser.phoneNo = this.phoneNo.nativeElement.value;
         this.usersService.currentUser.address = this.address.nativeElement.value;
         this.usersService.currentUser.modifiedDate = new Date();
-        console.log(this.usersService.currentUser);
         this.usersService.updateCurrentUser();
     }
 

@@ -129,6 +129,7 @@ export class UsersService {
                     type: 'success',
                     title: 'Info Updated!',
                     html: 'Successfully updated info for <b>' + this.currentUser.name + '</b>',
+                    showConfirmButton: false,
                     timer: 2000
                 }).finally();
             })

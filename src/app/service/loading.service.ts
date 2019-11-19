@@ -31,7 +31,7 @@ export class LoadingService {
     }
 
     static showLoaderNoAnimation() {
-        Swal.fire({animation: false});
+        Swal.fire({animation: false}).finally();
         Swal.showLoading();
     }
 
