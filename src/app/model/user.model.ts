@@ -12,4 +12,5 @@ export class User {
     roleBO: string;
     companyIDBO: string;
     createdDate;
+    modifiedDate;
 }

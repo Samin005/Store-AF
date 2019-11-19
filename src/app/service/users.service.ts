@@ -121,4 +121,23 @@ export class UsersService {
             this.currentUser = (user as User);
         });
     }
+
+    updateCurrentUser() {
+        this.usersCollection.doc(this.currentUser.uid).update(Object.assign({}, this.currentUser))
+            .then(() => {
+                Swal.fire({
+                    type: 'success',
+                    title: 'Info Updated!',
+                    html: 'Successfully updated info for <b>' + this.currentUser.name + '</b>',
+                    timer: 2000
+                }).finally();
+            })
+            .catch(error => {
+                Swal.fire({
+                    type: 'error',
+                    title: 'Error',
+                    text: error
+                }).finally();
+            });
+    }
 }

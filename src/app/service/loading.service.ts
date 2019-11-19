@@ -20,6 +20,16 @@ export class LoadingService {
         }).finally();
     }
 
+    static showLoaderOS() {
+        Swal.fire({
+            allowOutsideClick: false,
+            html: '<div class="d-flex justify-content-center my-3">\n' +
+            '    <div class="lds-dual-ring"></div>\n' +
+            '</div>',
+            showConfirmButton: false,
+        }).finally();
+    }
+
     static showLoaderNoAnimation() {
         Swal.fire({animation: false});
         Swal.showLoading();

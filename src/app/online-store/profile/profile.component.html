@@ -12,13 +12,13 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text">Phone No: </span>
                     </div>
-                    <input type="text" class="form-control" value="{{ usersService.currentUser.phoneNo }}" pattern="\d*" name="phoneNo" [(ngModel)]="usersService.currentUser.phoneNo" required>
+                    <input type="number" class="form-control" value="{{ usersService.currentUser.phoneNo }}" required #phoneNo>
                 </div>
                 <div class="input-group mb-2">
                     <div class="input-group-prepend">
                         <span class="input-group-text">Address: </span>
                     </div>
-                    <input type="text" class="form-control" value="{{ usersService.currentUser.address }}" required>
+                    <input type="text" class="form-control" value="{{ usersService.currentUser.address }}" required #address>
                 </div>
                 <div class="row mt-4">
                     <button class="btn btn-primary-custom mx-auto" type="submit">Update Info</button>
