@@ -7,7 +7,7 @@
             <img src="{{ item.imgPaths[0] }}" class="card-img-top itemImg mx-auto" alt="{{item.name}} image">
             <div class="card-body">
                 <h5 class="card-title">{{ item.name }}</h5>
-                <p class="card-text">{{ item.details }}</p>
+                <p class="card-text">{{ item.details | shorten:15 }}</p>
                 <div class="card-footer text-right">Price: {{ item.price }}</div>
             </div>
         </div>

@@ -35,6 +35,7 @@ import { SelectedItemComponent } from './online-store/selected-item/selected-ite
 import { CartComponent } from './online-store/cart/cart.component';
 import { CheckoutComponent } from './online-store/checkout/checkout.component';
 import { ProfileComponent } from './online-store/profile/profile.component';
+import { ShortenPipe } from './pipe/shorten.pipe';
 
 @NgModule({
     declarations: [
@@ -62,7 +63,8 @@ import { ProfileComponent } from './online-store/profile/profile.component';
         SelectedItemComponent,
         CartComponent,
         CheckoutComponent,
-        ProfileComponent
+        ProfileComponent,
+        ShortenPipe
     ],
     imports: [
         BrowserModule,
