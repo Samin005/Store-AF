@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {AngularFirestoreCollection} from '@angular/fire/firestore';
 import {AngularFireStorage} from '@angular/fire/storage';
+import {DatePipe} from '@angular/common';
 import {FirestoreService} from './firestore.service';
 import {CompaniesService} from './companies.service';
 import {LoadingService} from './loading.service';
@@ -25,7 +26,8 @@ export class ItemsService {
 
     constructor(private companiesService: CompaniesService,
                 private firestoreService: FirestoreService,
-                private afStorage: AngularFireStorage) {
+                private afStorage: AngularFireStorage,
+                private datePipe: DatePipe) {
         this.itemsCollection = firestoreService.getCompanyItemsCollection(companiesService.companyID);
         this.currentItemsDtTable = $('#dataTable').DataTable();
         this.selectedItem = new Item();
@@ -81,7 +83,7 @@ export class ItemsService {
                                 this.companyItemsLoadingComplete = true;
                             }
                             if (inBO) {
-                                this.currentItemsDataset.push([item.name, imgPathsString, item.details, item.stock, item.lastModified.toDate().toISOString().substring(0, 10), item.price]);
+                                this.currentItemsDataset.push([item.name, imgPathsString, item.details, item.stock,  this.datePipe.transform(item.lastModified.toDate(), 'dd MMM y, h:mm:ss a'), item.price]);
                                 this.updateDtTable();
                             }
                         }

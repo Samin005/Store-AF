@@ -36,6 +36,7 @@ import { CartComponent } from './online-store/cart/cart.component';
 import { CheckoutComponent } from './online-store/checkout/checkout.component';
 import { ProfileComponent } from './online-store/profile/profile.component';
 import { ShortenPipe } from './pipe/shorten.pipe';
+import {DatePipe} from '@angular/common';
 
 @NgModule({
     declarations: [
@@ -77,7 +78,7 @@ import { ShortenPipe } from './pipe/shorten.pipe';
         AngularFireAuthModule,
         AngularFireStorageModule
     ],
-    providers: [],
+    providers: [DatePipe],
     bootstrap: [AppComponent]
 })
 export class AppModule {
