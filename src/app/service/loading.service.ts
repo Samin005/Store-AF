@@ -26,7 +26,18 @@ export class LoadingService {
             html: '<div class="d-flex justify-content-center my-3">\n' +
             '    <div class="lds-dual-ring"></div>\n' +
             '</div>',
+            showConfirmButton: false
+        }).finally();
+    }
+
+    static showLoaderOSNoAnimation() {
+        Swal.fire({
+            allowOutsideClick: false,
+            html: '<div class="d-flex justify-content-center my-3">\n' +
+            '    <div class="lds-dual-ring"></div>\n' +
+            '</div>',
             showConfirmButton: false,
+            animation: false
         }).finally();
     }
 

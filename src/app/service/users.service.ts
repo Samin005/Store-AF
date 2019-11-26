@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {FirestoreService} from './firestore.service';
 import {AngularFirestoreCollection} from '@angular/fire/firestore';
-import Swal from 'sweetalert2';
 import {User} from '../model/user.model';
+import Swal from 'sweetalert2';
 
 @Injectable({
     providedIn: 'root'
@@ -141,4 +141,45 @@ export class UsersService {
                 }).finally();
             });
     }
+
+    updateCurrentUserPhoneNo() {
+        this.usersCollection.doc(this.currentUser.uid).update({ phoneNo: this.currentUser.phoneNo })
+            .then(() => {
+                Swal.fire({
+                    type: 'success',
+                    title: 'Phone No Updated!',
+                    html: 'Successfully updated Phone No for <b>' + this.currentUser.name + '</b>',
+                    showConfirmButton: false,
+                    timer: 1000
+                }).finally();
+            })
+            .catch(error => {
+                Swal.fire({
+                    type: 'error',
+                    title: 'Error',
+                    text: error
+                }).finally();
+            });
+    }
+
+    updateCurrentUserAddress() {
+        this.usersCollection.doc(this.currentUser.uid).update({ address: this.currentUser.address })
+            .then(() => {
+                Swal.fire({
+                    type: 'success',
+                    title: 'Address Updated!',
+                    html: 'Successfully updated Address for <b>' + this.currentUser.name + '</b>',
+                    showConfirmButton: false,
+                    timer: 1000
+                }).finally();
+            })
+            .catch(error => {
+                Swal.fire({
+                    type: 'error',
+                    title: 'Error',
+                    text: error
+                }).finally();
+            });
+    }
+
 }

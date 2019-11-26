@@ -14,7 +14,39 @@
                 </button>
             </div>
         </div>
-        <p class="text-center">Checkout still under construction</p>
+        <div class="row my-5">
+            <div class="col-lg-3"></div>
+            <div class="col-lg-6">
+                <div class="mb-2"><span class="input-group-text d-inline-block">User Name: </span> {{ usersService.currentUser.name }}</div>
+                <div class="mb-2"><span class="input-group-text d-inline-block">Email: </span> {{ usersService.currentUser.email }}</div>
+                <form (submit)="placeOrder()" ngNativeValidate>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Phone No: </span>
+                        </div>
+                        <input type="number" class="form-control" value="{{ usersService.currentUser.phoneNo }}" (input)="checkPhoneNoChange()" required #phoneNo>
+                        <button *ngIf="phoneNoChanged" class="btn btn-success" type="button" (click)="updatePhoneNo()">Save</button>
+                    </div>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Address: </span>
+                        </div>
+                        <input type="text" class="form-control" value="{{ usersService.currentUser.address }}" (input)="checkAddressChange()" required #address>
+                        <button *ngIf="addressChanged" class="btn btn-success" type="button" (click)="updateAddress()">Save</button>
+                    </div>
+                    <div class="form-check form-check-inline mb-2">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Payment Method: </span>
+                        </div>
+                        <input type="radio" class="form-check-input ml-2" name="paymentMethod" required> Cash on Receive
+                    </div>
+                    <div class="row mt-4">
+                        <button class="btn btn-primary-custom mx-auto" type="submit">Place Order</button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-3"></div>
+        </div>
     </div>
     <ng-template #showLogin>
         <div class="row">
