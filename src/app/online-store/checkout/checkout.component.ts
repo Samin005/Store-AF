@@ -4,6 +4,8 @@ import {CompaniesService} from '../../service/companies.service';
 import {AuthService} from '../../service/auth.service';
 import {UsersService} from '../../service/users.service';
 import {LoadingService} from '../../service/loading.service';
+import {Order} from '../../model/order.model';
+import {OrdersService} from '../../service/orders.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -17,11 +19,15 @@ export class CheckoutComponent implements OnInit {
     phoneNoChanged = false;
     @ViewChild('address') address: ElementRef;
     addressChanged = false;
+    paymentMethod = 'Cash on Receive';
+    order: Order;
 
     constructor(public companiesService: CompaniesService,
                 public cartService: CartService,
                 public authService: AuthService,
-                public usersService: UsersService) {
+                public usersService: UsersService,
+                private ordersService: OrdersService) {
+        this.order = new Order();
     }
 
     ngOnInit() {
@@ -88,7 +94,38 @@ export class CheckoutComponent implements OnInit {
     }
 
     placeOrder() {
-        console.log('order placed!');
+        LoadingService.showLoaderOS();
+        this.order.orderID = new Date().toISOString().substr(2, 8).replace(/-/g, '') + '-' + this.companiesService.company.orderNoCounter;
+        this.order.user = this.usersService.currentUser;
+        this.order.cart = this.cartService.cart.map((cartItem) => {return Object.assign({}, cartItem)});
+        this.order.paymentMethod = this.paymentMethod;
+        this.order.totalPrice = this.cartService.totalPrice;
+        this.ordersService.saveOrder(this.order)
+            .then(() => {
+                this.companiesService.incrementOrderNoCounter(this.companiesService.companyID)
+                    .then(() => {
+                        Swal.fire({
+                            type: 'success',
+                            title: 'Order Received!',
+                            html: 'Successfully placed your order!<br>Your Order ID: <b>' + this.order.orderID + '</b>',
+                            confirmButtonColor: '#d33'
+                        }).finally();
+                    })
+                    .catch(error => {
+                        Swal.fire({
+                            type: 'error',
+                            title: 'Error',
+                            text: error
+                        }).finally();
+                    });;
+            })
+            .catch(error => {
+                Swal.fire({
+                    type: 'error',
+                    title: 'Error',
+                    text: error
+                }).finally();
+            });
     }
 
 }

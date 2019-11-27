@@ -23,6 +23,7 @@ export class NewCompanyComponent implements OnInit {
 
     addCompany() {
         this.newCompany.Create_date = new Date();
+        this.newCompany.orderNoCounter = 1;
         this.companiesService.addCompany(this.newCompany);
         this.resetCompanyValues();
     }
