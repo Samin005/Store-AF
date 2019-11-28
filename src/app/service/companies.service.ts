@@ -99,7 +99,7 @@ export class CompaniesService {
     }
 
     incrementOrderNoCounter(companyID) {
-        return this.companiesCollection.doc(companyID).update({ orderNoCounter: firebase.firestore.FieldValue.increment(1) })
+        return this.companiesCollection.doc(companyID).update({ orderNoCounter: firebase.firestore.FieldValue.increment(1) });
     }
 
     // companyExists(companyID) {

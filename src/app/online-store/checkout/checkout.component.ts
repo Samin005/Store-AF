@@ -99,7 +99,7 @@ export class CheckoutComponent implements OnInit {
         LoadingService.showLoaderOS();
         this.order.orderID = new Date().toISOString().substr(2, 8).replace(/-/g, '') + '-' + this.companiesService.company.orderNoCounter;
         this.order.user = this.usersService.currentUser;
-        this.order.cart = this.cartService.cart.map((cartItem) => {return Object.assign({}, cartItem)});
+        this.order.cart = this.cartService.cart.map((cartItem) => Object.assign({}, cartItem));
         this.order.paymentMethod = this.paymentMethod;
         this.order.totalPrice = this.cartService.totalPrice;
         this.ordersService.saveOrder(this.order)
@@ -126,7 +126,7 @@ export class CheckoutComponent implements OnInit {
                             title: 'Error',
                             text: error
                         }).finally();
-                    });;
+                    });
             })
             .catch(error => {
                 Swal.fire({

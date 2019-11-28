@@ -77,7 +77,7 @@ export class ItemsService {
                             itemsCount++;
                             if (itemsCount === items.length) {
                                 this.companyItems = this.tempItems;
-                                if (this.selectedItemID != undefined) {
+                                if (this.selectedItemID !== undefined) {
                                     this.setSelectedItemIfExists(this.selectedItemID);
                                 }
                                 this.companyItemsLoadingComplete = true;
@@ -214,7 +214,7 @@ export class ItemsService {
     } // done with current-items datatable
 
     setSelectedItemIfExists(itemID) {
-        if (this.companyItems != undefined) {
+        if (this.companyItems !== undefined) {
             this.companyItems.forEach((item: Item) => {
                 if (item.id === itemID) {
                     this.selectedItem = item;
