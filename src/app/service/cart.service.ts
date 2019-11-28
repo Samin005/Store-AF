@@ -63,4 +63,8 @@ export class CartService {
             this.totalPrice = this.totalPrice + cartItem.subTotal;
         });
     }
+
+    resetCart() {
+        this.cart = [];
+    }
 }

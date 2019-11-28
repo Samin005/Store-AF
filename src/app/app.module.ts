@@ -37,6 +37,7 @@ import { CheckoutComponent } from './online-store/checkout/checkout.component';
 import { ProfileComponent } from './online-store/profile/profile.component';
 import { ShortenPipe } from './pipe/shorten.pipe';
 import {DatePipe} from '@angular/common';
+import { MyOrdersComponent } from './online-store/my-orders/my-orders.component';
 
 @NgModule({
     declarations: [
@@ -65,7 +66,8 @@ import {DatePipe} from '@angular/common';
         CartComponent,
         CheckoutComponent,
         ProfileComponent,
-        ShortenPipe
+        ShortenPipe,
+        MyOrdersComponent
     ],
     imports: [
         BrowserModule,

@@ -7,6 +7,7 @@ import {LoadingService} from '../../service/loading.service';
 import {Order} from '../../model/order.model';
 import {OrdersService} from '../../service/orders.service';
 import Swal from 'sweetalert2';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-checkout',
@@ -26,7 +27,8 @@ export class CheckoutComponent implements OnInit {
                 public cartService: CartService,
                 public authService: AuthService,
                 public usersService: UsersService,
-                private ordersService: OrdersService) {
+                private ordersService: OrdersService,
+                private router: Router) {
         this.order = new Order();
     }
 
@@ -108,8 +110,15 @@ export class CheckoutComponent implements OnInit {
                             type: 'success',
                             title: 'Order Received!',
                             html: 'Successfully placed your order!<br>Your Order ID: <b>' + this.order.orderID + '</b>',
+                            allowEscapeKey: false,
+                            allowOutsideClick: false,
                             confirmButtonColor: '#d33'
-                        }).finally();
+                        }).then((response) => {
+                            if (response.value) {
+                                this.cartService.resetCart();
+                                this.router.navigate(['/' + this.companiesService.companyID, 'my-orders']);
+                            }
+                        });
                     })
                     .catch(error => {
                         Swal.fire({
