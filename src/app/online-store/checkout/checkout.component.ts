@@ -44,11 +44,7 @@ export class CheckoutComponent implements OnInit {
     }
 
     checkPhoneNoChange() {
-        if (this.usersService.currentUser.phoneNo === this.phoneNo.nativeElement.value) {
-            this.phoneNoChanged = false;
-        } else {
-            this.phoneNoChanged = true;
-        }
+        this.phoneNoChanged = this.usersService.currentUser.phoneNo !== this.phoneNo.nativeElement.value;
     }
 
     updatePhoneNo() {
@@ -70,11 +66,7 @@ export class CheckoutComponent implements OnInit {
     }
 
     checkAddressChange() {
-        if (this.usersService.currentUser.address === this.address.nativeElement.value) {
-            this.addressChanged = false;
-        } else {
-            this.addressChanged = true;
-        }
+        this.addressChanged = this.usersService.currentUser.address !== this.address.nativeElement.value;
     }
 
     updateAddress() {
@@ -116,7 +108,8 @@ export class CheckoutComponent implements OnInit {
                         }).then((response) => {
                             if (response.value) {
                                 this.cartService.resetCart();
-                                this.router.navigate(['/' + this.companiesService.companyID, 'my-orders']);
+                                this.router.navigate(['/' + this.companiesService.companyID, 'my-orders'])
+                                    .catch(reason => console.log(reason));
                             }
                         });
                     })
