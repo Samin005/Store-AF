@@ -6,7 +6,7 @@
         </button>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <div class="dropdown-item cursor-pointer menuDropdownItem" routerLink="/{{ companiesService.companyID }}/profile"><i class="fas fa-user mr-2"></i>Profile</div>
-            <div class="dropdown-item cursor-pointer menuDropdownItem"><i class="far fa-list-alt mr-2"></i>My Orders</div>
+            <div class="dropdown-item cursor-pointer menuDropdownItem" routerLink="/{{ companiesService.companyID }}/my-orders"><i class="fas fa-list-ul mr-2"></i>My Orders</div>
             <div class="dropdown-divider"></div>
             <div class="dropdown-item signoutDiv">
                 <button class="btn btn-outline-danger my-2 my-sm-0" (click)="signOut()">
@@ -50,18 +50,20 @@
         </div>
     </div>
     <ng-template #showLogin>
-        <div class="row">
-            <h3 class="mx-auto">Please Sign In first.</h3>
-        </div>
-        <div class="row">
-            <button class="btn btn-outline-info my-3 my-sm-3 mx-auto" (click)="signIn()">
-                <i class="fas fa-user-circle"></i> Sign In
-            </button>
+        <div class="container">
+            <div class="row">
+                <h3 class="mx-auto">Please Sign In first.</h3>
+            </div>
+            <div class="row">
+                <button class="btn btn-outline-info my-3 my-sm-3 mx-auto" (click)="signIn()">
+                    <i class="fas fa-user-circle"></i> Sign In
+                </button>
+            </div>
         </div>
     </ng-template>
 </div>
 <ng-template #cartEmpty>
-    <div class="text-center">
+    <div class="text-center container">
         <h3>Your cart is empty!</h3>
         <div class="row">
             <button class="btn btn-primary-custom mx-auto my-5" routerLink="/{{ companiesService.companyID }}"><i class="fas fa-backward"></i> Go Back to Shopping</button>
