@@ -49,7 +49,7 @@ export class CheckoutComponent implements OnInit {
 
     updatePhoneNo() {
         Swal.fire({
-            type: 'question',
+            icon: 'question',
             title: 'Update Phone No?',
             html: 'Do you want to update Phone No from <b>' + this.usersService.currentUser.phoneNo + '</b> to <b>' + this.phoneNo.nativeElement.value + '</b> on your account?',
             confirmButtonText: 'Yes',
@@ -71,7 +71,7 @@ export class CheckoutComponent implements OnInit {
 
     updateAddress() {
         Swal.fire({
-            type: 'question',
+            icon: 'question',
             title: 'Update Address?',
             html: 'Do you want to update Address from <b>' + this.usersService.currentUser.address + '</b> to <b>' + this.address.nativeElement.value + '</b> on your account?',
             confirmButtonText: 'Yes',
@@ -99,7 +99,7 @@ export class CheckoutComponent implements OnInit {
                 this.companiesService.incrementOrderNoCounter(this.companiesService.companyID)
                     .then(() => {
                         Swal.fire({
-                            type: 'success',
+                            icon: 'success',
                             title: 'Order Received!',
                             html: 'Successfully placed your order!<br>Your Order ID: <b>' + this.order.orderID + '</b>',
                             allowEscapeKey: false,
@@ -115,7 +115,7 @@ export class CheckoutComponent implements OnInit {
                     })
                     .catch(error => {
                         Swal.fire({
-                            type: 'error',
+                            icon: 'error',
                             title: 'Error',
                             text: error
                         }).finally();
@@ -123,7 +123,7 @@ export class CheckoutComponent implements OnInit {
             })
             .catch(error => {
                 Swal.fire({
-                    type: 'error',
+                    icon: 'error',
                     title: 'Error',
                     text: error
                 }).finally();

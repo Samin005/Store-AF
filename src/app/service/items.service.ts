@@ -38,7 +38,7 @@ export class ItemsService {
         this.itemsCollection.doc(newItem.id).set(Object.assign({}, newItem))
             .then(() => {
                 Swal.fire({
-                    type: 'success',
+                    icon: 'success',
                     title: 'Added!',
                     html: 'Successfully added new company: <b>' + newItem.id + '</b>',
                     timer: 3000
@@ -46,7 +46,7 @@ export class ItemsService {
             })
             .catch(reason => {
                 Swal.fire({
-                    type: 'error',
+                    icon: 'error',
                     title: 'Error',
                     text: reason.message
                 }).finally();

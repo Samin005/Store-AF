@@ -86,7 +86,7 @@ export class NewItemComponent implements OnInit {
             }, error => {
                 Swal.fire({
                     title: 'Error',
-                    type: 'error',
+                    icon: 'error',
                     text: error
                 }).finally();
             });

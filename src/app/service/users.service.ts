@@ -50,7 +50,7 @@ export class UsersService {
             createdDate: new Date()
         }).catch(error => {
             Swal.fire({
-                type: 'error',
+                icon: 'error',
                 title: 'Error',
                 text: error
             }).finally();
@@ -70,7 +70,7 @@ export class UsersService {
     //         modifiedDate: new Date()
     //     }).catch(error => {
     //         Swal.fire({
-    //             type: 'error',
+    //             icon: 'error',
     //             title: 'Error',
     //             text: error
     //         }).finally();
@@ -92,7 +92,7 @@ export class UsersService {
             createdDate: new Date()
         }).catch(error => {
             Swal.fire({
-                type: 'error',
+                icon: 'error',
                 title: 'Error',
                 text: error
             }).finally();
@@ -109,7 +109,7 @@ export class UsersService {
     //         modifiedDate: new Date()
     //     }).catch(error => {
     //         Swal.fire({
-    //             type: 'error',
+    //             icon: 'error',
     //             title: 'Error',
     //             text: error
     //         }).finally();
@@ -126,7 +126,7 @@ export class UsersService {
         this.usersCollection.doc(this.currentUser.uid).update(Object.assign({}, this.currentUser))
             .then(() => {
                 Swal.fire({
-                    type: 'success',
+                    icon: 'success',
                     title: 'Info Updated!',
                     html: 'Successfully updated info for <b>' + this.currentUser.name + '</b>',
                     showConfirmButton: false,
@@ -135,7 +135,7 @@ export class UsersService {
             })
             .catch(error => {
                 Swal.fire({
-                    type: 'error',
+                    icon: 'error',
                     title: 'Error',
                     text: error
                 }).finally();
@@ -146,7 +146,7 @@ export class UsersService {
         this.usersCollection.doc(this.currentUser.uid).update({ phoneNo: this.currentUser.phoneNo })
             .then(() => {
                 Swal.fire({
-                    type: 'success',
+                    icon: 'success',
                     title: 'Phone No Updated!',
                     html: 'Successfully updated Phone No for <b>' + this.currentUser.name + '</b>',
                     showConfirmButton: false,
@@ -155,7 +155,7 @@ export class UsersService {
             })
             .catch(error => {
                 Swal.fire({
-                    type: 'error',
+                    icon: 'error',
                     title: 'Error',
                     text: error
                 }).finally();
@@ -166,7 +166,7 @@ export class UsersService {
         this.usersCollection.doc(this.currentUser.uid).update({ address: this.currentUser.address })
             .then(() => {
                 Swal.fire({
-                    type: 'success',
+                    icon: 'success',
                     title: 'Address Updated!',
                     html: 'Successfully updated Address for <b>' + this.currentUser.name + '</b>',
                     showConfirmButton: false,
@@ -175,7 +175,7 @@ export class UsersService {
             })
             .catch(error => {
                 Swal.fire({
-                    type: 'error',
+                    icon: 'error',
                     title: 'Error',
                     text: error
                 }).finally();

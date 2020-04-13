@@ -23,10 +23,10 @@ export class AuthService {
                 Swal.showLoading();
             }
         }).finally();
-        this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider())
+        this.afAuth.signInWithPopup(new auth.GoogleAuthProvider())
             .then(response => {
                 Swal.fire({
-                    type: 'success',
+                    icon: 'success',
                     title: 'Sign In Successful!',
                     html: 'Welcome, <b>' + response.user.displayName + '</b>',
                     confirmButtonText: 'Great!',
@@ -34,7 +34,7 @@ export class AuthService {
                 }).finally();
             }).catch(reason => {
             Swal.fire({
-                type: 'error',
+                icon: 'error',
                 title: 'Sign In Failed!',
                 text: reason
             }).finally();
@@ -48,16 +48,16 @@ export class AuthService {
                 Swal.showLoading();
             }
         }).finally();
-        this.afAuth.auth.signOut()
+        this.afAuth.signOut()
             .then(() => {
                 Swal.fire({
-                    type: 'success',
+                    icon: 'success',
                     title: 'Signed Out!',
                     timer: 1500
                 }).finally();
             }).catch(reason => {
             Swal.fire({
-                type: 'error',
+                icon: 'error',
                 title: 'Sign Out Failed...',
                 text: reason
             }).finally();

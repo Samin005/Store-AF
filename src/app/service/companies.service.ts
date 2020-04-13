@@ -43,7 +43,7 @@ export class CompaniesService {
         this.companiesCollection.doc(newCompany.id).set(Object.assign({}, newCompany))
             .then(() => {
                 Swal.fire({
-                    type: 'success',
+                    icon: 'success',
                     title: 'Added!',
                     html: 'Successfully added new company: <b>' + newCompany.id + '</b>',
                     timer: 3000
@@ -51,7 +51,7 @@ export class CompaniesService {
             })
             .catch(reason => {
                 Swal.fire({
-                    type: 'error',
+                    icon: 'error',
                     title: 'Error',
                     text: reason.message
                 }).finally();
@@ -63,7 +63,7 @@ export class CompaniesService {
         this.companiesCollection.doc(selectedCompany.id).update(Object.assign({}, selectedCompany))
             .then(() => {
                 Swal.fire({
-                    type: 'success',
+                    icon: 'success',
                     title: 'Updated!',
                     html: 'Successfully updated company: <b>' + selectedCompany.id + '</b>',
                     timer: 3000
@@ -71,7 +71,7 @@ export class CompaniesService {
             })
             .catch(reason => {
                 Swal.fire({
-                    type: 'error',
+                    icon: 'error',
                     title: 'Error',
                     text: reason.message
                 }).finally();
