@@ -21,9 +21,7 @@
     "@angular/platform-browser-dynamic": "^9.1.2",
     "@angular/router": "^9.1.2",
     "@fortawesome/fontawesome-free": "^5.13.0",
-    "angular-particle": "^1.0.4",
     "angular-popper": "^2.0.1",
-    "angular-typing-animation": "^0.5.4",
     "bootstrap-select": "^1.13.13",
     "chart.js": "^2.9.3",
     "core-js": "^3.6.5",
@@ -40,6 +38,7 @@
     "sweetalert2": "^9.10.12",
     "tslib": "^1.10.0",
     "tsparticles": "^1.12.11",
+    "typed.js": "^2.0.11",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {

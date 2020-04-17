@@ -8,8 +8,6 @@ import {AngularFireStorageModule} from '@angular/fire/storage';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-// import {ParticlesModule} from 'angular-particle';
-import {TypingAnimationModule} from 'angular-typing-animation';
 import {environment} from '../environments/environment';
 import { HomeComponent } from './home/home.component';
 import { OnlineStoreComponent } from './online-store/online-store.component';
@@ -73,8 +71,6 @@ import { MyOrdersComponent } from './online-store/my-orders/my-orders.component'
         BrowserModule,
         FormsModule,
         AppRoutingModule,
-        // ParticlesModule,
-        TypingAnimationModule,
         AngularFirestoreModule.enablePersistence({synchronizeTabs: true}),
         AngularFireModule.initializeApp(environment.firebaseConfig),
         AngularFireAuthModule,

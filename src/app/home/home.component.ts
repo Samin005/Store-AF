@@ -4,6 +4,7 @@ import {Router} from '@angular/router';
 import {CompaniesService} from '../service/companies.service';
 import {LoadingService} from '../service/loading.service';
 import {FirestoreService} from '../service/firestore.service';
+import Typed from 'typed.js';
 
 declare var tsParticles;
 
@@ -16,14 +17,11 @@ export class HomeComponent implements OnInit {
     title = 'Store-AF';
     myStyle: object = {};
     myParams: object = {};
-    width = 100;
-    height = 100;
+    typedOptions: object = {};
     typewriterText1 = 'Hi';
     typewriterText2 = 'Welcome to ' + this.title;
     typewriterText3 = 'This is an application to get you started for any kind of business';
     typewriterText4 = 'You will be provided with an online-shop along with a back-office to sell your products and keep track of your business';
-    typewriterText = this.typewriterText1;
-    eraseLine = false;
 
     constructor(public companiesService: CompaniesService,
                 private firestoreService: FirestoreService,
@@ -33,13 +31,30 @@ export class HomeComponent implements OnInit {
     ngOnInit() {
         LoadingService.showLoader();
         this.companiesService.setCompanies();
+
+        // setting up typed.js
+        this.setOptionsForTyped();
+        const typed = new Typed('.typedText', this.typedOptions);
+        typed.start();  // not needed, only did it to avoid warning
         // setting up ts particles
-        this.setMyStyle();
-        this.setMyParams();
-        tsParticles.load('tsParticles', this.myParams, null);
+        this.setStyleForParticles();
+        this.setParamsForParticles();
+        tsParticles.load('particlesDiv', this.myParams, null);
     }
 
-    setMyStyle() {
+    setOptionsForTyped(){
+        this.typedOptions = {
+            strings: [this.typewriterText1, this.typewriterText2, this.typewriterText3, this.typewriterText4],
+            typeSpeed: 40,
+            backSpeed: 10,
+            backDelay: 2000,
+            showCursor: true,
+            cursorChar: '_',
+            loop: true
+        };
+    }
+
+    setStyleForParticles() {
         this.myStyle = {
             position: 'fixed',
             width: '100%',
@@ -52,7 +67,7 @@ export class HomeComponent implements OnInit {
         };
     }
 
-    setMyParams() {
+    setParamsForParticles() {
         this.myParams = {
             particles: {
                 number: {
@@ -157,21 +172,6 @@ export class HomeComponent implements OnInit {
             },
             retina_detect: true
         };
-    }
-
-    onComplete() {
-        setTimeout(() => {
-            this.eraseLine = !this.eraseLine;
-            if (this.typewriterText === this.typewriterText1) {
-                this.typewriterText = this.typewriterText2;
-            } else if (this.typewriterText === this.typewriterText2) {
-                this.typewriterText = this.typewriterText3;
-            } else if (this.typewriterText === this.typewriterText3) {
-                this.typewriterText = this.typewriterText4;
-            } else {
-                this.typewriterText = this.typewriterText1;
-            }
-        }, 2000);
     }
 
     loadOnlineStore(companyID: any) {
