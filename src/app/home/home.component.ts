@@ -5,6 +5,7 @@ import {CompaniesService} from '../service/companies.service';
 import {LoadingService} from '../service/loading.service';
 import {FirestoreService} from '../service/firestore.service';
 
+declare var tsParticles;
 
 @Component({
     selector: 'app-home',
@@ -13,7 +14,6 @@ import {FirestoreService} from '../service/firestore.service';
 })
 export class HomeComponent implements OnInit {
     title = 'Store-AF';
-    // companies$: Observable<any[]>;
     myStyle: object = {};
     myParams: object = {};
     width = 100;
@@ -24,29 +24,19 @@ export class HomeComponent implements OnInit {
     typewriterText4 = 'You will be provided with an online-shop along with a back-office to sell your products and keep track of your business';
     typewriterText = this.typewriterText1;
     eraseLine = false;
-    // topClients;
-    // sugarlockCompany: Observable<any>;
 
-
-    constructor(public companiesService: CompaniesService, private firestoreService: FirestoreService,
+    constructor(public companiesService: CompaniesService,
+                private firestoreService: FirestoreService,
                 private router: Router) {
     }
 
     ngOnInit() {
         LoadingService.showLoader();
         this.companiesService.setCompanies();
-        // this.companies$ = this.companiesService.getCompaniesObservable();
+        // setting up ts particles
         this.setMyStyle();
         this.setMyParams();
-        // this.companies$.subscribe(companies => {
-        //     this.companiesCount = companies.length;
-        //     LoadingService.closeLoader();
-        // });
-        // this.topClients = this.firestoreService.getCompany('Sugarlock');
-        // this.sugarlockCompany = this.firestoreService.getSugarlock();
-        // this.firestoreService.getSugarlockDetails();
-        // $(document).ready(() => console.log('doc ready.'));
-        // window.addEventListener('load', () => console.log('window loaded'));
+        tsParticles.load('tsParticles', this.myParams, null);
     }
 
     setMyStyle() {

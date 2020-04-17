@@ -39,6 +39,7 @@
     "rxjs-compat": "^6.5.5",
     "sweetalert2": "^9.10.12",
     "tslib": "^1.10.0",
+    "tsparticles": "^1.12.11",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
