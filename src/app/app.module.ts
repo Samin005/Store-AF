@@ -38,6 +38,7 @@ import {CheckoutComponent} from './online-store/checkout/checkout.component';
 import {ProfileComponent} from './online-store/profile/profile.component';
 import {ShortenPipe} from './pipe/shorten.pipe';
 import {MyOrdersComponent} from './online-store/my-orders/my-orders.component';
+import { TsParticlesComponent } from './common-components/ts-particles/ts-particles.component';
 
 @NgModule({
     declarations: [
@@ -67,7 +68,8 @@ import {MyOrdersComponent} from './online-store/my-orders/my-orders.component';
         CheckoutComponent,
         ProfileComponent,
         ShortenPipe,
-        MyOrdersComponent
+        MyOrdersComponent,
+        TsParticlesComponent
     ],
     imports: [
         BrowserModule,
