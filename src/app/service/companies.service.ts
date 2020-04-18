@@ -16,6 +16,7 @@ export class CompaniesService {
     company;
     companyExists = true;
     companies;
+    filteredCompanies = [];
     companiesCount;
 
     constructor(private firestoreService: FirestoreService) {
@@ -31,11 +32,16 @@ export class CompaniesService {
         });
     }
 
-    setCompaniesNoLoading() {
+    setCompaniesNoLoadingWithFilteredCompanies() {
         this.firestoreService.getCompaniesObservable().subscribe(companies => {
             this.companies = companies;
+            this.filteredCompanies = companies;
             this.companiesCount = companies.length;
         });
+    }
+
+    updateFilteredCompanies(inputValue) {
+        this.filteredCompanies = this.companies.filter(company => company.id.toLowerCase().includes(inputValue.toLowerCase()));
     }
 
     addCompany(newCompany) {
@@ -99,7 +105,7 @@ export class CompaniesService {
     }
 
     incrementOrderNoCounter(companyID) {
-        return this.companiesCollection.doc(companyID).update({ orderNoCounter: firebase.firestore.FieldValue.increment(1) });
+        return this.companiesCollection.doc(companyID).update({orderNoCounter: firebase.firestore.FieldValue.increment(1)});
     }
 
     // companyExists(companyID) {

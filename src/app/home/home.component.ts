@@ -42,7 +42,7 @@ export class HomeComponent implements OnInit {
         tsParticles.load('particlesDiv', this.myParams, null);
     }
 
-    setOptionsForTyped(){
+    setOptionsForTyped() {
         this.typedOptions = {
             strings: [this.typewriterText1, this.typewriterText2, this.typewriterText3, this.typewriterText4],
             typeSpeed: 40,
