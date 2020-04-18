@@ -28,7 +28,7 @@ export class CartComponent implements OnInit {
         Swal.fire({
             title: 'Are you sure?',
             html: 'Remove <b>' + item.name + '</b> from cart?',
-            type: 'warning',
+            icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#d33',
             confirmButtonText: 'Yes'

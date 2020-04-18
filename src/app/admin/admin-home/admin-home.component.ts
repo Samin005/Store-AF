@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {AdminService} from '../../service/admin.service';
 import {AngularFireAuth} from '@angular/fire/auth';
-import {auth} from 'firebase/app';
-import {UsersService} from '../../service/users.service';
-import Swal from 'sweetalert2';
 import {LoadingService} from '../../service/loading.service';
+import {UsersService} from '../../service/users.service';
+import {auth} from 'firebase/app';
+import Swal from 'sweetalert2';
 
 declare var $;
 
@@ -77,10 +77,10 @@ export class AdminHomeComponent implements OnInit {
                 Swal.showLoading();
             }
         }).finally();
-        this.angularFireAuth.auth.signInWithPopup(new auth.GoogleAuthProvider()).then(() => Swal.close())
+        this.angularFireAuth.signInWithPopup(new auth.GoogleAuthProvider()).then(() => Swal.close())
             .catch(reason => {
                 Swal.fire({
-                    type: 'error',
+                    icon: 'error',
                     title: 'Sign In Failed!',
                     text: reason
                 }).finally();
@@ -94,12 +94,12 @@ export class AdminHomeComponent implements OnInit {
                 Swal.showLoading();
             }
         }).finally();
-        this.angularFireAuth.auth.signOut()
+        this.angularFireAuth.signOut()
             .then(() => {
                 Swal.close();
             }).catch(reason => {
             Swal.fire({
-                type: 'error',
+                icon: 'error',
                 title: 'Sign Out Failed...',
                 text: reason
             }).finally();

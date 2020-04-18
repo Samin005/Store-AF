@@ -2,12 +2,23 @@
     You have to log in to interact.
 </div>
 <div *ngIf="isLoggedIn" class="col-md-8 mx-auto my-5">
-    <div class="d-flex justify-content-end align-items-center text-center">
-        <label for="companySelect" class="mx-3">Select Company: </label>
-        <select class="selectpicker d-flex flex-row-reverse" data-live-search="true" id="companySelect" (change)="onCompanySelect($event)">
-            <option disabled hidden></option>
-            <option data-tokens="ketchup mustard" *ngFor="let company of companiesService.companies">{{ company.id }}</option>
-        </select>
+    <div class="col-md-4 ml-auto">
+        <input type="text"
+               class="form-control"
+               placeholder="Select Company"
+               [formControl]="myControl"
+               (input)="selectCompaniesOnInput($event)"
+               [matAutocomplete]="auto">
+        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" (optionSelected)="onCompanySelect($event)">
+            <mat-option *ngFor="let company of companiesService.filteredCompanies" [value]="company.id">
+                <img class="mr-1" aria-hidden="true" [src]="company.img_path" height="25" alt="{{company.name}} image">
+                <span>{{company.id}}</span>
+            </mat-option>
+        </mat-autocomplete>
+<!--        <select class="selectpicker d-flex flex-row-reverse" data-live-search="true" id="companySelect" (change)="onCompanySelect($event)">-->
+<!--            <option disabled hidden></option>-->
+<!--            <option data-tokens="ketchup mustard" *ngFor="let company of companiesService.companies">{{ company.id }}</option>-->
+<!--        </select>-->
     </div>
     <div *ngIf="companySelected" class="my-5">
         <form (submit)="updateCompany()" ngNativeValidate>

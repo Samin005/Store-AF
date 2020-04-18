@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
+import {FormControl} from '@angular/forms';
 import {AdminService} from '../../service/admin.service';
 import {CompaniesService} from '../../service/companies.service';
 import {Company} from '../../model/company.model';
 
-declare var $;
 
 @Component({
     selector: 'app-edit-company',
@@ -16,6 +16,7 @@ export class EditCompanyComponent implements OnInit {
     selectedCompanyID: string;
     companySelected = false;
     selectedCompany = new Company();
+    myControl = new FormControl();
 
     constructor(public adminService: AdminService,
                 public companiesService: CompaniesService) {
@@ -23,24 +24,32 @@ export class EditCompanyComponent implements OnInit {
 
     ngOnInit() {
         this.isLoggedIn = this.adminService.loggedIn;
-        $(document).ready(() => {
-            this.refreshSelect();
-            $('.bs-placeholder').click(() => this.refreshSelect());
-        });
-        this.companiesService.setCompaniesNoLoading();
+        // for bootstrap-select
+        // $(document).ready(() => {
+        //     this.refreshSelect();
+        //     $('.bs-placeholder').click(() => this.refreshSelect());
+        // });
+        this.companiesService.setCompaniesNoLoadingWithFilteredCompanies();
+    }
+
+    selectCompaniesOnInput(event) {
+        this.companiesService.updateFilteredCompanies(event.target.value);
     }
 
     onCompanySelect(event) {
-        this.selectedCompanyID = event.target.value;
-        this.companiesService.getCompanyObservableByID(this.selectedCompanyID).subscribe(company => {
-            this.selectedCompany = (company as Company);
-            this.companySelected = true;
-        });
+        this.selectedCompanyID = event.option.value;
+        this.selectedCompany = this.companiesService.companies.filter(comp => comp.id === this.selectedCompanyID)[0];
+        this.companySelected = true;
+        // this.companiesService.getCompanyObservableByID(this.selectedCompanyID).subscribe(company => {
+        //     this.selectedCompany = (company as Company);
+        //     this.companySelected = true;
+        // });
     }
 
-    refreshSelect() {
-        $('.selectpicker').selectpicker('refresh');
-    }
+    // for bootstrap-select
+    // refreshSelect() {
+    //     $('.selectpicker').selectpicker('refresh');
+    // }
 
     updateCompany() {
         // this.selectedCompany.Create_date = new Date();

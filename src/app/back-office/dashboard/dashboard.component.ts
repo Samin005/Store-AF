@@ -9,8 +9,8 @@ declare var Chart;
     styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-    @ViewChild('revenueLineChart') lineChart: ElementRef;
-    @ViewChild('revenuePieChart') pieChart: ElementRef;
+    @ViewChild('revenueLineChart', { static: true }) lineChart: ElementRef;
+    @ViewChild('revenuePieChart', { static: true }) pieChart: ElementRef;
     revenueLineChart;
     revenuePieChart;
 

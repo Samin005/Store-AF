@@ -37,12 +37,28 @@ export class LoadingService {
             '    <div class="lds-dual-ring"></div>\n' +
             '</div>',
             showConfirmButton: false,
-            animation: false
+            showClass: {
+                popup: 'swal2-noanimation',
+                backdrop: 'swal2-noanimation'
+            },
+            hideClass: {
+                popup: '',
+                backdrop: ''
+            }
         }).finally();
     }
 
     static showLoaderNoAnimation() {
-        Swal.fire({animation: false}).finally();
+        Swal.fire({
+            showClass: {
+                popup: 'swal2-noanimation',
+                backdrop: 'swal2-noanimation'
+            },
+            hideClass: {
+                popup: '',
+                backdrop: ''
+            }
+        }).finally();
         Swal.showLoading();
     }
 

@@ -92,13 +92,13 @@ export class LayoutBoComponent implements OnInit {
                 Swal.showLoading();
             }
         }).finally();
-        this.angularFireAuth.auth.signOut()
+        this.angularFireAuth.signOut()
             .then(() => {
                 this.usersService.authorizedUser = false;
                 Swal.close();
             }).catch(reason => {
             Swal.fire({
-                type: 'error',
+                icon: 'error',
                 title: 'Sign Out Failed...',
                 text: reason
             }).finally();

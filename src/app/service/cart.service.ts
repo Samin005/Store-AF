@@ -18,7 +18,7 @@ export class CartService {
         this.cart.push(this.convertToCartItemWithQuantity(item, quantity));
         this.updateTotalPrice();
         Swal.fire({
-            type: 'success',
+            icon: 'success',
             title: 'Added to Cart!',
             html: '<b>' + item.name + '</b> was added to cart.',
             showConfirmButton: false,
@@ -33,14 +33,14 @@ export class CartService {
             this.updateTotalPrice();
             Swal.fire({
                 title: 'Removed from cart!',
-                type: 'success',
+                icon: 'success',
                 showConfirmButton: false,
                 timer: 1000
             }).finally();
         } else {
             Swal.fire({
                 title: item.name + ' not Found',
-                type: 'error'
+                icon: 'error'
             }).finally();
         }
     }
