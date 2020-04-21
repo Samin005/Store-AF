@@ -6,8 +6,8 @@ import {UsersService} from '../../service/users.service';
 import {LoadingService} from '../../service/loading.service';
 import {Order} from '../../model/order.model';
 import {OrdersService} from '../../service/orders.service';
-import Swal from 'sweetalert2';
 import {Router} from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
     selector: 'app-checkout',
@@ -89,14 +89,14 @@ export class CheckoutComponent implements OnInit {
 
     placeOrder() {
         LoadingService.showLoaderOS();
-        this.order.orderID = new Date().toISOString().substr(2, 8).replace(/-/g, '') + '-' + this.companiesService.company.orderNoCounter;
+        this.order.orderID = new Date().toISOString().substr(2, 8).replace(/-/g, '') + '-' + this.ordersService.counter.orderNo;
         this.order.user = this.usersService.currentUser;
         this.order.cart = this.cartService.cart.map((cartItem) => Object.assign({}, cartItem));
         this.order.paymentMethod = this.paymentMethod;
         this.order.totalPrice = this.cartService.totalPrice;
         this.ordersService.saveOrder(this.order)
             .then(() => {
-                this.companiesService.incrementOrderNoCounter(this.companiesService.companyID)
+                this.ordersService.incrementOrderNoCounter()
                     .then(() => {
                         Swal.fire({
                             icon: 'success',
@@ -113,19 +113,19 @@ export class CheckoutComponent implements OnInit {
                             }
                         });
                     })
-                    .catch(error => {
+                    .catch(errorUpdatingOrderNo => {
                         Swal.fire({
                             icon: 'error',
                             title: 'Error',
-                            text: error
+                            text: errorUpdatingOrderNo
                         }).finally();
                     });
             })
-            .catch(error => {
+            .catch(errorPlacingOrder => {
                 Swal.fire({
                     icon: 'error',
                     title: 'Error',
-                    text: error
+                    text: errorPlacingOrder
                 }).finally();
             });
     }

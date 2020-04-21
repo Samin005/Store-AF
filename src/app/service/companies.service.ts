@@ -3,7 +3,6 @@ import {AngularFirestoreCollection} from '@angular/fire/firestore';
 import {FirestoreService} from './firestore.service';
 import {LoadingService} from './loading.service';
 import {Company} from '../model/company.model';
-import * as firebase from 'firebase/app';
 import Swal from 'sweetalert2';
 
 @Injectable({
@@ -100,13 +99,13 @@ export class CompaniesService {
         });
     }
 
-    getCompanyObservableByID(companyID) {
-        return this.firestoreService.getCompanyObservableByID(companyID);
-    }
+    // getCompanyObservableByID(companyID) {
+    //     return this.firestoreService.getCompanyObservableByID(companyID);
+    // }
 
-    incrementOrderNoCounter(companyID) {
-        return this.companiesCollection.doc(companyID).update({orderNoCounter: firebase.firestore.FieldValue.increment(1)});
-    }
+    // incrementOrderNoCounter(companyID) {
+    //     return this.companiesCollection.doc(companyID).update({orderNoCounter: firebase.firestore.FieldValue.increment(1)});
+    // }
 
     // companyExists(companyID) {
     //     this.firestoreService.getFirestoreCompanyDocById(companyID).get().then(docSnapshot => {

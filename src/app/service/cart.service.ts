@@ -15,15 +15,49 @@ export class CartService {
     }
 
     addToCart(item: Item, quantity: number) {
-        this.cart.push(this.convertToCartItemWithQuantity(item, quantity));
-        this.updateTotalPrice();
-        Swal.fire({
-            icon: 'success',
-            title: 'Added to Cart!',
-            html: '<b>' + item.name + '</b> was added to cart.',
-            showConfirmButton: false,
-            timer: 1500
-        }).finally();
+        let existingItemIndex = -1;
+        let updatedQuantity = -1;
+        let previousQuantity = -1;
+        this.cart.forEach(cartItem => {
+            if(cartItem.name === item.name){
+                existingItemIndex = this.cart.indexOf(cartItem);
+                previousQuantity = cartItem.quantity;
+                updatedQuantity = previousQuantity + quantity;
+            }
+        });
+        if(existingItemIndex !== -1){
+            Swal.fire({
+                icon: 'question',
+                title: 'Already in Cart!',
+                html: 'Already <b>'+previousQuantity+'</b> of <b>' + item.name + '</b> exists in your cart, would you like to add <b>'+ quantity +'</b> more?',
+                confirmButtonText: 'Yes, add them.',
+                showCancelButton: true,
+                confirmButtonColor: '#d33'
+            }).then(result => {
+                if(result.value) {
+                    this.cart.splice(existingItemIndex, 1);
+                    this.cart.push(this.convertToCartItemWithQuantity(item, updatedQuantity));
+                    this.updateTotalPrice();
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Updated Cart!',
+                        html: 'Total <b>'+updatedQuantity+'</b> of <b>' + item.name + '</b> is in your cart now.',
+                        showConfirmButton: false,
+                        timer: 1500
+                    }).finally();
+                }
+            });
+        } else {
+            this.cart.push(this.convertToCartItemWithQuantity(item, quantity));
+            this.updateTotalPrice();
+            Swal.fire({
+                icon: 'success',
+                title: 'Added to Cart!',
+                html: '<b>' + item.name + '</b> was added to cart.',
+                showConfirmButton: false,
+                timer: 1500
+            }).finally();
+        }
     }
 
     removeItemFromCart(item) {
