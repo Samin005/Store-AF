@@ -82,6 +82,10 @@ export class FirestoreService {
         return this.db.collection(companyID + '-orders');
     }
 
+    getCompanyOrdersByUserCollection(companyID, userID) {
+        return this.db.collection(companyID + '-orders', ref => ref.where('user.uid','==',userID));
+    }
+
     getCompanyItemsObservable(companyID) {
         return this.db.collection(companyID + '-items').valueChanges();
     }

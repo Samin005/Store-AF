@@ -1,4 +1,4 @@
-<div *ngIf="authService.afAuth.user | async as user; else showLogin" class="container">
+<div *ngIf="authService.afAuth.user | async as user; else showSignIn" class="container">
     <div class="row">
         <img src="{{ user.photoURL }}" class="mx-auto profileImage" alt="{{ user.displayName }}'s photo">
     </div>
@@ -28,10 +28,6 @@
         <div class="col-lg-3"></div>
     </div>
 </div>
-<ng-template #showLogin>
-    <div class="row">
-        <button class="btn btn-outline-info my-3 my-sm-3 mx-auto" (click)="signIn()">
-            <i class="fas fa-user-circle"></i> Sign In
-        </button>
-    </div>
+<ng-template #showSignIn>
+    <app-show-sign-in></app-show-sign-in>
 </ng-template>

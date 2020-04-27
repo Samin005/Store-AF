@@ -35,10 +35,6 @@ export class CheckoutComponent implements OnInit {
     ngOnInit() {
     }
 
-    signIn() {
-        this.authService.signInOS();
-    }
-
     signOut() {
         this.authService.signOutOS();
     }
@@ -94,6 +90,7 @@ export class CheckoutComponent implements OnInit {
         this.order.cart = this.cartService.cart.map((cartItem) => Object.assign({}, cartItem));
         this.order.paymentMethod = this.paymentMethod;
         this.order.totalPrice = this.cartService.totalPrice;
+        this.order.orderDate = new Date();
         this.ordersService.saveOrder(this.order)
             .then(() => {
                 this.ordersService.incrementOrderNoCounter()

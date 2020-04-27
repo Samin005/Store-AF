@@ -8,6 +8,7 @@ import {AngularFireStorageModule} from '@angular/fire/storage';
 import {DatePipe} from '@angular/common';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatTableModule} from '@angular/material/table';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -39,6 +40,7 @@ import {ProfileComponent} from './online-store/profile/profile.component';
 import {ShortenPipe} from './pipe/shorten.pipe';
 import {MyOrdersComponent} from './online-store/my-orders/my-orders.component';
 import { TsParticlesComponent } from './common-components/ts-particles/ts-particles.component';
+import { ShowSignInComponent } from './common-components/show-sign-in/show-sign-in.component';
 
 @NgModule({
     declarations: [
@@ -69,7 +71,8 @@ import { TsParticlesComponent } from './common-components/ts-particles/ts-partic
         ProfileComponent,
         ShortenPipe,
         MyOrdersComponent,
-        TsParticlesComponent
+        TsParticlesComponent,
+        ShowSignInComponent
     ],
     imports: [
         BrowserModule,
@@ -81,6 +84,7 @@ import { TsParticlesComponent } from './common-components/ts-particles/ts-partic
         AngularFireStorageModule,
         BrowserAnimationsModule,
         MatAutocompleteModule,
+        MatTableModule,
         ReactiveFormsModule
     ],
     providers: [DatePipe],

@@ -11,12 +11,21 @@ import * as firebase from 'firebase/app';
 export class OrdersService {
 
     ordersCollection: AngularFirestoreCollection;
+    userOrders: Order[];
     counter;
 
     constructor(private firestoreService: FirestoreService,
                 private companiesService: CompaniesService) {
         this.ordersCollection = firestoreService.getCompanyOrdersCollection(companiesService.companyID);
         this.setOrdersCounter();
+    }
+
+    setUserOrders(userID) {
+        this.firestoreService.getCompanyOrdersByUserCollection(this.companiesService.companyID, userID).valueChanges()
+            .subscribe(orders => {
+                this.userOrders = orders as any;
+                console.log(this.userOrders);
+            });
     }
 
     saveOrder(newOrder: Order) {

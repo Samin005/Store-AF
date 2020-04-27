@@ -6,6 +6,7 @@ export class Order {
     cart: Array<any>;
     paymentMethod: string;
     totalPrice: number;
+    orderDate;
 
     constructor() {
         this.cart = [];

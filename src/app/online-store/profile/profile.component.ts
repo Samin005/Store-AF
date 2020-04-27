@@ -20,10 +20,6 @@ export class ProfileComponent implements OnInit {
     ngOnInit() {
     }
 
-    signIn() {
-        this.authService.signInOS();
-    }
-
     updateUserInfo() {
         LoadingService.showLoaderOS();
         this.usersService.currentUser.phoneNo = this.phoneNo.nativeElement.value;

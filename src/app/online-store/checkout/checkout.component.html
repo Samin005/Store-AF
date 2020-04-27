@@ -1,5 +1,5 @@
 <div *ngIf="cartService.cart.length > 0; else cartEmpty">
-    <div *ngIf="authService.afAuth.user | async as user; else showLogin" class="nav-item dropdown container">
+    <div *ngIf="authService.afAuth.user | async as user; else showSignIn" class="nav-item dropdown container">
         <button class="dropdown-toggle btn btn-light d-lg-none d-inline-block" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false"><img src="{{ user.photoURL }}" class="avatar" alt="{{ user.displayName }}'s photo">
             {{ user.displayName }}
@@ -49,17 +49,8 @@
             <div class="col-lg-3"></div>
         </div>
     </div>
-    <ng-template #showLogin>
-        <div class="container">
-            <div class="row">
-                <h3 class="mx-auto">Please Sign In first.</h3>
-            </div>
-            <div class="row">
-                <button class="btn btn-outline-info my-3 my-sm-3 mx-auto" (click)="signIn()">
-                    <i class="fas fa-user-circle"></i> Sign In
-                </button>
-            </div>
-        </div>
+    <ng-template #showSignIn>
+        <app-show-sign-in></app-show-sign-in>
     </ng-template>
 </div>
 <ng-template #cartEmpty>
