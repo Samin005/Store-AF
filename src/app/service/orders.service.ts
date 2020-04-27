@@ -22,10 +22,7 @@ export class OrdersService {
 
     setUserOrders(userID) {
         this.firestoreService.getCompanyOrdersByUserCollection(this.companiesService.companyID, userID).valueChanges()
-            .subscribe(orders => {
-                this.userOrders = orders as any;
-                console.log(this.userOrders);
-            });
+            .subscribe(orders => this.userOrders = orders as any);
     }
 
     saveOrder(newOrder: Order) {
