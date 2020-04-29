@@ -38,7 +38,7 @@
     "rxjs-compat": "^6.5.5",
     "sweetalert2": "^9.10.12",
     "tslib": "^1.10.0",
-    "tsparticles": "^1.13.3",
+    "tsparticles": "^1.13.5",
     "typed.js": "^2.0.11",
     "zone.js": "~0.10.2"
   },

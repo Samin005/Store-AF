@@ -10,20 +10,6 @@ export class FirestoreService {
     // company$: Observable<any>;
     // companies$: Observable<any[]>;
 
-    // sugarlockDetails: string;
-
-    // static showLoader() {
-    //     Swal.fire({
-    //         title: 'Loading...',
-    //         imageUrl: 'assets/img/loader.gif',
-    //         showConfirmButton: false,
-    //         customClass: {
-    //             image: 'my-0'
-    //         }
-    //     }).finally(() => {
-    //     });
-    // }
-
     constructor(private db: AngularFirestore) {
     }
 
@@ -38,8 +24,9 @@ export class FirestoreService {
     //     FirestoreService.showLoader();
     //     this.company$ = this.db.doc('companies/' + companyID).valueChanges();
     //     this.company$.subscribe(() => Swal.close());
-    //     // finding company from db
-    //     // this.db.collection('companies/', ref => ref.where('id', '==', companyID)).valueChanges().subscribe(value => console.log(value));
+    //
+    //     // finding company from db by companyID
+    //     this.db.collection('companies/', ref => ref.where('id', '==', companyID)).valueChanges().subscribe(value => console.log(value));
     //     return this.company$;
     // }
     //
@@ -85,6 +72,15 @@ export class FirestoreService {
     getCompanyOrdersByUserCollection(companyID, userID) {
         return this.db.collection(companyID + '-orders', ref => ref.where('user.uid','==',userID));
     }
+
+    // delete all orders
+    // deleteAllOrders(companyID) {
+    //     this.db.collection(companyID + '-orders', ref => ref.where('totalPrice', '>=', 0)).get().subscribe(values => {
+    //         values.forEach((value) => {
+    //             value.ref.delete().then(() => console.log('delete success')).catch(reason => console.log(reason));
+    //         });
+    //     });
+    // }
 
     getCompanyItemsObservable(companyID) {
         return this.db.collection(companyID + '-items').valueChanges();

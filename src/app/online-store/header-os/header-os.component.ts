@@ -22,7 +22,12 @@ export class HeaderOSComponent implements OnInit {
     ngOnInit() {
         this.authService.afAuth.user.subscribe((user) => {
             if (user !== null) {
-                this.usersService.setCurrentUser(user.uid);
+                this.usersService.getFirestoreUserDocByID(user.uid).get().then(docSnapshot => {
+                    if (!docSnapshot.exists) {
+                        this.usersService.addDefaultUser(user);
+                    }
+                    this.usersService.setCurrentUser(user.uid);
+                });
             }
         });
     }

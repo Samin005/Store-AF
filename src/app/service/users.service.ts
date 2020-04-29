@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {FirestoreService} from './firestore.service';
 import {AngularFirestoreCollection} from '@angular/fire/firestore';
+import {AuthService} from './auth.service';
 import {User} from '../model/user.model';
 import Swal from 'sweetalert2';
 
@@ -13,7 +14,8 @@ export class UsersService {
     authorizedUser = false;
     currentUser = new User();
 
-    constructor(public firestoreService: FirestoreService) {
+    constructor(public firestoreService: FirestoreService,
+                private authService: AuthService) {
         this.usersCollection = firestoreService.getUsersCollection();
     }
 
@@ -49,6 +51,7 @@ export class UsersService {
             companyIDBO: 'Demo Comp',
             createdDate: new Date()
         }).catch(error => {
+            this.authService.afAuth.signOut().then(() => console.log('signed out'));
             Swal.fire({
                 icon: 'error',
                 title: 'Error',
@@ -91,6 +94,7 @@ export class UsersService {
             companyIDBO: companyID,
             createdDate: new Date()
         }).catch(error => {
+            this.authService.afAuth.signOut().then(() => console.log('signed out'));
             Swal.fire({
                 icon: 'error',
                 title: 'Error',
