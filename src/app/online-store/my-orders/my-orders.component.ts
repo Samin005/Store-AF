@@ -27,4 +27,9 @@ export class MyOrdersComponent implements OnInit {
         });
     }
 
+    applyFilter(event: Event) {
+        const filterValue = (event.target as HTMLInputElement).value;
+        this.ordersService.filteredUserOrders.filter = filterValue.trim().toLowerCase();
+    }
+
 }

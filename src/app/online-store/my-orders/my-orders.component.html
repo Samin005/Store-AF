@@ -1,5 +1,8 @@
 <div *ngIf="authService.afAuth.user | async as user; else showSignIn" class="container text-center" >
-    <table mat-table [dataSource]="ordersService.userOrders" class="mat-elevation-z8 w-100 table-hover">
+
+    <input matInput (keyup)="applyFilter($event)" placeholder="search..." class="form-control float-right mb-1" style="width: 30%;">
+
+    <table mat-table [dataSource]="ordersService.filteredUserOrders" class="mat-elevation-z8 w-100 table-hover">
 
         <!--- Note that these columns can be defined in any order.
               The actual rendered columns are set as a property on the row definition" -->
