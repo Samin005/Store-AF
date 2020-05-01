@@ -1,4 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatSort} from '@angular/material/sort';
 import {CompaniesService} from '../../service/companies.service';
 import {OrdersService} from '../../service/orders.service';
 import {AuthService} from '../../service/auth.service';
@@ -11,6 +13,18 @@ import {AuthService} from '../../service/auth.service';
 export class MyOrdersComponent implements OnInit {
 
     displayedColumns: string[] = ['orderID', 'orderDate', 'cart', 'paymentMethod', 'totalPrice'];
+    private paginator: MatPaginator;
+    private sort: MatSort;
+
+    @ViewChild(MatSort) set matSort(ms: MatSort) {
+        this.sort = ms;
+        this.setDataSourceAttributes();
+    }
+
+    @ViewChild(MatPaginator) set matPaginator(mp: MatPaginator) {
+        this.paginator = mp;
+        this.setDataSourceAttributes();
+    }
 
     constructor(public companiesService: CompaniesService,
                 public ordersService: OrdersService,
@@ -27,9 +41,16 @@ export class MyOrdersComponent implements OnInit {
         });
     }
 
-    applyFilter(event: Event) {
-        const filterValue = (event.target as HTMLInputElement).value;
-        this.ordersService.filteredUserOrders.filter = filterValue.trim().toLowerCase();
+    setDataSourceAttributes() {
+        this.ordersService.filteredUserOrders.paginator = this.paginator;
+        this.ordersService.filteredUserOrders.sort = this.sort;
+
+        if (this.paginator && this.sort) {
+            this.applyFilter('');
+        }
     }
 
+    applyFilter(value: string) {
+        this.ordersService.filteredUserOrders.filter = value.trim().toLowerCase();
+    }
 }

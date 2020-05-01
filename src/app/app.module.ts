@@ -7,10 +7,9 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AngularFireStorageModule} from '@angular/fire/storage';
 import {DatePipe} from '@angular/common';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
-import {MatTableModule} from '@angular/material/table';
 
 import {AppRoutingModule} from './app-routing.module';
+import {AngularMaterialModule} from './angular-material.module';
 import {AppComponent} from './app.component';
 import {environment} from '../environments/environment';
 import {HomeComponent} from './home/home.component';
@@ -83,9 +82,8 @@ import { ShowSignInComponent } from './common-components/show-sign-in/show-sign-
         AngularFireAuthModule,
         AngularFireStorageModule,
         BrowserAnimationsModule,
-        MatAutocompleteModule,
-        MatTableModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        AngularMaterialModule
     ],
     providers: [DatePipe],
     bootstrap: [AppComponent]

@@ -1,10 +1,11 @@
 import {Injectable} from '@angular/core';
 import {AngularFirestoreCollection} from '@angular/fire/firestore';
+import {MatTableDataSource} from '@angular/material/table';
+import {DatePipe} from '@angular/common';
 import {FirestoreService} from './firestore.service';
 import {CompaniesService} from './companies.service';
 import {Order} from '../model/order.model';
 import * as firebase from 'firebase/app';
-import {MatTableDataSource} from '@angular/material/table';
 
 @Injectable({
     providedIn: 'root'
@@ -13,11 +14,13 @@ export class OrdersService {
 
     ordersCollection: AngularFirestoreCollection;
     userOrders: Order[];
-    filteredUserOrders;
+    userOrdersLength = 0;
+    filteredUserOrders = new MatTableDataSource([]);
     counter;
 
     constructor(private firestoreService: FirestoreService,
-                private companiesService: CompaniesService) {
+                private companiesService: CompaniesService,
+                private datePipe: DatePipe) {
         this.ordersCollection = firestoreService.getCompanyOrdersCollection(companiesService.companyID);
         this.setOrdersCounter();
     }
@@ -26,14 +29,15 @@ export class OrdersService {
         this.firestoreService.getCompanyOrdersByUserCollection(this.companiesService.companyID, userID).valueChanges()
             .subscribe(orders => {
                 this.userOrders = orders as any;
-                this.filteredUserOrders = new MatTableDataSource(this.userOrders);
+                this.userOrdersLength = this.userOrders.length;
+                this.filteredUserOrders.data = this.userOrders;
                 this.filteredUserOrders.filterPredicate = (data: Order, filter) => {
                     const cartData = [];
                     data.cart.forEach(item => cartData.push({name: item.name, quantity: item.quantity}));
-                    const tableData = {orderID: data.orderID, orderDate: data.orderDate, cart: cartData, paymentMethod: data.paymentMethod, totalPrice: data.totalPrice};
-                    const dataStr =JSON.stringify(tableData).toLowerCase();
+                    const tableData = {orderID: data.orderID, orderDate: this.datePipe.transform(data.orderDate.toDate()), cart: cartData, paymentMethod: data.paymentMethod, totalPrice: data.totalPrice};
+                    const dataStr = JSON.stringify(tableData).toLowerCase();
                     return dataStr.indexOf(filter) !== -1;
-                }
+                };
             });
     }
 
