@@ -14,7 +14,6 @@ export class OrdersService {
 
     ordersCollection: AngularFirestoreCollection;
     userOrders: Order[];
-    userOrdersLength = 0;
     filteredUserOrders = new MatTableDataSource([]);
     counter;
 
@@ -29,7 +28,6 @@ export class OrdersService {
         this.firestoreService.getCompanyOrdersByUserCollection(this.companiesService.companyID, userID).valueChanges()
             .subscribe(orders => {
                 this.userOrders = orders as any;
-                this.userOrdersLength = this.userOrders.length;
                 this.filteredUserOrders.data = this.userOrders;
                 this.filteredUserOrders.filterPredicate = (data: Order, filter) => {
                     const cartData = [];

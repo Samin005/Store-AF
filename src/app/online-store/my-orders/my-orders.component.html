@@ -1,6 +1,6 @@
-<div *ngIf="authService.afAuth.user | async as user; else showSignIn" class="container" >
+<div [hidden]="!(authService.afAuth.user | async)"  class="container" >
 
-    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="search..." class="form-control ml-auto mb-1" style="width: 30%;">
+    <input matInput (keyup)="applyFilter($event)" placeholder="search..." class="form-control ml-auto mb-1" style="width: 30%;">
     <div class="mat-elevation-z8">
         <table mat-table [dataSource]="ordersService.filteredUserOrders" class="w-100 table-hover" matSort>
 
@@ -51,6 +51,6 @@
     <button class="btn btn-primary-custom mx-auto my-5"
             routerLink="/{{ companiesService.companyID }}"><i class="fas fa-backward"></i> Go Back to Shopping</button>
 </div>
-<ng-template #showSignIn>
+<div [hidden]="authService.afAuth.user | async">
     <app-show-sign-in></app-show-sign-in>
-</ng-template>
+</div>

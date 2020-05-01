@@ -13,18 +13,20 @@ import {AuthService} from '../../service/auth.service';
 export class MyOrdersComponent implements OnInit {
 
     displayedColumns: string[] = ['orderID', 'orderDate', 'cart', 'paymentMethod', 'totalPrice'];
-    private paginator: MatPaginator;
-    private sort: MatSort;
-
-    @ViewChild(MatSort) set matSort(ms: MatSort) {
-        this.sort = ms;
-        this.setDataSourceAttributes();
-    }
-
-    @ViewChild(MatPaginator) set matPaginator(mp: MatPaginator) {
-        this.paginator = mp;
-        this.setDataSourceAttributes();
-    }
+    @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+    @ViewChild(MatSort, {static: true}) sort: MatSort;
+    // private paginator: MatPaginator;
+    // private sort: MatSort;
+    //
+    // @ViewChild(MatSort) set matSort(ms: MatSort) {
+    //     this.sort = ms;
+    //     this.setDataSourceAttributes();
+    // }
+    //
+    // @ViewChild(MatPaginator) set matPaginator(mp: MatPaginator) {
+    //     this.paginator = mp;
+    //     this.setDataSourceAttributes();
+    // }
 
     constructor(public companiesService: CompaniesService,
                 public ordersService: OrdersService,
@@ -32,6 +34,10 @@ export class MyOrdersComponent implements OnInit {
     }
 
     ngOnInit() {
+        // set up paginator and sort for mat table
+        this.ordersService.filteredUserOrders.paginator = this.paginator;
+        this.ordersService.filteredUserOrders.sort = this.sort;
+
         this.authService.afAuth.user.subscribe((user) => {
             if (user !== null) {
                 this.ordersService.setUserOrders(user.uid);
@@ -41,16 +47,24 @@ export class MyOrdersComponent implements OnInit {
         });
     }
 
-    setDataSourceAttributes() {
-        this.ordersService.filteredUserOrders.paginator = this.paginator;
-        this.ordersService.filteredUserOrders.sort = this.sort;
+    applyFilter(event: Event) {
+        const filterValue = (event.target as HTMLInputElement).value;
+        this.ordersService.filteredUserOrders.filter = filterValue.trim().toLowerCase();
 
-        if (this.paginator && this.sort) {
-            this.applyFilter('');
+        if (this.ordersService.filteredUserOrders.paginator) {
+            this.ordersService.filteredUserOrders.paginator.firstPage();
         }
     }
 
-    applyFilter(value: string) {
-        this.ordersService.filteredUserOrders.filter = value.trim().toLowerCase();
-    }
+    // setDataSourceAttributes() {
+    //     this.ordersService.filteredUserOrders.paginator = this.paginator;
+    //     this.ordersService.filteredUserOrders.sort = this.sort;
+    //
+    //     if (this.paginator && this.sort) {
+    //         this.applyFilterString('');
+    //     }
+    // }
+    // applyFilterString(value: string) {
+    //     this.ordersService.filteredUserOrders.filter = value.trim().toLowerCase();
+    // }
 }
