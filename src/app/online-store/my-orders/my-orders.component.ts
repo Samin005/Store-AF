@@ -4,6 +4,7 @@ import {MatSort} from '@angular/material/sort';
 import {CompaniesService} from '../../service/companies.service';
 import {OrdersService} from '../../service/orders.service';
 import {AuthService} from '../../service/auth.service';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-my-orders',
@@ -30,7 +31,8 @@ export class MyOrdersComponent implements OnInit {
 
     constructor(public companiesService: CompaniesService,
                 public ordersService: OrdersService,
-                public authService: AuthService) {
+                public authService: AuthService,
+                private router: Router) {
     }
 
     ngOnInit() {
@@ -67,4 +69,9 @@ export class MyOrdersComponent implements OnInit {
     // applyFilterString(value: string) {
     //     this.ordersService.filteredUserOrders.filter = value.trim().toLowerCase();
     // }
+
+    navigateToItem(itemID) {
+        this.router.navigate(['/' + this.companiesService.companyID, itemID])
+            .catch(reason => console.log(reason));
+    }
 }

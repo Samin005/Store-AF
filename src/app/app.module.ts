@@ -40,6 +40,7 @@ import {ShortenPipe} from './pipe/shorten.pipe';
 import {MyOrdersComponent} from './online-store/my-orders/my-orders.component';
 import { TsParticlesComponent } from './common-components/ts-particles/ts-particles.component';
 import { ShowSignInComponent } from './common-components/show-sign-in/show-sign-in.component';
+import { AllItemsComponent } from './online-store/all-items/all-items.component';
 
 @NgModule({
     declarations: [
@@ -71,7 +72,8 @@ import { ShowSignInComponent } from './common-components/show-sign-in/show-sign-
         ShortenPipe,
         MyOrdersComponent,
         TsParticlesComponent,
-        ShowSignInComponent
+        ShowSignInComponent,
+        AllItemsComponent
     ],
     imports: [
         BrowserModule,

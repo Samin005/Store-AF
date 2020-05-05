@@ -23,7 +23,7 @@
             <ng-container matColumnDef="cart">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Items </th>
                 <td mat-cell *matCellDef="let element">
-                    <div *ngFor="let item of element.cart">
+                    <div *ngFor="let item of element.cart" (click)="navigateToItem(item.id)" class="cursor-pointer">
                         <img src="{{item.imgUrl}}" height="25" alt="item image">
                         {{item.name}} (x{{item.quantity}})
                     </div>

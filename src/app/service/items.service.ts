@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {AngularFirestoreCollection} from '@angular/fire/firestore';
 import {AngularFireStorage} from '@angular/fire/storage';
 import {DatePipe} from '@angular/common';
+import {MatTableDataSource} from '@angular/material/table';
 import {FirestoreService} from './firestore.service';
 import {CompaniesService} from './companies.service';
 import {LoadingService} from './loading.service';
@@ -18,6 +19,8 @@ export class ItemsService {
     currentItemsDataset = [];
     currentItemsDtTable;
     companyItems;
+    filteredItems = [];
+    filteredItemsSearchTable = new MatTableDataSource([]);
     companyItemsLoadingComplete = false;
     tempItems;
     selectedItemID;
@@ -62,6 +65,8 @@ export class ItemsService {
                 this.selectedItemExists = false;
             } else {
                 this.tempItems = items;
+                // setting mat autocomplete data
+                this.filteredItems = this.companyItems;
             }
             let itemsCount = 0;
             this.currentItemsDataset = [];
@@ -81,9 +86,12 @@ export class ItemsService {
                                     this.setSelectedItemIfExists(this.selectedItemID);
                                 }
                                 this.companyItemsLoadingComplete = true;
+
+                                // setting filter items for advanced search
+                                this.setFilteredItemsSearchTable(items);
                             }
                             if (inBO) {
-                                this.currentItemsDataset.push([item.name, imgPathsString, item.details, item.stock,  this.datePipe.transform(item.lastModified.toDate(), 'dd MMM y, h:mm:ss a'), item.price]);
+                                this.currentItemsDataset.push([item.name, imgPathsString, item.details, item.stock, this.datePipe.transform(item.lastModified.toDate(), 'dd MMM y, h:mm:ss a'), item.price]);
                                 this.updateDtTable();
                             }
                         }
@@ -227,4 +235,16 @@ export class ItemsService {
         }
     }
 
+    updateFilteredItems(inputValue) {
+        this.filteredItems = this.companyItems.filter(item => item.name.toLowerCase().includes(inputValue.toLowerCase()));
+    }
+
+    setFilteredItemsSearchTable(items) {
+        this.filteredItemsSearchTable.data = items;
+        this.filteredItemsSearchTable.filterPredicate = (data: Item, filter) => {
+            const tableData = {name: data.name, details: data.details, price: data.price, stock: data.stock, discount: data.discount, createDate: this.datePipe.transform(data.createDate.toDate())};
+            const dataStr = JSON.stringify(tableData).toLowerCase();
+            return dataStr.indexOf(filter) !== -1;
+        };
+    }
 }

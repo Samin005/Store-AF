@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow-sm p-3 mb-5 bg-white rounded">
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow-sm p-3 mb-5 bg-white rounded" style="z-index: 1000;">
     <img src="{{ companiesService.company.img_path }}" width="80" height="80"
          class="d-inline-block align-top rounded-circle mr-1" alt="logo">
     <a class="navbar-brand" routerLink="/{{ companiesService.companyID }}">
@@ -11,35 +11,47 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" routerLink="/{{ companiesService.companyID }}">Home <span class="sr-only">(current)</span></a>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/{{ companiesService.companyID }}" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><i class="fas fa-home"></i> Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
+                <a class="nav-link" routerLink="/{{ companiesService.companyID }}/all-items" routerLinkActive="active"><i class="fas fa-align-left"></i> Items</a>
             </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                   aria-haspopup="true" aria-expanded="false">
-                    Dropdown
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link disabled" href="#">Disabled</a>
-            </li>
+<!--            <li class="nav-item dropdown">-->
+<!--                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"-->
+<!--                   aria-haspopup="true" aria-expanded="false">-->
+<!--                    Dropdown-->
+<!--                </a>-->
+<!--                <div class="dropdown-menu" aria-labelledby="navbarDropdown">-->
+<!--                    <a class="dropdown-item" href="#">Action</a>-->
+<!--                    <a class="dropdown-item" href="#">Another action</a>-->
+<!--                    <div class="dropdown-divider"></div>-->
+<!--                    <a class="dropdown-item" href="#">Something else here</a>-->
+<!--                </div>-->
+<!--            </li>-->
+<!--            <li class="nav-item">-->
+<!--                <a class="nav-link disabled" href="#">Disabled</a>-->
+<!--            </li>-->
         </ul>
         <form class="form-group my-2 my-lg-0">
             <div class="input-group">
-                <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                <input class="form-control" type="text" placeholder="Search" aria-label="Search"
+                       [formControl]="myControl"
+                       (input)="filterItemsOnInput($event)"
+                       [matAutocomplete]="auto">
                 <button class="input-group-text mr-2 btn-outline-secondary" type="button">
                     <i class="fas fa-search"></i>
                 </button>
             </div>
+            <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" (optionSelected)="onItemSelect($event)">
+            <mat-option *ngFor="let item of itemsService.filteredItems" [value]="item.name">
+                <img class="mr-1" aria-hidden="true" [src]="item.imgPaths[0]" height="25" alt="{{item.name}} image">
+                <span>{{item.name}}</span>
+            </mat-option>
+                <mat-option>
+                    <div class="text-right" (click)="navigateToAllItems()"><i class="fas fa-search-plus"></i> Try Advanced Search</div>
+                </mat-option>
+            </mat-autocomplete>
         </form>
         <div *ngIf="authService.afAuth.user | async as user; else showLogin" class="nav-item dropdown d-inline-block">
             <button class="dropdown-toggle btn btn-light" data-toggle="dropdown"

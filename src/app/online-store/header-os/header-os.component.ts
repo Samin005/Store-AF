@@ -4,6 +4,8 @@ import {CompaniesService} from '../../service/companies.service';
 import {CartService} from '../../service/cart.service';
 import {AuthService} from '../../service/auth.service';
 import {UsersService} from '../../service/users.service';
+import {FormControl} from '@angular/forms';
+import {ItemsService} from '../../service/items.service';
 
 @Component({
     selector: 'app-header-os',
@@ -12,11 +14,14 @@ import {UsersService} from '../../service/users.service';
 })
 export class HeaderOSComponent implements OnInit {
 
+    myControl = new FormControl();
+
     constructor(private router: Router,
                 public authService: AuthService,
                 public companiesService: CompaniesService,
                 public cartService: CartService,
-                private usersService: UsersService) {
+                private usersService: UsersService,
+                public itemsService: ItemsService) {
     }
 
     ngOnInit() {
@@ -45,4 +50,19 @@ export class HeaderOSComponent implements OnInit {
             .catch(reason => console.log(reason));
     }
 
+    onItemSelect(event) {
+        if(event.option.value !== undefined) {
+            this.router.navigate(['/' + this.companiesService.companyID, event.option.value])
+                .catch(reason => console.log(reason));
+        }
+    }
+
+    filterItemsOnInput(event) {
+        this.itemsService.updateFilteredItems(event.target.value);
+    }
+
+    navigateToAllItems() {
+        this.router.navigate(['/' + this.companiesService.companyID + '/all-items'])
+            .catch(reason => console.log(reason));
+    }
 }

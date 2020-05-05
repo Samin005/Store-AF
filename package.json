@@ -30,7 +30,7 @@
     "datatables.net-bs4": "^1.10.20",
     "datatables.net-buttons": "^1.6.1",
     "firebase": "^7.14.2",
-    "jquery": "^3.5.0",
+    "jquery": "^3.5.1",
     "jszip": "^3.4.0",
     "pdfmake": "^0.1.65",
     "popper.js": "^1.16.1",
@@ -38,7 +38,7 @@
     "rxjs-compat": "^6.5.5",
     "sweetalert2": "^9.10.12",
     "tslib": "^1.10.0",
-    "tsparticles": "^1.13.6",
+    "tsparticles": "^1.13.9",
     "typed.js": "^2.0.11",
     "zone.js": "~0.10.2"
   },
@@ -60,7 +60,7 @@
     "karma-jasmine": "~3.1.1",
     "karma-jasmine-html-reporter": "^1.5.3",
     "protractor": "^5.4.4",
-    "ts-node": "^8.9.1",
+    "ts-node": "^8.10.1",
     "tslint": "~6.1.2",
     "typescript": "~3.8.3"
   }
