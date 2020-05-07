@@ -65,8 +65,6 @@ export class ItemsService {
                 this.selectedItemExists = false;
             } else {
                 this.tempItems = items;
-                // setting mat autocomplete data
-                this.filteredItems = this.companyItems;
             }
             let itemsCount = 0;
             this.currentItemsDataset = [];

@@ -14,7 +14,7 @@ import {ItemsService} from '../../service/items.service';
 })
 export class HeaderOSComponent implements OnInit {
 
-    myControl = new FormControl();
+    formControl = new FormControl();
 
     constructor(private router: Router,
                 public authService: AuthService,
