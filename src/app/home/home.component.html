@@ -1,5 +1,5 @@
 <app-ts-particles></app-ts-particles>
-<div class="storeAFIconDiv">
+<div class="storeAFIconDiv position-relative">
     <i class="fab fa-stripe-s card-header"
        style="font-size:48px;
        background: -webkit-linear-gradient(white, red);
@@ -10,13 +10,13 @@
     <p class="hoverText" style="font-size: 12px">Created by Samin Azhan</p>
 </div>
 <div class="text-center">
-    <p class="welcomeText">
+    <p class="welcomeText position-relative">
         Welcome to {{ title }}!
     </p>
-    <div class="mx-4">
+    <div class="mx-4 position-relative">
         <span class="typedText"></span>
     </div>
-    <h4 style="margin-top: 15%;">Clients: ({{companiesService.companiesCount}})</h4>
+    <h4 style="margin-top: 15%;" class="position-relative">Clients: ({{companiesService.companiesCount}})</h4>
     <div class="card-deck" style="margin: 5%;">
         <div class="card client-cards" *ngFor="let company of companiesService.companies"
              (click)="loadOnlineStore(company.id)">
